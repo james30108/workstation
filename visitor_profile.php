@@ -105,7 +105,7 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
 
          $limit = " LIMIT $start, $perpage ";
 
-         $sql   = "SELECT * FROM system_order WHERE order_buyer_id = '$buyer_id' ";
+         $sql   = "SELECT * FROM system_order WHERE order_buyer_id = '$buyer_id' ORDER BY order_id DESC";
          $query = mysqli_query($connect, $sql . $limit);
          $count = mysqli_num_rows($query);
          if ($count > 0) {
