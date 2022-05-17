@@ -1,5 +1,7 @@
 <?php include('dashboard/process/function.php');
 
+echo "1234";
+
 if ($system_webpage == 0) {
     header("location:dashboard/member.php");
     die();
