@@ -1,6 +1,6 @@
 <?php include('dashboard/process/function.php');
 
-echo "ทดสอบ";
+echo "ทดสอบ 123";
 
 if ($system_webpage == 0) {
     header("location:dashboard/member.php");
