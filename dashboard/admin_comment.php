@@ -54,7 +54,7 @@ $order_by= " ORDER BY comment_status ASC, comment_create DESC ";
             <?php if ($system_webpage == 1) { ?>
             <a href="admin.php?page=comment&type=1" class="list-group-item d-flex align-items-center <?php echo $menu2 ?>">
                 <i class="bx bx-subdirectory-right me-3"></i>
-                <i class='bx bx-chalkboard me-3 font-20'></i><span><?php echo $l_blog ?></span>
+                <i class='bx bx-chalkboard me-3 font-20'></i><span><?php echo $l_thread ?></span>
             </a>
             <?php } ?>
             <a href="admin.php?page=comment&type=0" class="list-group-item d-flex align-items-center <?php echo $menu3 ?>">

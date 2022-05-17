@@ -2,7 +2,7 @@
 
 if (!file_exists("../assets/images/slips/")) { mkdir("../assets/images/slips"); }
 
-if ($_GET['action'] == 'insert_cart') {
+if      (isset($_GET['action'])  && $_GET['action'] == 'insert_cart') {
 
     $page        = $_GET['page'];
     $product_id  = $_GET['product_id'];
@@ -14,6 +14,8 @@ if ($_GET['action'] == 'insert_cart') {
     $query       = mysqli_query($connect, "SELECT * FROM system_product WHERE product_id = '$product_id' ");
     $data        = mysqli_fetch_array($query);
     $product_amount = $data['product_amount'];
+
+    if ($member_id == 0 || $product_id == 0) { die(); }
 
     // ---- ถ้าสินค้าอยู่ในตะกร้า และ สินค้าในสต๊อกไม่พอที่จะเพิ่ม ----
     if ($system_stock == 1 && $cart_amount && $cart_amount >= $product_amount) {
@@ -56,7 +58,7 @@ if ($_GET['action'] == 'insert_cart') {
     }
 
 } 
-elseif ($_GET['action'] == 'update_cart') {
+elseif  (isset($_GET['action'])  && $_GET['action'] == 'update_cart') {
 
     $cart_id    = $_GET['cart_id'];
     $member_id  = $_GET['member_id'];
@@ -77,19 +79,19 @@ elseif ($_GET['action'] == 'update_cart') {
     header("location:../" . $_GET['page'] . "?page=shopping&action=cart_setting&status=success&message=0");
 
 } 
-elseif ($_GET['action'] == 'cancel_cart') {
+elseif  (isset($_GET['action'])  && $_GET['action'] == 'cancel_cart') {
 
     mysqli_query($connect, "DELETE FROM system_cart WHERE cart_member_id = '" . $_GET['member_id'] . "' ");
     header("location:../" . $_GET['page'] . "?page=shopping&status=success&message=0");
 
 } 
-elseif ($_GET['action'] == 'delete_cart') {
+elseif  (isset($_GET['action'])  && $_GET['action'] == 'delete_cart') {
 
     mysqli_query($connect, "DELETE FROM system_cart WHERE cart_id = '" . $_GET['cart_id'] . "' ");
     header("location:../" . $_GET['page'] . "?page=shopping&action=cart_setting&status=success&message=0");
 
 } 
-elseif ($_GET['action'] == 'cancel_order') {
+elseif  (isset($_GET['action'])  && $_GET['action'] == 'cancel_order') {
 
     $order_id       = $_GET['order_id'];
     $page_type      = $_GET['page_type'];
@@ -112,7 +114,7 @@ elseif ($_GET['action'] == 'cancel_order') {
     header("location:../$page_type?page=order&status=success&message=0");
 
 }
-elseif ($_POST['action'] == 'confirm_member') {
+elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_member') {
 
     $page           = $_POST['page'];
     $order_member   = $_POST['order_member'];
@@ -258,7 +260,7 @@ elseif ($_POST['action'] == 'confirm_member') {
     }
 
 } 
-elseif ($_POST['action'] == 'confirm_buyer') {
+elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_buyer') {
     
     #### insert order ####
     $order_buyer_id     = $_POST['order_buyer_id'];
@@ -384,7 +386,7 @@ elseif ($_POST['action'] == 'confirm_buyer') {
         <b>รหัสคำสั่งซื้อของท่านคือ " . $order_id . "<br>
         <b>หากท่านมีปัญหาหรือต้องการปรึกษากับทางทีมงาน ให้ติดต่อมาที่ช่องทางการติดต่อที่หน้าเว็บเพจของเราได้ตลอด 24 ชั่วโมง แล้วเราจะรีบดำเนินการติดต่อกลับไปโดยเร็วที่สุด<br>
         <hr>
-        <p>วันที่ส่ง : " . datethai($data_now, 0) . "</p>
+        <p>วันที่ส่ง : " . datethai($data_now, 0, 1) . "</p>
         <p>ขอบพระคุณที่ให้ความไว้วางใจและอุดหนุนสินค้าของเรา</p>
         </body>
     </html>";

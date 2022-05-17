@@ -229,7 +229,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                 </div>
                 <div class="col-12 col-sm-4">
                     <label class="form-label"><?php echo $l_fright; ?> <font color="red">*</font></label>
-                    <input type="number" class="form-control" name="product_freight" placeholder="<?php echo $l_fright; ?>" required <?php echo $system_delivery == 0 ? " value='0' readonly " : false;?>>
+                    <input type="number" class="form-control" name="product_freight" placeholder="<?php echo $l_fright; ?>" required <?php echo $system_address != 2 ? " value='0' readonly " : false;?>>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_point; ?> <font color="red">*</font></label>
@@ -363,7 +363,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                             </div>
                             <div class="col-12 col-sm-6 mt-3">
                                 <label class="form-label"><?php echo $l_fright; ?> <font color="red">*</font></label>
-                                <input type="number" class="form-control" name="product_freight" value="<?php echo $product_freight ?>" required <?php echo $system_delivery == 0 ? " value='0' readonly " : false;?>>
+                                <input type="number" class="form-control" name="product_freight" value="<?php echo $product_freight ?>" required <?php echo $system_address != 2 ? " value='0' readonly " : false; ?> >
                             </div>
                         </div>
                     </div>

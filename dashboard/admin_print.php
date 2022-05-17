@@ -190,7 +190,7 @@ include("process/include_lang.php");
         $i      = 0;
         while($data = mysqli_fetch_array ($query)) {
 
-            if ($data['member_bank_name'] != '') {
+            if ($data['member_bank_name'] != 0) {
 
                 $bank_id= $data['member_bank_name'];
                 $query2 = mysqli_query($connect, "SELECT * FROM system_bank WHERE bank_id = '$bank_id' ");
@@ -214,7 +214,7 @@ include("process/include_lang.php");
             else {
 
                 // report's withdraw
-                if ($data['report_type'] == 2) { $money = $sum . $l_bath; }
+                if (isset($data['report_type']) && $data['report_type'] == 2) { $money = $sum . $l_bath; }
                 else { $money = report_final ($sum, $report_fee1, $report_fee2, $l_bath, $report_max)[0]; }
                 
             }

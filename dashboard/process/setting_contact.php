@@ -3,13 +3,15 @@
 if ($_POST['action'] == 'insert') {
 
     $contact_buyer  = isset($_POST['contact_buyer']) ? $_POST['contact_buyer'] : 0;
-    $contact_member = $_POST['contact_member'];
+    $contact_member = isset($_POST['contact_member'])? $_POST['contact_member'] : 0;
     $contact_name   = $_POST['contact_name'];
     $contact_email  = $_POST['contact_email'];
     $contact_title  = $_POST['contact_title'];
     $contact_detail = $_POST['contact_detail'];
     $contact_type   = $_POST['contact_type'];
-    
+
+    if ($contact_buyer == 0 && $contact_member == 0 && $contact_type == 2) { die(); }
+
     if ($contact_type == 0) {
         $url = "Location:../member.php?page=contact&status=success&message=0";
     }

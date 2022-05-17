@@ -95,7 +95,7 @@ foreach ($response['DATA']['package'] as $key) {
   $product_price        = $key['customer_price'];
   $product_price_member = $key['price'];
   $product_amount       = $key['qty'];
-  $product_group        = $key['groupname'];
+  $product_group        = isset($key['groupname']) ? $key['groupname'] : false;;
   $product_unit         = $key['unit'];
   $product_image_cover  = $key['picture'];
   $product_weight       = $key['weight'];

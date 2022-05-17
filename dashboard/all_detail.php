@@ -705,7 +705,7 @@
                 $i      = 0;
                 while($data = mysqli_fetch_array ($query)) {
 
-                    if ($data['member_bank_name'] != '') {
+                    if ($data['member_bank_name'] != 0) {
 
                         $bank_id= $data['member_bank_name'];
                         $query2 = mysqli_query($connect, "SELECT * FROM system_bank WHERE bank_id = '$bank_id' ");
@@ -729,7 +729,7 @@
                     else {
 
                         // report's withdraw
-                        if ($data['report_type'] == 2) { $money = $sum . $l_bath; }
+                        if (isset($data['report_type']) && $data['report_type'] == 2) { $money = $sum . $l_bath; }
                         else { $money = report_final ($sum, $report_fee1, $report_fee2, $l_bath, $report_max)[0]; }
                         
                     }
@@ -741,13 +741,13 @@
                         <td><?php echo $data['member_code'] ?></td>
                         <td><?php echo $data['member_name'] ?></td>
                         <td><?php chkEmpty ($data['member_code_id']) ?></td>
-                        <?php echo $system_address != 0 ? "<td>" . address ($connect, $data['member_id'], 0, $lang) . "</td>": false; ?>
+                        <?php echo $system_address != 0 ? "<td>" . address ($connect, $data['member_id'], 0, $lang) . "</td>" : false; ?>
                         <td><?php chkEmpty ($bank) ?></td>
                         <td><?php chkEmpty ($data['member_bank_id']) ?></td>
                         <td><?php echo $money ?></td>
                         <?php echo $type == 'withdraw' ? "<td>$status</td>" : false; ?>
                     </tr>
-                    <?php }?>
+                    <?php } ?>
                 </tbody>
             </table>
             <?php

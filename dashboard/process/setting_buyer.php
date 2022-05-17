@@ -122,7 +122,7 @@ elseif (isset($_GET['action']) && $_GET['action'] == 'block') {
 	mysqli_query($connect, "UPDATE system_buyer SET buyer_status = 1 WHERE buyer_id = '$buyer_id'");
     header('location:../admin.php?page=buyer&status=success&message=0');
 }
-elseif ($_POST['action'] == 'forget_password') {
+elseif (isset($_POST['action']) && $_POST['action'] == 'forget_password') {
     
     $buyer_email  = $_POST['buyer_email'];
 

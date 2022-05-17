@@ -94,7 +94,7 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                      <div class="row">
                         <div class="form-group col-12">
                            <label class="ms-3">ชื่อบัญชี <span class="required">*</span></label>
-                           <input type="text" class="form-control" name="pay_buyer" placeholder="เจ้าของบัญชี" required>
+                           <input type="text" class="form-control" name="pay_buyer" placeholder="ชื่อบัญชี" required>
                         </div>
                         <div class="form-group col-12 col-sm-6">
                            <label class="ms-3">วันที่ในสลิป <span class="required">*</span></label>
@@ -172,7 +172,7 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                            <span>ราคาสินค้าทั้งหมด:</span>
                            <span class="price"><?php echo number_format($order_price - $order_freight) ?> บาท</span>
                         </li>
-                        <?php if ($freight_total > 0) { ?>
+                        <?php if ($order_freight > 0) { ?>
                         <li>
                            <span>ค่าขนส่ง:</span>
                            <span><?php echo number_format($order_freight) ?> บาท</span>

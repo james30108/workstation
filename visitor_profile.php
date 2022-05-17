@@ -182,7 +182,7 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
             <?php
             if ($order_status == 0) { 
                echo "<font color=gray>รอการตรวจสอบ</font>";
-            } elseif ($order_status == 1 || $$order_status == 2) { 
+            } elseif ($order_status == 1 || $order_status == 2) { 
                echo "<font color=red>ถูกยกเลิก</font>";
             } elseif ($order_status >= 3 || $order_status == 4) { 
                echo "<font color=green>จัดส่งเรียบร้อย</font>";

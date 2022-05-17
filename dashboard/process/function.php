@@ -263,10 +263,10 @@ function address ($connect, $member_id, $type, $system_lang) {
             $address_province = $data['PROVINCE_NAME'];
             $address_zipcode  = $data['address_zipcode'];
 
-            echo $address_detail . " ตำบล/แขวง " . $address_district . "<br>อำเภอ/เขต " . $address_amphure . " จังหวัด " . $address_province . "<br>รหัสไปรษณีย์ " . $address_zipcode;
+            $address = $address_detail . " ตำบล/แขวง " . $address_district . "<br>อำเภอ/เขต " . $address_amphure . " จังหวัด " . $address_province . "<br>รหัสไปรษณีย์ " . $address_zipcode;
         } 
         else {
-            echo "<font color=gray>none</font>";
+            $address = "<font color=gray>none</font>";
         }
     }
     else {
@@ -279,12 +279,13 @@ function address ($connect, $member_id, $type, $system_lang) {
             $address_province = $data['address_province'];
             $address_zipcode  = $data['address_zipcode'];
 
-            echo $address_detail . " District " . $address_district . "<br>Amphure " . $address_amphure . " Province " . $address_province . "<br>Zipcode " . $address_zipcode;
+            $address = $address_detail . " District " . $address_district . "<br>Amphure " . $address_amphure . " Province " . $address_province . "<br>Zipcode " . $address_zipcode;
         } 
         else {
-            echo "<font color=gray>none</font";
+            $address = "<font color=gray>none</font>";
         }
     }
+    return $address;
 }
 
 // Date

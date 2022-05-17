@@ -103,7 +103,7 @@ include('webpage_asset/include/include_header.php');
                     
                     $product_id         = $data['product_id'];
                     $product_name       = $data['product_name'];
-                    $product_type_id    = $data['product_type_id'];
+                    $product_type_id    = $data['product_type'];
                     $product_detail     = $data['product_detail'];
                     $product_price      = number_format($data['product_price']) . $l_bath;
 
