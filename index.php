@@ -1,7 +1,10 @@
 <?php include('dashboard/process/function.php');
 
+<<<<<<< HEAD
 // ทดสอบการแก้ไข
 
+=======
+>>>>>>> 0e65ce6dac65b6a61f62051a7d39500487daa2d7
 if ($system_webpage == 0) {
     header("location:dashboard/member.php");
     die();
