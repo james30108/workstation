@@ -1,6 +1,6 @@
 <?php include('dashboard/process/function.php');
 
-// ทดสอบการแก้ไข
+// ทดสอบการแก้ไข ใน github ครั้งที่ 2
 
 if ($system_webpage == 0) {
     header("location:dashboard/member.php");
