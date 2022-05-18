@@ -32,10 +32,10 @@ if (isset($data_check_login)) {
 	$data_cart  = mysqli_fetch_array($query_cart);
 	$number 	= isset($data_cart) ? $data_cart['cart_product_amount'] : 1;
 
-    $cart_url = "<button class='btn btn-main' id='cart_insert' name='action' value='insert_cart'>เพิ่มลงตะกร้า</button>";
+    $cart_url = "<button class='btn btn-main' id='cart_insert' name='action' value='insert_cart'>$l_cart_insert</button>";
 } 
 else {
-    $cart_url = "<a href='visitor_login.php' class='btn btn-main' id='cart_insert'>เพิ่มลงตะกร้า</a>";
+    $cart_url = "<a href='visitor_login.php' class='btn btn-main' id='cart_insert'>$l_cart_insert</a>";
 }
 
 // product or package
@@ -47,8 +47,8 @@ if ($product_type2 == 0) {
 		GROUP BY package_main";
 	$package_title  = "";
 	$package_border = "border-warning";
-	$package_text   = "แพ็กเกจที่เกี่ยวข้อง";
-	$empty_text     = "ไม่มีแพ็กเกจ";
+	$package_text   = $lang == 0 ? "แพ็กเกจที่เกี่ยวข้อง" : "In Package";
+	$empty_text     = $lang == 0 ? "ไม่มีแพ็กเกจ" : "Not have Package";
 }
 else {
 	$package_sql    = "SELECT system_package.*, system_product.* 
@@ -56,10 +56,10 @@ else {
 		INNER JOIN system_package ON (system_product.product_id = system_package.package_product)
 		WHERE (package_main = '$product_id') AND (product_type2 = 0) AND (product_price > 0)
 		GROUP BY package_main";
-	$package_title  = "<div class='p-2 bg-warning mb-3 text-center'><strong>แพ็กเกจพิเศษ</strong></div>";
+	$package_title  = "<div class='p-2 bg-warning mb-3 text-center'><strong>$l_package</strong></div>";
 	$package_border = "";
-	$package_text   = "สินค้าที่เกี่ยวข้อง";
-	$empty_text     = "สินค้าในรายการนี้ไม่มีแบบแยกขายหน้าเว็บเพจ";
+	$package_text   = $lang == 0 ? "สินค้าที่เกี่ยวข้อง" : "Product in Package";
+	$empty_text     = $lang == 0 ?  "สินค้าในรายการนี้ไม่มีแบบแยกขายหน้าเว็บเพจ" : "This product is not sale in webpage";
 }
 
 //$number 	= isset($_SESSION['cart'][$product_id]) ? $_SESSION['cart'][$product_id] : 1;
@@ -110,24 +110,24 @@ else {
 		color: white;
 	}
 </style>
-<title>แสดงสินค้า</title>
+<title><?php echo $l_product_detail ?></title>
 <div class="container">
 	<div class="row my-3">
 		<div class="col-7">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item" aria-current="page"><a href="?page=shop">สินค้า</a></li>
-					<li class="breadcrumb-item active" aria-current="page">รายละเอียด</li>
+					<li class="breadcrumb-item" aria-current="page"><a href="?page=shop"><?php echo $l_product ?></a></li>
+					<li class="breadcrumb-item active" aria-current="page"><?php echo $l_product_detail ?></li>
 				</ol>
 			</nav>
 		</div>
 		<div class="col-5 d-flex">
 			<ol class="product-pagination ms-auto d-flex">
 				<?php if ($previous != '') { ?>
-					<li><a href="?page=product_single&product_id=<?php echo $previous ?>" class="me-3 mx-sm-2"><i class="tf-ion-ios-arrow-left"></i> ก่อนหน้า</a></li>
+					<li><a href="?page=product_single&product_id=<?php echo $previous ?>" class="me-3 mx-sm-2"><i class="tf-ion-ios-arrow-left"></i> <?php echo $l_prev ?></a></li>
 				<?php }
 				if ($next != '') { ?>
-					<li><a href="?page=product_single&product_id=<?php echo $next ?>" class="mx-sm-2">ถัดไป <i class="tf-ion-ios-arrow-right"></i></a></li>
+					<li><a href="?page=product_single&product_id=<?php echo $next ?>" class="mx-sm-2"><?php echo $l_next ?> <i class="tf-ion-ios-arrow-right"></i></a></li>
 				<?php } ?>
 			</ol>
 		</div>
@@ -144,26 +144,26 @@ else {
 				</ol>
 				<div class="carousel-inner">
 					<div class="carousel-item active position-relative">
-						<img src="<?php echo $product_image_cover ?>" alt="ปกสินค้า" class="d-block w-100 border border-1">                  	
+						<img src="<?php echo $product_image_cover ?>" alt="Cover" class="d-block w-100 border border-1">                  	
 					</div>
 					<div class="position-absolute top-0 start-0 m-4">
-                        <p class="text-dark">รูปปกสินค้า</p>
+                        <p class="text-dark"><?php echo $l_product_imagecover ?></p>
                     </div>
 					<?php for ($i = 1; $i < 6; $i++) {
 						if ($data['product_image_' . $i] != '') { ?>
 							<div class="carousel-item position-relative">
 								<img src="dashboard/assets/images/products/<?php echo $data['product_image_' . $i] ?>" class="d-block w-100 image_cover" alt="Image Cover">
 								<div class="position-absolute top-0 start-0 m-4">
-									<p class="text-white">รูปประกอบ <?php echo $i ?></p>
+									<p class="text-white"><?php echo $l_product_image ?> <?php echo $i ?></p>
 								</div>
 							</div>
 					<?php } } ?>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">ก่อนหน้า</span>
+					<span class="visually-hidden"><?php echo $l_prev ?></span>
 				</a>
 				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">ถัดไป</span>
+					<span class="visually-hidden"><?php echo $l_next ?></span>
 				</a>
 			</div>
 		</div>
@@ -171,7 +171,7 @@ else {
 			<div class="single-product-details mt-5 mt-sm-0">
 				<?php echo $package_title ?>
 				<h4 class=""><?php echo $product_name ?></h4>
-				<h5 class="mb-5">ราคา <?php echo number_format($product_price) . " บาท" ?></h5>
+				<h5 class="mb-5">ราคา <?php echo number_format($product_price) . $l_bath ?></h5>
 				<div class="border border-1 p-3 <?php echo $package_border ?>">
 					<?php 
 					echo "<p>$package_text</p>";
@@ -189,18 +189,18 @@ else {
 				<table class="table table-borderless mt-3">
 					<tbody>
 						<tr>
-							<th>ประเภทสินค้า</th>
+							<th><?php echo $l_product_type ?></th>
 							<td><a href="?page=shop&product_type=<?php echo $product_type ?>" class=""><?php echo $product_type_name ?></a></td>
 						</tr>
 						<?php if ($product_freight > 0) { ?>
 						<tr>
-							<th>ค่าขนส่ง / ชิ้น</th>
-							<td><?php echo $product_freight ?> บาท</td>
+							<th><?php echo $l_freight ?></th>
+							<td><?php echo $product_freight . $l_bath?></td>
 						</tr>
 						<?php } if ($product_weight > 0) { ?>
 						<tr>
-							<th>น้ำหนัก</th>
-							<td><?php echo $product_weight ?> กรัม</td>
+							<th><?php echo $l_weight ?></th>
+							<td><?php echo $product_weight . $l_gram ?></td>
 						</tr>
 						<?php } ?>
 					</tbody>
@@ -210,7 +210,7 @@ else {
 				<input type="hidden" name="product_id" value="<?php echo $product_id ?>">
 				<hr class="">
 				<div class="input-group mb-3 ">
-				  	<input type="number" min="1" name="product_quantity" class="form-control" value="<?php echo $number ?>" aria-label="จำนวนสินค้า" aria-describedby="cart_insert">
+				  	<input type="number" min="1" name="product_quantity" class="form-control" value="<?php echo $number ?>" aria-label="<?php echo $l_quantity ?>" aria-describedby="cart_insert">
 				  	<?php echo $cart_url ?>
 				</div>
 				</form>
@@ -221,10 +221,10 @@ else {
 	<hr class="d-block d-sm-none mt-5">
 	<ul class="nav nav-pills mb-3 mt-5 " id="pills-tab" role="tablist">
 		<li class="nav-item" role="presentation">
-			<button class="button me-1 <?php if ($product_detail != '' || $product_type2 == 1) { echo "active";} ?>" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#detail" type="button" role="tab" aria-controls="pills-home" aria-selected="true">รายละเอียด</button>
+			<button class="button me-1 <?php if ($product_detail != '' || $product_type2 == 1) { echo "active";} ?>" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#detail" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><?php echo $l_detail ?></button>
 		</li>
 		<li class="nav-item" role="presentation">
-			<button class="button <?php if ($product_detail == '' && $product_type2 == 0) { echo "active";} ?>" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ความเห็น (รีวิว)</button>
+			<button class="button <?php if ($product_detail == '' && $product_type2 == 0) { echo "active";} ?>" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#comment" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><?php echo "$l_comment (review)" ?></button>
 		</li>
 	</ul>
 
@@ -232,20 +232,20 @@ else {
 
 		<div class="tab-pane fade border border-1 p-3 p-sm-5 <?php if ($product_detail != '' || $product_type2 == 1) { echo "show active";} ?>" id="detail" role="tabpanel" aria-labelledby="pills-home-tab">
 			<?php if ($product_type2 == 0 && $product_detail != '') { 
-				echo "<h3 class='post-sub-heading'>รายละเอียดสินค้า</h3>";
+				echo "<h3 class='post-sub-heading'>$l_product_detail</h3>";
 				echo $product_detail;
 			} elseif ($product_type2 == 0 && $product_detail == '') { 
-				echo "<h3 class='post-sub-heading'>รายละเอียดสินค้า</h3>";
+				echo "<h3 class='post-sub-heading'>$l_product_detail</h3>";
 				echo "<p>ไม่มีข้อมูลรายละเอียดสินค้า</p>";
 			} elseif ($product_type2 == 1) { ?>
-				<h3 class="post-sub-heading">รายละเอียดสินค้าทั้งหมดในแพ็กเกจ</h3>
+				<h3 class="post-sub-heading"><?php echo $lang == 0 ? "รายละเอียดสินค้าทั้งหมดในแพ็กเกจ" : "All Product's detail in Package" ; ?></h3>
 				<table class="table table-bordered">
 	            	<thead>
 	            		<tr>
-	            			<th>ชื่อสินค้า</th>
-	            			<th>ราคาปกติ</th>
-	            			<th>* ราคาพิเศษ</th>
-	            			<th>จำนวน</th>
+	            			<th><?php echo $l_product_name ?></th>
+	            			<th><?php echo $l_price ?></th>
+	            			<th>* <?php echo $l_pricemem ?></th>
+	            			<th><?php echo $l_quantity ?></th>
 	            		</tr>
 	            	</thead>
 	            	<tbody>
@@ -264,14 +264,14 @@ else {
 	            				$price = number_format($data_product['product_price']);
 	            			}
 	            			else {
-	            				$price = "ไม่มีขาย";
+	            				$price = $lang == 0 ? "ไม่มีขาย" : "Not for sale";
 	            			}
 						?>
 	            		<tr>
 	            			<td><?php echo $package_name ?></td>
 	            			<td><?php echo $price ?></td>
 	            			<td class="text-success"><?php echo $package_price ?></td>
-	            			<td><?php echo $package_quantity ?> ชิ้น / กล่อง</td>
+	            			<td><?php echo $package_quantity . $l_piece ?></td>
 	            		</tr>
 
 	            		<?php } ?>
@@ -281,31 +281,31 @@ else {
 				$query = mysqli_query($connect, "SELECT * FROM system_package WHERE (package_main = '$product_id') AND (package_price = 0)");
 				$empty = mysqli_num_rows($query);
 				if ($empty > 0) { ?>
-					<p>สินค้าที่แถมฟรี</p>
+					<p><?php echo $lang == 0 ? "สินค้าที่แถมฟรี" : "Get Free" ; ?></p>
 					<table class="table table-bordered text-success border-success mb-5">
 		            	<thead>
 		            		<tr>
-		            			<th>ชื่อสินค้า</th>
-		            			<th>จำนวน</th>
+		            			<th><?php echo $l_product_name ?></th>
+		            			<th><?php echo $l_quantity ?></th>
 		            		</tr>
 		            	</thead>
 		            	<tbody>
 		            		<?php while ($data = mysqli_fetch_array($query)) { ?>
 		            		<tr>
 		            			<td><?php echo $data['package_name'] ?></td>
-		            			<td><?php echo $data['package_quantity'] ?> ชิ้น / กล่อง</td>
+		            			<td><?php echo $data['package_quantity'] . $l_piece?></td>
 		            		</tr>
 		            		<?php } ?>
 		            	</tbody>
 					</table>
 				<?php } ?> 
-				<p class="text-dark small"><b>หมายเหตุ</b> ข้อมูลรายละเอียดสินค้าจะทำการแสดงราคาปกติและราคาพิเศษ ซึ่งสินค้าราคาพิเศษจะจำหน่ายให้เฉพาะสมาชิกที่มีบัญชีตัวแทนขายเท่านั้น หากท่านมีความประสงค์ต้องการสมัครเป็นตัวแทนขาย สามารถติดต่อเข้ามาได้เลยค่ะ </p>
+				<p class="text-dark small"><b><?php echo $l_note ; ?></b> <?php echo $lang == 0 ? "ข้อมูลรายละเอียดสินค้าจะทำการแสดงราคาปกติและราคาพิเศษ ซึ่งสินค้าราคาพิเศษจะจำหน่ายให้เฉพาะสมาชิกที่มีบัญชีตัวแทนขายเท่านั้น หากท่านมีความประสงค์ต้องการสมัครเป็นตัวแทนขาย สามารถติดต่อเข้ามาได้เลยค่ะ" : "In Product's detail is show price and special price (price for membership only). If you want to register to the membership account just contact us." ; ?> </p>
 			<?php } ?>
 		</div>
 
 		<div class="tab-pane fade border border-1 p-3 p-sm-5 <?php if ($product_detail == '' && $product_type2 == 0) { echo "show active";} ?>" id="comment" role="tabpanel" aria-labelledby="pills-profile-tab">
 			<div class="post-comments-form" id="comment">
-				<h3 class="post-sub-heading">รีวิวสินค้า</h3>
+				<h3 class="post-sub-heading"><?php echo $lang == 0 ? "รีวิวสินค้า" : "Review" ; ?></h3>
 				<?php
 				$perpage        = 5;
 				if (!isset($_GET['page_id'])) { 
@@ -328,7 +328,7 @@ else {
 						$comment_id 	= $data['comment_id'];
 						$comment_name 	= $data['comment_name'];
 						$comment_detail = $data['comment_detail'];
-						$comment_create = datethai($data['comment_create'], 2, $system_lang);
+						$comment_create = datethai($data['comment_create'], 2, $lang);
 
 						?>
 						<div class="mb-5">
@@ -347,7 +347,7 @@ else {
 
 							$comment_name2 		= $data2['comment_name'];
 							$comment_detail2 	= $data2['comment_detail'];
-							$comment_create2 	= datethai($data2['comment_create'], 2, $system_lang);
+							$comment_create2 	= datethai($data2['comment_create'], 2, $lang);
 							?>
 							<div class="ms-5 mb-5">
 								<h6>
@@ -393,12 +393,12 @@ else {
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>สินค้าแนะนำ</h2>
+				<h2><?php echo $lang == 0 ? "สินค้าแนะนำ" : "Recommend" ; ?></h2>
 			</div>
 		</div>
 		<div class="row">
 		<?php
-		$product_title = "สินค้าแนะนำ";
+		$product_title = $lang == 0 ? "สินค้าแนะนำ" : "Recommend";
 		$query = mysqli_query($connect, "SELECT * FROM system_product WHERE (product_id != '$product_id') ORDER BY product_id ASC LIMIT 0, 8");
 		while ($data = mysqli_fetch_array($query)) { 
 			include('webpage_asset/include/include_product.php');

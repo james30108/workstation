@@ -2,6 +2,7 @@
 
 if ($lang == 0) {
 	
+	$l_home 	= "หน้าหลัก";
 	$l_manage 	= "จัดการ";
 	$l_search 	= "ค้นหา";
 	$l_cancel 	= "ยกเลิก";
@@ -41,7 +42,6 @@ if ($lang == 0) {
 	$l_link 	= "ลิงค์แนะนำ";
 	$l_prev 	= "ก่อนหน้า";
 	$l_next 	= "ถัดไป";
-	$l_comment 	= "ถัดไป";
 	$l_title 	= "หัวข้อ";
 	$l_linernumber = "ลำดับชั้นที่";
 	$l_fee1 	= "ค่าธรรมเนียม";
@@ -54,6 +54,18 @@ if ($lang == 0) {
 	$l_promotion= "โปรโมชั่น";
 	$l_validate = "กรุณาตรวจสอบให้ถูกต้อง";
 	$l_datesingnin = "วันที่สมัคร";
+	$l_delete 	= "ลบ";
+	$l_inbox 	= "กล่องข้อความ";
+	$l_lang 	= "ภาษา";
+	$l_menu 	= "เมนู";
+	$l_sort 	= "จัดเรียง";
+	$l_price_asc = "ราคาน้อยที่สุด";
+	$l_price_desc= "ราคาสูงที่สุด";
+	$l_weight 	= "น้ำหนัก";
+	$l_gram 	= " กรัม";
+	$l_note 	= "หมายเหตุ";
+	$l_editprofile = "แก้ไขข้อมูลส่วนตัว";
+	$l_back 	= "ย้อนกลับ";
 
 	// login page
 	$l_alogin 	= "ล็อกอินเช้าสู่ระบบของแอดมิน";
@@ -69,7 +81,7 @@ if ($lang == 0) {
 	$l_product 		= "สินค้า";
 	$l_product_type = "ประเภทสินค้า";
 	$l_order 		= "คำสั่งซื้อ";
-	$l_thread 		= "กระทู้";
+	$l_thread 		= "ประชาสัมพันธ์";
 	$l_thread_type 	= "ประเภทกระทู้";
 	$l_buyer 		= "สมาชิกหน้าเว็บเพจ";
 	$l_ewallet_manage= "จัดการระบบการเงิน";
@@ -109,8 +121,8 @@ if ($lang == 0) {
 	$l_comment		= "ความคิดเห็น";
 	$l_commentins	= "เพิ่มความคิดเห็น";
 	$l_commentdeta	= "ความคิดเห็น (กรุณาใช้ความคิดเห็นที่สุภาพ)";
+	$l_comment_index= "กล่องความเห็น";
 	
-
 	// Member
 	$l_member_code 	= "รหัสสมาชิก";
 	$l_class 		= "ตำแหน่ง";
@@ -168,11 +180,14 @@ if ($lang == 0) {
 	$l_product_image_mana 	= "จัดการรูปภาพสินค้า";
 	$l_producttype_insert 	= "เพิ่มหมวดสินค้า";
 	$l_product_text 		= "สินค้าราคาสมาชิกจะถูกกว่าราคาหน้าเพจ และราคาสมาชิกนี้เป็นราคาพิเศษที่ลดมาจากราคาตามท้องตลาดทั่วไป";
+	$l_product_new 			= "สินค้าใหม่";
+	$l_product_search 		= "ค้นหาสินค้า";
+	$l_product_detail 		= "รายละเอียดสินค้า";
 
 	// Order
 	$l_order_code 		= "รหัสคำสั่งซื้อ";
 	$l_order_buyer 		= "ชื่อผู้ซื้อ";
-	$l_order_pay0 		= "แบบธรรมดา";
+	$l_order_pay0 		= "แบบธรรมดา (โอนจ่าย)";
 	$l_order_pay1 		= "ผ่านระบบกระเป๋าเงิน";
 	$l_order_pay2 		= "ซื้อด่วนโดยแอดมิน";
 	$l_order_pay3 		= "แอดมินซื้อผ่านระบบกระเป๋าเงิน";
@@ -246,6 +261,7 @@ if ($lang == 0) {
 	// Buy Products
 	$l_buy			= "สั่งซื้อสินค้า";
 	$l_buy_byadmin	= "สั่งซื้อให้สมาชิก";
+	$l_buy_more		= "สั่งซื้อสินค้าเพิ่ม";
 	$l_cart			= "ตะกร้า";
 	$l_cart_insert	= "เพิ่มลงตะกร้า";
 	$l_plus			= "เพิ่ม";
@@ -259,10 +275,25 @@ if ($lang == 0) {
 	$l_thread_number= "จำนวนกระทู้";
 	$l_image_cover	= "รูปปก";
 	$l_thread_edit	= "แก้ไขกระทู้";
+	$l_thread_newer	= "ประชาสัมพันธ์ล่าสุด";
+
+	// Follow
+	$l_follow 		= "ติดตามเรา";
+	$l_follow_text 	= "ติดตามเพื่อรับข่าวสารจากทางเรา";
+
+	// Tracking
+	$l_trackname 	= "บริษัทขนส่ง";
+	$l_trackid 		= "เลขติดตามพัสดุ";
+
+	// Review
+	$l_review 			= "รีวิว";
+	$l_review_insert	= "เขียนรีวิว";
+	$l_review_complete 	= "รีวิวเสร็จสิ้น";
 	
 }
 else {
 
+	$l_home 	= "Home";
 	$l_manage 	= "Manage";
 	$l_search 	= "Search";
 	$l_cancel 	= "Cancel";
@@ -314,7 +345,19 @@ else {
 	$l_promotion= "Promotion";
 	$l_validate = "Please Validate";
 	$l_datesingnin = "Date of Signin";
-	
+	$l_delete 	= "Delete";
+	$l_inbox 	= "Inbox";
+	$l_lang 	= "Language";
+	$l_menu 	= "Menu";
+	$l_sort 	= "Sort";
+	$l_price_asc = "Price : low to high";
+	$l_price_desc= "Price : high to low";
+	$l_weight 	= "Weight";
+	$l_gram 	= " Gram";
+	$l_note 	= "Note";
+	$l_editprofile = "Edit Profile";
+	$l_back 	= "Back";
+
 	// login page
 	$l_alogin 	= "Login to Admin's Dashboard";
 	$l_mlogin 	= "Login to Member's Dashboard";
@@ -362,21 +405,16 @@ else {
 	$l_dash_status 	= "Order Status in Month";
 	$l_dash_income 	= "Static Income";
 
-	// Message and Comment
-	$l_message 		= "Message";
-	$l_mess_send 	= "Send Message";
-	$l_mess_sended	= "By Admin";
-	$l_source 		= "Source";
-	$l_comment		= "Comment";
-	$l_comment_index= "Index";
-
+	// Contact and Comment
 	$l_contact 		= "Contact";
 	$l_contact_index= "Index";
 	$l_send 		= "Send Message";
 	$l_sended		= "By Admin";
 	$l_source 		= "Source";
 	$l_comment		= "Comment";
+	$l_commentins	= "Send Comment";
 	$l_commentdeta	= "Comment (Please use polite comments)";
+	$l_comment_index= "Index";
 
 	// Member
 	$l_member_code 	= "Member Code";
@@ -435,6 +473,9 @@ else {
 	$l_product_image_mana 	= "Image Management";
 	$l_producttype_insert 	= "Insert Product type";
 	$l_product_text 		= "The product price of member is lower than The General price. This is special price for member only.";
+	$l_product_new 			= "New Product";
+	$l_product_search 		= "Search Product";
+	$l_product_detail 		= "Product detail";
 
 	// Order
 	$l_order_code 		= "Order Code";
@@ -513,6 +554,7 @@ else {
 	// Buy Products
 	$l_buy			= "Shoping";
 	$l_buy_byadmin	= "Shoping for Member";
+	$l_buy_more		= "Shoping more";
 	$l_cart			= "Cart";
 	$l_cart_insert	= "Add to Cart";
 	$l_plus			= "Add";
@@ -526,6 +568,20 @@ else {
 	$l_thread_number= "Number of Thread";
 	$l_image_cover	= "Image Cover";
 	$l_thread_edit	= "Edit Thread";
+	$l_thread_newer	= "New Thread";
+
+	// Follow
+	$l_follow 		= "Follow";
+	$l_follow_text 	= "Follow Us";
+
+	// Tracking
+	$l_trackname 	= "Freight name";
+	$l_trackid 		= "Tracking code";
+
+	// Review
+	$l_review 			= "Review";
+	$l_review_insert 	= "Insert Review";
+	$l_review_complete 	= "Review Complete";
 }
 
 ?>

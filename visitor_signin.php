@@ -63,7 +63,21 @@ $buyer_direct = isset($_SESSION['buyer_direct']) ? $_SESSION['buyer_direct'] : 1
         $("#direct_code").change(function(){
             var direct_code = $(this).val();
             $.get( "dashboard/process/ajax/ajax_visitor_insert.php", { direct_code: direct_code }, function( data ) {
-                $("#ajax_direct").html( data );
+
+              if (data == 'none') {
+                  alert('This member code is not in the system');
+                  $("#direct_name").val("");
+                  $("#direct_id").val("");
+              }
+              else {
+                  let direct      = data.split(",");
+                  let direct_id   = direct[0];
+                  let direct_name = direct[1];
+
+                  $("#direct_id").val(direct[0]);
+                  $("#direct_name").val(direct[1]);
+              }
+
             });
         });
 
@@ -87,13 +101,15 @@ $buyer_direct = isset($_SESSION['buyer_direct']) ? $_SESSION['buyer_direct'] : 1
               <?php
                 $query = mysqli_query($connect, "SELECT * FROM system_member WHERE member_id = '$buyer_direct' ");
                 $data  = mysqli_fetch_array($query);
+                $member_name = $data['member_name'];
+                $member_code = $data['member_code'];
               ?>
               <div class="col-12 col-sm-6">
-                <input type="text" class="form-control" name="direct_code" placeholder="รหัสผู้แนะนำ" id="direct_code" value="<?php echo $data['member_code'] ?>">
+                <input type="text" class="form-control" id="direct_code" name="direct_code" value="<?php echo $member_code ?>" placeholder="รหัสผู้แนะนำ" required>
               </div>
-              <div class="col-12 col-sm-6" id="ajax_direct">
-                <input type="hidden" name="buyer_direct" value="<?php echo $buyer_direct ?>">
-                <input type="text" class="form-control" name="member_name" placeholder="ชื่อผู้แนะนำ" value="<?php echo $data['member_name'] ?>" readonly>
+              <div class="col-12 col-sm-6">
+                <input type="hidden" name="buyer_direct" id="direct_id" value="<?php echo $buyer_direct ?>">
+                <input type="text" class="form-control" id="direct_name" value="<?php echo $member_name ?>" placeholder="กรุณากรอกรหัสผู้แนะนำให้ถูกต้อง" required onkeypress="return false;">
               </div>
               <hr>
               <div class="col-12">
@@ -142,33 +158,6 @@ $buyer_direct = isset($_SESSION['buyer_direct']) ? $_SESSION['buyer_direct'] : 1
     </div>
   </section>
 
-  <!-- 
-  Essential Scripts
-  =====================================-->
-
-  <!-- Main jQuery -->
-  <script src="webpage_asset/plugins/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap 3.1 -->
-  <script src="webpage_asset/plugins/bootstrap/js/bootstrap.min.js"></script>
-  <!-- Bootstrap Touchpin -->
-  <script src="webpage_asset/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-  <!-- Instagram Feed Js -->
-  <script src="webpage_asset/plugins/instafeed/instafeed.min.js"></script>
-  <!-- Video Lightbox Plugin -->
-  <script src="webpage_asset/plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
-  <!-- Count Down Js -->
-  <script src="webpage_asset/plugins/syo-timer/build/jquery.syotimer.min.js"></script>
-
-  <!-- slick Carousel -->
-  <script src="webpage_asset/plugins/slick/slick.min.js"></script>
-  <script src="webpage_asset/plugins/slick/slick-animation.min.js"></script>
-
-  <!-- Google Mapl -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-  <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
-
-  <!-- Main Js File -->
-  <script src="webpage_asset/js/script.js"></script>
 </body>
 
 </html>

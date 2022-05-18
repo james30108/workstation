@@ -449,15 +449,15 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                         <label class="form-label"><?php echo $l_paydetail ?></label>
                         <select class="form-control" name="order_type_buy" id="order_type_buy" required>
                             <?php if ($page_type == "member.php") { ?>
-                            <option value="0">Pay Default</option>
+                            <option value="0"><?php echo $l_order_pay0 ?></option>
                             <?php echo $system_ewallet == 1 ? "<option value='1' $ewallet_dis>$ewallet_name</option>" : false; ?>
                             <!--
-                            <option value="4">Scan QRCode</option>
-                            <option value="5">COD</option>
+                            <option value="4"><?php echo $l_order_pay4 ?>/option>
+                            <option value="5"><?php echo $l_order_pay5 ?></option>
                             -->
                             <?php } else { ?>
 
-                            <option value="2">Pay Default</option>
+                            <option value="2"><?php echo $l_order_pay0 ?></option>
 
                             <?php echo $system_ewallet == 1 ? "<option value='3' $ewallet_dis>$ewallet_name</option>" : false; 
 

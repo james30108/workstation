@@ -1,35 +1,27 @@
 <?php include('dashboard/process/function.php');
 
-// ทดสอบการแก้ไข ใน computer ครั้งที่ 1
-
 if ($system_webpage == 0) {
     header("location:dashboard/member.php");
     die();
 }
 
-$page     = isset($_GET['page']) ? $_GET['page'] : false;
-$buyer_id = isset($_SESSION['buyer_id']) ? $_SESSION['buyer_id'] : false;
+$page       = isset($_GET['page']) ? $_GET['page'] : false;
+$buyer_id   = isset($_SESSION['buyer_id']) ? $_SESSION['buyer_id'] : false;
+$lang       = 0;
 
 if ($buyer_id) {
     $sql_check_login    = mysqli_query($connect, "SELECT * FROM system_buyer WHERE buyer_id = '$buyer_id' ");
     $data_check_login   = mysqli_fetch_array($sql_check_login);  
+    $buyer_name         = $data_check_login['buyer_name'];
+    $lang               = $system_lang == 1 ? $data_check_login['buyer_lang'] : 0;
 }
 if (isset($_GET['buyer_direct']) && $_GET['buyer_direct'] != '') {  
     $_SESSION['buyer_direct'] = $_GET['buyer_direct'];
     header("location:index.php");
 }
 
-$lang    = $system_lang == 1 ? $data_check_login['buyer_lang'] : 0;
 include("dashboard/process/include_lang.php");
 
-/*
-// cookie
-if (isset($_GET['member_id']) && $_GET['member_id'] != '') {
-    $member_id = $_GET['member_id'];
-    setcookie("order_member", $member_id, time() + (86400 * 90), "/");
-    header('location:index.php');
-}
-*/
 ?>
 <!doctype html>
 <html lang="en">
@@ -60,6 +52,7 @@ if (isset($_GET['member_id']) && $_GET['member_id'] != '') {
 
     <!-- Animate css -->
     <link rel="stylesheet" href="webpage_asset/plugins/animate/animate.css">
+    
     <!-- Slick Carousel -->
     <link rel="stylesheet" href="webpage_asset/plugins/slick/slick.css">
     <link rel="stylesheet" href="webpage_asset/plugins/slick/slick-theme.css">
@@ -171,17 +164,22 @@ if (isset($_GET['member_id']) && $_GET['member_id'] != '') {
                     -->
                     <ul class="footer-menu text-uppercase">
                         <li>
-                            <a href="?page=shop">สินค้า</a>
+                            <a href="?page=shop"><?php echo $l_product ?></a>
                         </li>
                         <li>
-                            <a href="?page=thread">ประชาสัมพันธ์</a>
+                            <a href="?page=package"><?php echo $l_package ?></a>
                         </li>
                         <li>
-                            <a href="?page=contact">ติดต่อเรา</a>
+                            <a href="?page=thread"><?php echo $l_thread ?></a>
                         </li>
+                        <li>
+                            <a href="?page=contact"><?php echo $l_contact ?></a>
+                        </li>
+                        <!--
                         <li>
                             <a href="?page=track">ตรวจสอบคำสั่งซื้อ</a>
                         </li>
+                        -->
                     </ul>
                     <img src="dashboard/assets/images/etc/<?php echo $logo_image ?>" class="border-0 m-5">
                     <!--
@@ -248,5 +246,4 @@ if (isset($_GET['member_id']) && $_GET['member_id'] != '') {
         }
     </script>
 </body>
-
 </html>

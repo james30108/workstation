@@ -4,7 +4,7 @@ $header_url       = "dashboard/assets/images/bg-themes/1.png";
 $header_name      = !isset($_GET['action']) ? "ข้อมูลส่วนตัว" : "ประวัติการซื้อ";
 $header_css       = !isset($_GET['action']) ? "btn btn-main" : "text-decoration-underline small";
 $header_css2      = isset($_GET['action']) ? "btn btn-main" : "text-decoration-underline small";
-$header_detail    = "หน้าแดสงผลข้อมูลส่วนตัว โดยสามารถทำกาแก้ไขข้อมูลได้ และสามารถเรียกดูข้อมูลรายการสั่งซื้อสินค้าของท่านได้";
+$header_detail    = "หน้าแสดงผลข้อมูลส่วนตัว โดยสามารถทำกาแก้ไขข้อมูลได้ และสามารถเรียกดูข้อมูลรายการสั่งซื้อสินค้าของท่านได้";
 include('webpage_asset/include/include_header.php');
 
 $header_name    = $data_check_login['buyer_name'];
@@ -19,8 +19,8 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
 ?>
 <div class="container">
    <div class="my-3">
-      <a href="index.php?page=profile" class="me-3 <?php echo $header_css ?>">แก้ไขข้อมูลส่วนตัว</a>
-      <a href="index.php?page=profile&action=order" class="me-3 <?php echo $header_css2 ?>">ประวัติการซื้อ</a>
+      <a href="index.php?page=profile" class="me-3 <?php echo $header_css ?>"><?php echo $l_editprofile ?></a>
+      <a href="index.php?page=profile&action=order" class="me-3 <?php echo $header_css2 ?>"><?php echo $l_resold_order ?></a>
    </div>
    <?php if (!isset($_GET['action'])) { ?>
       <form action="dashboard/process/setting_buyer.php" method="post" enctype="multipart/form-data" class="checkout-form mt-3">
@@ -29,42 +29,42 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
             <div class="block billing-details">
                <h4 class="widget-title">ข้อมูลส่วนตัวของท่านจะนำไปใช้ในการจัดส่งสินค้า (กรุณากรอกตามความจริง)</h4>
                <div class="form-group">
-                  <label>ชื่อผู้รับสินค้า</label>
-                  <input type="text" name="buyer_name" class="form-control" value="<?php echo $header_name ?>" placeholder="ชื่อผู้รับสินค้า">
+                  <label><?php echo $l_name ?></label>
+                  <input type="text" name="buyer_name" class="form-control" value="<?php echo $header_name ?>" placeholder="<?php echo $l_name ?>">
                </div>
                <div class="form-group">
-                  <label>เบอร์โทร</label>
-                  <input type="text" name="buyer_tel" class="form-control" value="<?php echo $buyer_tel ?>" placeholder="เบอร์โทร">
+                  <label><?php echo $l_tel ?></label>
+                  <input type="text" name="buyer_tel" class="form-control" value="<?php echo $buyer_tel ?>" placeholder="<?php echo $l_tel ?>">
                </div>
                <div class="form-group">
-                  <label>อีเมล</label>
-                  <input type="email" name="buyer_email" class="form-control" value="<?php echo $buyer_email ?>" placeholder="อีเมล@email.com">
+                  <label><?php echo $l_email ?></label>
+                  <input type="email" name="buyer_email" class="form-control" value="<?php echo $buyer_email ?>" placeholder="Example@email.com">
                </div>
                <div class="form-group">
-                  <label>ที่อยู่</label>
-                  <input type="text" name="buyer_address" class="form-control" value="<?php echo $buyer_address ?>" placeholder="ที่อยู่">
+                  <label><?php echo $l_address ?></label>
+                  <input type="text" name="buyer_address" class="form-control" value="<?php echo $buyer_address ?>" placeholder="<?php echo $l_address ?>">
                </div>
                <div class="checkout-country-code clearfix">
                   <div class="form-group">
-                     <label>ตำบล</label>
-                     <input type="text" name="buyer_district" class="form-control" value="<?php echo $buyer_district ?>" placeholder="ตำบล">
+                     <label><?php echo $l_district ?></label>
+                     <input type="text" name="buyer_district" class="form-control" value="<?php echo $buyer_district ?>" placeholder="<?php echo $l_district ?>">
                   </div>
                   <div class="form-group">
-                     <label>อำเภอ</label>
-                     <input type="text" name="buyer_amphure" class="form-control" value="<?php echo $buyer_amphure ?>" placeholder="อำเภอ">
+                     <label><?php echo $l_amphures ?></label>
+                     <input type="text" name="buyer_amphure" class="form-control" value="<?php echo $buyer_amphure ?>" placeholder="<?php echo $l_amphures ?>">
                   </div>
                </div>
                <div class="checkout-country-code clearfix">
                   <div class="form-group">
-                     <label>จังหวัด</label>
-                     <input type="text" name="buyer_province" class="form-control" value="<?php echo $buyer_province ?>" placeholder="จังหวัด">
+                     <label><?php echo $l_provinces ?></label>
+                     <input type="text" name="buyer_province" class="form-control" value="<?php echo $buyer_province ?>" placeholder="<?php echo $l_provinces ?>">
                   </div>
                   <div class="form-group">
-                     <label>รหัสไปรษณีย์</label>
-                     <input type="text" name="buyer_zipcode" class="form-control" value="<?php echo $buyer_zipcode ?>" name="zipcode" placeholder="ไปรษณีย์">
+                     <label><?php echo $l_zipcode ?></label>
+                     <input type="text" name="buyer_zipcode" class="form-control" value="<?php echo $buyer_zipcode ?>" name="zipcode" placeholder="<?php echo $l_zipcode ?>">
                   </div>
                </div>
-               <button name="action" value="edit_profile" class="btn btn-main mt-3">บันทึกข้อมูล</button>
+               <button name="action" value="edit_profile" class="btn btn-main mt-3"><?php echo $l_save ?></button>
             </div>
          </div>
       </form>
@@ -73,20 +73,20 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
          <input type="hidden" name="buyer_id" value="<?php echo $buyer_id ?>">
          <div class="checkout shopping">
             <div class="block billing-details">
-               <h4 class="widget-title">เปลี่ยนพาสเวิร์ด</h4>
+               <h4 class="widget-title"><?php echo $l_change_pass ?></h4>
                <div class="form-group">
-                  <label>พาสเวิร์ดเดิม</label>
-                  <input type="password" name="buyer_pass" class="form-control" placeholder="พาสเวิร์ดเดิม">
+                  <label>Password</label>
+                  <input type="password" name="buyer_pass" class="form-control" placeholder="Current Password">
                </div>
                <div class="form-group">
-                  <label>พาสเวิร์ดใหม่</label>
-                  <input type="password" name="buyer_pass_new" class="form-control" minlength="6" maxlength="15" placeholder="พาสเวิร์ดใหม่">
+                  <label>New Password</label>
+                  <input type="password" name="buyer_pass_new" class="form-control" minlength="6" maxlength="15" placeholder="New Password">
                </div>
                <div class="form-group">
-                  <label>ยืนยันพาสเวิร์ด</label>
-                  <input type="password" name="buyer_pass_recheck" class="form-control" minlength="6" maxlength="15" placeholder="ยืนยันพาสเวิร์ด">
+                  <label>Re Password</label>
+                  <input type="password" name="buyer_pass_recheck" class="form-control" minlength="6" maxlength="15" placeholder="Renew Password">
                </div>
-               <button name="action" value="edit_password" class="btn btn-main mt-3">บันทึกข้อมูล</button>
+               <button name="action" value="edit_password" class="btn btn-main mt-3"><?php echo $l_save ?></button>
             </div>
          </div>
       </form>
@@ -119,28 +119,19 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
 
                <div class="d-flex col-12">
                   <div>
-                     <h5>ใบสั่งซื้อเลขที่ <?php echo $order_code ?></h5>
+                     <h5><?php echo "$l_invoice $order_code" ?></h5>
                      <?php echo "<p>$order_create</p><br>";
-                     if ($order_status == 0) { 
-                        echo "<font color=gray>รอการตรวจสอบ</font>";
-                     } elseif ($order_status == 1 || $order_status == 2) { 
-                        echo "<font color=red>ถูกยกเลิก</font>";
-                     } elseif ($order_status >= 3 || $order_status == 4) { 
-                        echo "<font color=green>จัดส่งเรียบร้อย</font>";
-                     } elseif ($order_status == 5) { 
-                        echo "<font color=green>เสร็จสิ้น</font>";
-                     } ?>
+                        if       ($order_status == 0) { echo "<font color=gray>$l_order_status0</font>";} 
+                        elseif   ($order_status == 1 || $order_status == 2) { echo "<font color=red>$l_order_status1</font>"; } 
+                        elseif   ($order_status >= 3 || $order_status == 4) { echo "<font color=green>$l_order_status3</font>"; } 
+                        elseif   ($order_status == 5) { echo "<font color=green>$l_order_status4</font>"; } 
+                     ?>
                   </div>
-
-                  <a href="?page=profile&action=order_detail&order_id=<?php echo $order_id ?>" title="รายละเอียด" class="ms-auto text-decoration-underline">รายละเอียด</a>
+                  <a href="?page=profile&action=order_detail&order_id=<?php echo $order_id ?>" title="Detail" class="ms-auto text-decoration-underline"><?php echo $l_detail ?></a>
                </div>
                <hr class="my-3">
                
-         <?php } } else { ?>
-            <tr>
-               <td colspan="5">ไม่มีรายการสั่งซื้อในระบบ</td>
-            </tr>
-         <?php }  
+         <?php } } else { echo "<tr><td colspan='5'>$l_notfound</td></tr>"; } 
 
          $url = "?page=profile&action=order"; 
          pagination_visitor ($connect, $sql, $perpage, $page_id, $url); ?>
@@ -164,41 +155,36 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
       $order_track_name = $data['order_track_name'];
       $order_track_id   = $data['order_track_id'];
 
-      $order_buyer   = $data['order_buyer'];
-      $order_address   = $data['order_address'];
+      $order_buyer      = $data['order_buyer'];
+      $order_address    = $data['order_address'];
       $order_district   = $data['order_district'];
       $order_track_id   = $data['order_track_id'];
       $order_track_id   = $data['order_track_id'];
       ?>
       <hr>
-      <a href="index.php?page=profile&action=order" class="me-3 text-decoration-underline small">ย้อนกลับ</a>
+      <a href="index.php?page=profile&action=order" class="me-3 text-decoration-underline small"><?php echo $l_back ?></a>
       <div class="my-5 row">
          <div class="col-12 col-sm-3 d-flex">
-            <h5>ใบสั่งซื้อเลขที่<br><?php echo $order_code ?></h5>
+            <h5><?php echo $l_invoice ?> <br><?php echo $order_code ?></h5>
             <hr class="vr ms-auto" style="height: 40px;">
          </div>
          <div class="col-4 col-sm-3 d-flex">
-            <div>สถานะการจัดส่ง<br>
-            <?php
-            if ($order_status == 0) { 
-               echo "<font color=gray>รอการตรวจสอบ</font>";
-            } elseif ($order_status == 1 || $order_status == 2) { 
-               echo "<font color=red>ถูกยกเลิก</font>";
-            } elseif ($order_status >= 3 || $order_status == 4) { 
-               echo "<font color=green>จัดส่งเรียบร้อย</font>";
-            } elseif ($order_status == 5) { 
-               echo "<font color=green>เสร็จสิ้น</font>";
-            } 
+            <div>
+            <?php echo "$l_status<br>";
+               if       ($order_status == 0) { echo "<font color=gray>$l_order_status0</font>";} 
+               elseif   ($order_status == 1 || $order_status == 2) { echo "<font color=red>$l_order_status1</font>"; } 
+               elseif   ($order_status >= 3 || $order_status == 4) { echo "<font color=green>$l_order_status3</font>"; } 
+               elseif   ($order_status == 5) { echo "<font color=green>$l_order_status4</font>"; } 
             ?>
             </div>
             <hr class="vr ms-auto" style="height: 40px;">
          </div>
          
-         <div class="col-4 col-sm-3 d-flex">ประเภทการส่ง<br><?php echo $order_track_name ?>
+         <div class="col-4 col-sm-3 d-flex"><?php echo $l_trackname ?><br><?php echo $order_track_name ?>
             <hr class="vr ms-auto" style="height: 40px;">
          </div>
          
-         <div class="col-4 col-sm-3 d-flex">เลขติดตามพัสดุ<br><?php echo $order_track_id ?></div>
+         <div class="col-4 col-sm-3 d-flex"><?php echo $l_trackid ?><br><?php echo $order_track_id ?></div>
       </div>
       
       <?php 
@@ -226,16 +212,16 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
             </div>
 
             <div class="col-4 col-sm-2"><?php echo number_format($order_detail_price) . " x " . $order_detail_amount ?></div>
-            <div class="col-4 col-sm-2"><?php echo "ยอดรวม : " . $order_detail_price * $order_detail_amount . " บาท" ?></div>
+            <div class="col-4 col-sm-2"><?php echo "ยอดรวม : " . $order_detail_price * $order_detail_amount . $l_bath ?></div>
             <div class="col-4 col-sm-2">
 
             <?php if ($order_detail_review == 0) { ?>
 
-               <button class="me-3 text-decoration-underline small bg-transparent border-0 text-primary" data-bs-toggle="modal" data-bs-target="#review_<?php echo $detail['order_detail_id'] ?>">เขียนรีวิว</button>   
+               <button class="me-3 text-decoration-underline small bg-transparent border-0 text-primary" data-bs-toggle="modal" data-bs-target="#review_<?php echo $detail['order_detail_id'] ?>"><?php echo $l_review_insert ?></button>   
 
             <?php } else { ?> 
 
-               <div class="me-3 small">รีวิวเสร็จสิ้น</div>
+               <div class="me-3 small"><?php echo $l_review_complete ?></div>
 
             <?php } ?>
 
@@ -248,7 +234,7 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
          <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">รีวิวสินค้า</h5>
+               <h5 class="modal-title" id="exampleModalLabel"><?php echo $l_review ?></h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
@@ -261,7 +247,7 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
 
                   <p><?php echo $product_name ?></p>
                   <textarea name="comment_detail" class="form-control" rows="6" placeholder="ความคิดเห็น(กรุณาใช้ข้อความที่สุภาพ)" maxlength="400"></textarea>
-                  <button name="action" value="insert" class="btn btn-main my-3">บันทึกรีวิว</button>
+                  <button name="action" value="insert" class="btn btn-main my-3"><?php echo $l_save ?></button>
                </form>
                </div>
             </div>
@@ -294,51 +280,51 @@ $buyer_zipcode  = $data_check_login['buyer_zipcode'];
          <table class="table table-borderless table-sm">
             <tbody>
                <tr>
-                  <th>ผู้สั่งซื้อ</th>
+                  <th><?php echo $l_name ?></th>
                   <td><?php echo $data['order_buyer'] ?></td>
                </tr>
                <tr>
-                  <th>สถานที่จัดส่งสินค้า</th>
+                  <th><?php echo $l_invoice_addr ?></th>
                   <td>
-                     <?php echo "$order_address ตำบล/แขวง $order_district อำเภอ/เขต $order_amphur จังหวัด $order_province รหัสไปรษณีย์ $order_zipcode" ?>
+                     <?php echo "$order_address $l_district $order_district $l_amphures $order_amphur $l_provinces $order_province $l_zipcode $order_zipcode" ?>
                   </td>
                </tr>
                <tr>
-                  <th>เบอร์โทร</th>
+                  <th><?php echo $l_tel ?></th>
                   <td><?php echo $order_buyer_tel ?></td>
                </tr>
                <?php if ($order_detail != '') { ?>
                   <tr>
-                     <th>ข้อมูลเพิ่มเติม</th>
+                     <th><?php echo $l_descrip ?></th>
                      <td><?php echo $order_detail ?></td>
                   </tr>
                <?php } ?>
                <tr>
-                  <th>วันที่สั่งซื้อ</th>
+                  <th><?php echo $l_date ?></th>
                   <td><?php echo $order_create ?></td>
                </tr>
                <tr>
                   <th>วิธีการชำระเงิน</th>
-                  <td><?php echo $data['order_buyer_tel'] ?></td>
+                  <td><?php //echo $data['order_buyer_tel'] ?></td>
                </tr>
             </tbody>
          </table>
       </div>
       <div class="my-5">
-            <h5 class="mb-3"><b>รายละเอียดการชำระเงิน</b></h5>
+            <h5 class="mb-3"><b><?php echo $l_paydetail ?></b></h5>
             <div class="d-flex">
-               <div class="">ยอดรวม</div>
-               <div class="ms-auto text-right"><?php echo number_format($order_price - $order_freight) ?> บาท</div>
+               <div class=""><?php echo $l_invoice_pdt ?></div>
+               <div class="ms-auto text-right"><?php echo number_format($order_price - $order_freight) . $l_bath ?></div>
             </div>
             <hr>
             <div class="d-flex">
-               <div class="">ค่าขนส่ง</div>
-               <div class="ms-auto text-right"><?php echo number_format($order_freight) ?> บาท</div>
+               <div class=""><?php echo $l_invoice_totfri ?></div>
+               <div class="ms-auto text-right"><?php echo number_format($order_freight) . $l_bath ?></div>
             </div>
             <hr>
             <div class="d-flex bg-info bg-gradient p-3 text-white">
-               <div class="">ยอดสั่งซื้อทั้งหมด</div>
-               <div class="ms-auto text-right"><h5><?php echo number_format($order_price) ?> บาท</h5></div>
+               <div class=""><?php echo $l_invoice_totprice ?></div>
+               <div class="ms-auto text-right"><h5><?php echo number_format($order_price) . $l_bath ?></h5></div>
             </div>
       </div>
    <?php } ?>

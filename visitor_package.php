@@ -33,7 +33,7 @@ $sql            = "SELECT * FROM system_product WHERE (product_price > 0) AND (p
 
 
 $header_url     = "dashboard/assets/images/bg-themes/7.png";
-$header_name    = "แพ็กเกจพิเศษ";
+$header_name    = $l_package;
 $header_detail  = "สินค้าจัดเซ็ตพิเศษ ในราคาสุดคุ้ม";
 include('webpage_asset/include/include_header.php'); 
 ?>
@@ -43,16 +43,16 @@ include('webpage_asset/include/include_header.php');
             <div class="col-12 col-sm-6">
                 <form action="index.php" method="get">
                     <input type="hidden" name="page" value="shop">
-                    <label class="form-label">ค้นหาแพ็กเกจ</label>
-                    <input type="text" name="product_name" value="<?php echo $product_name != false ? $product_name : false; ?>" class="form-control" style="height: 38px;" placeholder="กด Enter เพื่อค้นหาสินค้า">
+                    <label class="form-label"><?php echo $l_search ?></label>
+                    <input type="text" name="product_name" value="<?php echo $product_name != false ? $product_name : false; ?>" class="form-control" style="height: 38px;" placeholder="press enter to search">
                 </form>
             </div>
 			<div class="col-6 col-sm-3">
 				<form action="index.php" method="get" id="form">
 					<input type="hidden" name="page" value="shop">
-                    <label class="form-label">ประเภทสินค้า</label>
+                    <label class="form-label"><?php echo $l_product_type ?></label>
                     <select class="form-control" name="product_type" onchange="document.getElementById('form').submit()">
-                    	<option value="all">ทั้งหมด</option>
+                    	<option value="all"><?php echo $l_all ?></option>
                     	<?php 
                     	$query = mysqli_query($connect, "SELECT system_product.* , system_product_type.* 
                             FROM system_product
@@ -79,11 +79,11 @@ include('webpage_asset/include/include_header.php');
                     <?php if (isset($_GET['product_type'])) { ?>
                         <input type="hidden" name="product_type" value="<?php echo $product_type ?>">
                     <?php } ?>
-                    <label class="form-label">จัดเรียง</label>
+                    <label class="form-label"><?php echo $l_sort ?></label>
                     <select class="form-control" name="order_by" onchange="document.getElementById('form_order').submit()">
-                        <option value="all"  <?php echo $order_by == 'all' ? "selected" : false; ?>>สินค้าใหม่</option>
-                        <option value="ASC"  <?php echo $order_by == 'ASC' ? "selected" : false; ?>>ราคาน้อยที่สุด</option>
-                        <option value="DESC" <?php echo $order_by == 'DESC' ? "selected" : false; ?>>ราคาสูงที่สุด</option>
+                        <option value="all"  <?php echo $order_by == 'all' ? "selected" : false; ?>><?php echo $l_product_new ?></option>
+                    	<option value="ASC"  <?php echo $order_by == 'ASC' ? "selected" : false; ?>><?php echo $l_price_asc ?></option>
+                        <option value="DESC" <?php echo $order_by == 'DESC' ? "selected" : false; ?>><?php echo $l_price_desc ?></option>
                     </select>
                 </form>
 			</div>
@@ -91,7 +91,7 @@ include('webpage_asset/include/include_header.php');
         <?php 
         $query = mysqli_query($connect, $sql); 
         $count = mysqli_num_rows($query);
-        echo "<p class='mt-3 text-dark'>จำนวนแพ็กเกจทั้งหมด " . $count . " รายการ</p>";
+        echo "<p class='mt-3 text-dark'>$l_invoice_totqty $count $l_list</p>";
         ?>
         <hr class="mb-5 my-3">
 		<div class="row g-3">
@@ -124,12 +124,10 @@ include('webpage_asset/include/include_header.php');
                                     <?php echo $product_name ?></h5>
                                 </a>
                             <p class="m-0">ราคา <?php echo $product_price ?></p><br>
-                            <a href="<?php echo $cart_url ?>" title="รายละเอียด" class="text-decoration-underline">เพิ่มลงตะกร้า</a>
+                            <a href="<?php echo $cart_url ?>" title="Detail" class="text-decoration-underline"><?php echo $l_cart_insert ?></a>
                         </div>
                     </div>
-    			<?php } } else { ?>
-                <p class="m-5 text-dark">ไม่มีข้อมูลในระบบ</p>
-            <?php } ?>	
+            <?php } } else { echo "<p class='m-5 text-dark'>$l_notfound</p>"; } ?>
 		</div>
         <?php $url = "?page=package"; 
         pagination_visitor ($connect, $sql, $perpage, $page_id, $url); ?>

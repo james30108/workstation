@@ -2,7 +2,7 @@
 
 $product_id     = $data['product_id'];
 $product_name   = $data['product_name'];
-$product_price  = number_format($data['product_price']) . " บาท";
+$product_price  = number_format($data['product_price']) . $l_bath;
 $product_detail = $data['product_detail'];
 
 $product_image_cover = ($data['product_image_cover'] != '') ? $data['product_image_cover'] : "dashboard/assets/images/etc/example.png";
@@ -24,7 +24,7 @@ else {
     <div class="product-item <?php echo $style_card ?>">
         <div class="product-thumb">
             <span class="bage"><?php echo $product_title ?></span>
-            <img src="<?php echo $product_image_cover ?>" alt="ปกสินค้า" class="img-responsive">
+            <img src="<?php echo $product_image_cover ?>" alt="Cover Product" class="img-responsive">
             <div class="preview-meta">
                 <ul>
                     <li>
@@ -53,7 +53,7 @@ else {
                 <div class="row">
                     <div class="col-md-8 col-sm-6 col-xs-12">
                         <div class="modal-image">
-                            <img src="<?php echo $product_image_cover ?>" alt="ปกสินค้า" class="img-responsive">
+                            <img src="<?php echo $product_image_cover ?>" alt="Cover Product" class="img-responsive">
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
@@ -61,8 +61,8 @@ else {
                             <h2 class="product-title"><?php echo $product_name ?></h2>
                             <p class="product-price"><?php echo $product_price ?></p>
                             <p class="product-short-description"><?php echo $product_detail ?></p>
-                            <a href="<?php echo $cart_url ?>" class="btn btn-main">เพิ่มลงสู่ตะกร้า</a><br>
-                            <a href="?page=product_single&product_id=<?php echo $product_id ?>" class="btn btn-transparent">รายละอียด</a>
+                            <a href="<?php echo $cart_url ?>" class="btn btn-main"><?php echo $l_cart_insert ?></a><br>
+                            <a href="?page=product_single&product_id=<?php echo $product_id ?>" class="btn btn-transparent"><?php echo $l_detail ?></a>
                         </div>
                     </div>
                 </div>

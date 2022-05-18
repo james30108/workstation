@@ -10,7 +10,7 @@ $buyer_province= $data_check_login['buyer_province'];
 $buyer_zipcode = $data_check_login['buyer_zipcode'];
 
 ?>
-<title>ชำระเงิน</title>
+<title><?php echo $l_pay ?></title>
 <script>  
    $(document).ready(function(){
       $("#order_type_buy").change(function(){
@@ -27,10 +27,10 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
 <section class="page-header">
    <div class="container">
    <nav aria-label="breadcrumb">
-      <h1 class="page-name">ชำระเงิน</h1>
+      <h1 class="page-name"><?php echo $l_pay ?></h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page"><a href="index.php">หน้าหลัก</a></li>
-            <li class="breadcrumb-item active" aria-current="page">ชำระเงิน</li>
+            <li class="breadcrumb-item" aria-current="page"><a href="index.php"><?php echo $l_home ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo $l_pay ?></li>
         </ol>
     </nav>
    </div>
@@ -44,79 +44,79 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                <div class="block billing-details">
                   <h4 class="widget-title">สำหรับจัดส่งสินค้า (กรุณากรอกตามความจริง)</h4>
                   <div class="form-group">
-                     <label>ชื่อผู้รับสินค้า</label>
-                     <input type="text" name="order_buyer" class="form-control" value="<?php echo $buyer_name ?>" placeholder="ชื่อผู้รับสินค้า">
+                     <label><?php echo $l_order_buyer ?></label>
+                     <input type="text" name="order_buyer" class="form-control" value="<?php echo $buyer_name ?>" placeholder="<?php echo $l_order_buyer ?>">
                   </div>
                   <div class="form-group">
-                     <label>เบอร์โทร</label>
-                     <input type="text" name="order_buyer_tel" class="form-control" value="<?php echo $buyer_tel ?>" placeholder="เบอร์โทร">
+                     <label><?php echo $l_tel ?></label>
+                     <input type="text" name="order_buyer_tel" class="form-control" value="<?php echo $buyer_tel ?>" placeholder="<?php echo $l_tel ?>">
                   </div>
                   <div class="form-group">
-                     <label>อีเมล</label>
-                     <input type="email" name="order_buyer_email" class="form-control" value="<?php echo $buyer_email ?>" placeholder="อีเมล@email.com">
+                     <label><?php echo $l_email ?></label>
+                     <input type="email" name="order_buyer_email" class="form-control" value="<?php echo $buyer_email ?>" placeholder="email@email.com">
                   </div>
                   <div class="form-group">
-                     <label>ที่อยู่</label>
-                     <input type="text" name="order_address" class="form-control" value="<?php echo $buyer_address ?>" placeholder="ที่อยู่">
+                     <label><?php echo $l_address ?></label>
+                     <input type="text" name="order_address" class="form-control" value="<?php echo $buyer_address ?>" placeholder="<?php echo $l_address ?>">
                   </div>
                    <div class="checkout-country-code clearfix">
                      <div class="form-group">
-                        <label>ตำบล</label>
-                        <input type="text" name="order_district" class="form-control" value="<?php echo $buyer_district ?>" placeholder="อำเภอ">
+                        <label><?php echo $l_district ?></label>
+                        <input type="text" name="order_district" class="form-control" value="<?php echo $buyer_district ?>" placeholder="<?php echo $l_district ?>">
                      </div>
                      <div class="form-group" >
-                        <label>อำเภอ</label>
-                        <input type="text" name="order_amphur" class="form-control" value="<?php echo $buyer_amphure ?>" placeholder="อำเภอ">
+                        <label><?php echo $l_amphures ?></label>
+                        <input type="text" name="order_amphur" class="form-control" value="<?php echo $buyer_amphure ?>" placeholder="<?php echo $l_amphures ?>">
                      </div>
                   </div>
                   <div class="checkout-country-code clearfix">
                      <div class="form-group">
-                        <label>จังหวัด</label>
-                        <input type="text" name="order_province" class="form-control" value="<?php echo $buyer_province ?>" placeholder="จังหวัด">
+                        <label><?php echo $l_provinces ?></label>
+                        <input type="text" name="order_province" class="form-control" value="<?php echo $buyer_province ?>" placeholder="<?php echo $l_provinces ?>">
                      </div>
                      <div class="form-group" >
-                        <label>รหัสไปรษณีย์</label>
-                        <input type="text" name="order_zipcode" class="form-control" value="<?php echo $buyer_zipcode ?>" name="zipcode" placeholder="ไปรษณีย์">
+                        <label><?php echo $l_zipcode ?></label>
+                        <input type="text" name="order_zipcode" class="form-control" value="<?php echo $buyer_zipcode ?>" name="zipcode" placeholder="<?php echo $l_zipcode ?>">
                      </div>
                   </div>
                </div>
                <div class="block">
-                  <h4 class="widget-title">ชำระเงิน</h4>
+                  <h4 class="widget-title"><?php echo $l_paydetail ?></h4>
                   <div class="form-group half-width padding-left">
                      <select class="form-control" name="order_type_buy" id="order_type_buy" required>
-                           <option value="0" selected>โอนจ่าย</option>
-                           <option value="4">ชำระเงินผ่านบัตรเครดิต</option>
-                           <option value="5">ชำระเงินปลายทาง</option>
+                           <option value="0" selected><?php echo $l_order_pay0 ?></option>
+                           <option value="4"><?php echo $l_order_pay4 ?></option>
+                           <option value="5"><?php echo $l_order_pay5 ?></option>
                      </select>
                   </div>
                   <div id="type_buy">
-                     <p>กรุณาชำระเงินก่อนทำการยืนยัน</p>
+                     <p class="my-3 text-danger"><?php echo $lang == 0 ? "กรุณาชำระเงินก่อนทำการยืนยัน" : "Please pay before submit order" ; ?></p>
                      <div class="row">
                         <div class="form-group col-12">
-                           <label class="ms-3">ชื่อบัญชี <span class="required">*</span></label>
-                           <input type="text" class="form-control" name="pay_buyer" placeholder="ชื่อบัญชี" required>
+                           <label class="ms-3"><?php echo $l_bankown ?> <span class="required">*</span></label>
+                           <input type="text" class="form-control" name="pay_buyer" placeholder="<?php echo $l_bankown ?>" required>
                         </div>
                         <div class="form-group col-12 col-sm-6">
-                           <label class="ms-3">วันที่ในสลิป <span class="required">*</span></label>
+                           <label class="ms-3"><?php echo $l_date ?> <span class="required">*</span></label>
                            <input type="date" class="form-control" name="pay_date">
                         </div>
                         <div class="form-group col-12 col-sm-6">
-                           <label class="ms-3">เวลาในสลิป <span class="required">*</span></label>
+                           <label class="ms-3"><?php echo $l_time ?> <span class="required">*</span></label>
                            <input type="time" class="form-control" name="pay_time">
                         </div>
                         <div class="form-group col-12">
-                           <label class="ms-3">หลักฐานการโอน <span class="required">*</span></label>
+                           <label class="ms-3"><?php echo $l_pay_slip ?> <span class="required">*</span></label>
                            <input type="file" class="form-control" name="pay_image">
                         </div>
                      </div>
                   </div>
-                  <button name="action" value="confirm_buyer" class="btn btn-main mt-20">ยืนยันคำสั่งซื้อ</button>
+                  <button name="action" value="confirm_buyer" class="btn btn-main mt-20"><?php echo $l_submit ?></button>
                </div>
             </div>
             <div class="col-md-4">
                <div class="product-checkout-details">
                   <div class="block">
-                     <h4 class="widget-title">สรุปรายการสั่งซื้อ</h4>
+                     <h4 class="widget-title"><?php echo $l_checkbill_sum ?></h4>
                      <?php
                      $order_price   = 0;
                      $order_freight = 0;
@@ -144,7 +144,7 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                         $product_id          = $data['product_id'];
                         $product_name        = $data['product_name'];
                         $product_price       = number_format($data['product_price']);
-                        $product_freight     = $data['product_freight'] > 0 ? "(ขนส่ง " . $data['product_freight'] . " )" : false;
+                        $product_freight     = $data['product_freight'] > 0 ? "($l_fright " . $data['product_freight'] . " )" : false;
                         $cart_id             = $data['cart_id'];
 
                         ?>
@@ -158,10 +158,8 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                               <div class="col-8">
                                  <div class="media-body">
                                     <h6><a href="?page=product_single&product_id=<?php echo $product_id ?>"><?php echo $product_name ?></a></h6>
-                                    <p class="price"><?php echo $quantity ?> x <?php echo $product_price ?> บาท 
-                                    <?php echo $product_freight ?>
-                                    </p>
-                                    <a class="product-remove" href="dashboard/process/setting_visitor_buy.php?action=delete_cart&cart_id=<?php echo $cart_id ?>">ลบ</a>
+                                    <p class="price"><?php echo "$quantity x $product_price $l_bath $product_freight" ?></p>
+                                    <a class="product-remove" href="dashboard/process/setting_visitor_buy.php?action=delete_cart&cart_id=<?php echo $cart_id ?>"><?php echo $l_delete ?></a>
                                  </div>
                               </div>
                            </div>
@@ -169,19 +167,19 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                      <?php } ?>
                      <ul class="summary-prices">
                         <li>
-                           <span>ราคาสินค้าทั้งหมด:</span>
-                           <span class="price"><?php echo number_format($order_price - $order_freight) ?> บาท</span>
+                           <span><?php echo $l_invoice_pdt ?> :</span>
+                           <span class="price"><?php echo number_format($order_price - $order_freight) . $l_bath ?></span>
                         </li>
                         <?php if ($order_freight > 0) { ?>
                         <li>
-                           <span>ค่าขนส่ง:</span>
-                           <span><?php echo number_format($order_freight) ?> บาท</span>
+                           <span><?php echo $l_fright ?> :</span>
+                           <span><?php echo number_format($order_freight) . $l_bath ?></span>
                         </li>
                         <?php } ?>
                      </ul>
                      <div class="summary-total">
-                        <span>รวมทั้งหมด</span>
-                        <span><?php echo number_format($order_price) ?> บาท</span>
+                        <span><?php echo $l_invoice_totprice ?></span>
+                        <span><?php echo number_format($order_price) . $l_bath ?></span>
                      </div>
                      <div class="verified-icon">
                         <img src="webpage_asset/images/shop/verified.png">

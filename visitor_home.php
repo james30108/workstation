@@ -26,12 +26,12 @@
     <div class="container">
         <div class="row">
             <div class="title text-center my-3">
-                <h2>สินค้าใหม่</h2>
+                <h2><?php echo $l_product_new ?></h2>
             </div>
         </div>
         <div class="row">
             <?php 
-            $product_title = "สินค้าใหม่";
+            $product_title = $l_product_new;
             $style_card    = "";
             $query = mysqli_query($connect, "SELECT system_product.*, system_product_type.* 
                 FROM system_product
@@ -71,7 +71,7 @@
     <div class="container">
         <div class="row">
             <div class="title text-center">
-                <h2>แพ็กเกจพิเศษ</h2>
+                <h2><?php echo $l_package ?></h2>
             </div>
         </div>
         <div class="row g-3">
@@ -106,8 +106,8 @@
                                 <?php echo $data['product_name'] ?>
                             </a>
                         </h5>
-                        <p class="m-0">ราคา <?php echo $product_price ?></p><br>
-                        <a href="<?php echo $cart_url ?>" title="Detail" class="text-decoration-underline">เพิ่มลงตะกร้า</a>
+                        <p class="m-0"><?php echo "$l_price $product_price" ?></p><br>
+                        <a href="<?php echo $cart_url ?>" title="Detail" class="text-decoration-underline"><?php echo $l_cart_insert ?></a>
                     </div>
                 </div>
             <?php } ?>
@@ -120,8 +120,8 @@
         <hr class="my-5">
         <div class="row g-3">
             <div class="d-flex align-items-center">
-                <h5>ข่าวสารการประชาสัมพันธ์</h5>
-                <a href="?page=thread" class="text-decoration-underline ms-auto">ข่าวสารทั้งหมด</a>
+                <h5><?php echo $l_thread ?></h5>
+                <a href="?page=thread" class="text-decoration-underline ms-auto"><?php echo $l_all ?></a>
             </div>
             <?php 
             $query = mysqli_query($connect, "SELECT * FROM system_thread LIMIT 2");
@@ -132,7 +132,7 @@
                         <div class="position-absolute bottom-0 end-0 m-3 p-3 bg-light bg-gradient">
                             <h6><?php echo mb_strimwidth($data['thread_title'], 0, 70, "...")  ?></h6>
                             <div class="d-flex">
-                                <a href="" class="ms-auto text-decoration-underline small">อ่านเพิ่มเติม</a>
+                                <a href="" class="ms-auto text-decoration-underline small"><?php echo $l_detail ?></a>
                             </div>
                         </div>
                     </div>
@@ -148,13 +148,13 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="title">
-                    <h2>ติดตามเพื่อรับข่าวสารจากทางเรา</h2>
+                    <h2><?php echo $l_follow_text ?></h2>
                 </div>
                 <div class="col-10 col-sm-6 mx-auto">
                     <form action="dashboard/process/setting_config.php" method="post">
                         <div class="input-group">
                             <input type="email" class="form-control" name="noti_email" placeholder="Example@email.com" aria-label="ระบุอีเมลลงในช่องเพื่อรับข้อมุลจากทางเรา">
-                            <button class="btn btn-dark" style="width: 200px;" name="action" value="insert_notification">ติดตาม</button>
+                            <button class="btn btn-dark" style="width: 200px;" name="action" value="insert_notification"><?php echo $l_follow ?></button>
                         </div>
                     </form>
                 </div>

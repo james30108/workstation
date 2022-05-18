@@ -6,10 +6,10 @@
         background-position: center; 
     }
 </style>
-<title>ประชาสัมพันธ์</title>
+<title><?php echo $l_thread ?></title>
 <section class="page-header">
     <div class="container">
-    <h3 class="page-name text-white">ประชาสัมพันธ์</h3>
+    <h3 class="page-name text-white"><?php echo $l_thread ?></h3>
     <p class="text-white">ข่าวสารและการประชาสัมพันธ์ต่างๆ</p>
     </div>
 </section>
@@ -51,7 +51,7 @@
 	    		<div class="post">
 				<div class="post-media post-thumb">
 					<a href="?page=thread_single&thread_id=<?php echo $thread_id ?>">
-						<img src="dashboard/assets/images/thread/<?php echo $data['thread_image'] ?>" style="height: 300px;object-fit: cover;" alt="รูปปก">
+						<img src="dashboard/assets/images/thread/<?php echo $data['thread_image'] ?>" style="height: 300px;object-fit: cover;" alt="Cover">
 					</a>
 				</div>
 				<h2 class="post-title"><a href="?page=thread_single&thread_id=<?php echo $thread_id ?>"><?php echo $thread_title ?></a></h2>
@@ -67,7 +67,7 @@
 				</div>
 				<div class="post-content">
 					<p><?php echo $data['thread_intro'] ?></p>
-					<a href="?page=thread_single&thread_id=<?php echo $thread_id ?>" class="btn btn-main">อ่านเพิ่มเติม</a>
+					<a href="?page=thread_single&thread_id=<?php echo $thread_id ?>" class="btn btn-main"><?php echo $l_detail ?></a>
 				</div>
 				</div>
 			<?php }
@@ -77,17 +77,17 @@
       	<div class="col-md-4 mt-5 mt-sm-0">
 			<aside class="sidebar">
 				<div class="widget widget-subscription">
-					<h4 class="widget-title">รับการแจ้งเตือน</h4>
+					<h4 class="widget-title"><?php echo $l_follow_text ?></h4>
 					<form action="dashboard/process/config_setting.php" method="post">
 					  <div class="form-group">
-					    <input type="email" class="form-control" placeholder="อีเมลของท่าน" name="noti_email">
+					    <input type="email" class="form-control" placeholder="Your Email" name="noti_email">
 					  </div>
-					  <button name="action" value="insert_notification" class="btn btn-main">ติดตาม</button>
+					  <button name="action" value="insert_notification" class="btn btn-main"><?php echo $l_follow ?></button>
 					</form>
 				</div>
 			
 				<div class="widget widget-category">
-					<h4 class="widget-title">หมวดหมู่</h4>
+					<h4 class="widget-title"><?php echo $l_type ?></h4>
 					<ul class="widget-category-list">
 						<?php
 						$query = mysqli_query($connect, "SELECT * FROM system_thread_type");
@@ -104,7 +104,7 @@
 				</div>
 				
 				<div class="widget widget-latest-post">
-					<h4 class="widget-title">ประชาสัมพันธ์ล่าสุด</h4>
+					<h4 class="widget-title"><?php echo $l_thread_newer ?></h4>
 					<?php 
 					$query = mysqli_query($connect, "SELECT * FROM system_thread ORDER BY thread_id DESC LIMIT 4");
 					while ($data = mysqli_fetch_array($query)) { 

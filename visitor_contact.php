@@ -11,7 +11,7 @@ $contact_buyer = isset($data_check_login) ? $data['buyer_id'] : 0;
 
 
 $header_url     = "dashboard/assets/images/bg-themes/1.png";
-$header_name    = "ติดต่อเรา";
+$header_name    = $l_contact;
 $header_detail  = "ช่องทางการติดต่อกับทีมงาน";
 include('webpage_asset/include/include_header.php'); 
 ?>
@@ -25,16 +25,16 @@ include('webpage_asset/include/include_header.php');
 						<input type="hidden" name="contact_type" value="2">
 						<input type="hidden" name="contact_buyer" value="<?php echo $contact_buyer ?>">
 						<div class="col-12">
-							<input type="text" placeholder="ชื่อ" class="form-control" name="contact_name" value="<?php echo $contact_name ?>">
+							<input type="text" placeholder="<?php echo $l_name ?>" class="form-control" name="contact_name" value="<?php echo $contact_name ?>">
 						</div>
 						<div class="col-12">
-							<input type="email" placeholder="อีเมล" class="form-control" name="contact_email" value="<?php echo $contact_email ?>">
+							<input type="email" placeholder="<?php echo $l_email ?>" class="form-control" name="contact_email" value="<?php echo $contact_email ?>">
 						</div>
 						<div class="col-12">
-							<input type="text" placeholder="หัวข้อ" class="form-control" name="contact_title">
+							<input type="text" placeholder="<?php echo $l_title ?>" class="form-control" name="contact_title">
 						</div>
 						<div class="col-12">
-							<textarea rows="6" placeholder="รายละเอียด" class="form-control" name="contact_detail"></textarea>	
+							<textarea rows="6" placeholder="<?php echo $l_detail ?>" class="form-control" name="contact_detail"></textarea>	
 						</div>
 						<div id="mail-success" class="success">
 							ขอบคุณค่ะ ข้อความของท่านถูกบันทึกเข้าสู่ระบบเรียบร้อย Thank you. The Mailman is on His Way :)
@@ -44,7 +44,7 @@ include('webpage_asset/include/include_header.php');
 						</div>
 						
 						<div id="cf-submit">
-							<button id="contact-submit" class="btn btn-transparent" name="action" value="insert">ยืนยัน</button>
+							<button id="contact-submit" class="btn btn-transparent" name="action" value="insert"><?php echo $l_submit ?></button>
 						</div>						
 					</form>
 				</div>

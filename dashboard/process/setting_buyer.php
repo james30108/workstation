@@ -157,5 +157,15 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'forget_password') {
         header("Location:../member_login.php?action=forget_password&status=warning&message=ไม่พบอีเมลนี้ในระบบ กรุณาติดต่อแอดมินได้ที่หน้าติดต่อเราค่ะ");
     }
 }
+elseif (isset($_GET['action']) && $_GET['action'] == 'change_lang') {
+
+	$buyer_id 		= $_GET['buyer_id'];
+	$buyer_lang 	= $_GET['lang'];
+
+	mysqli_query($connect, "UPDATE system_buyer SET buyer_lang = '$buyer_lang' WHERE buyer_id = '$buyer_id' ");
+
+	header('location:../../index.php');
+
+}
 
 ?>
