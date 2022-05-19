@@ -1,5 +1,5 @@
 <?php 
-$query = mysqli_query($connect, "SELECT * FROM system_cart WHERE cart_member_id = '$buyer_id' ");
+$query = mysqli_query($connect, "SELECT * FROM system_cart WHERE cart_buyer_id = '$buyer_id' ");
 $count = mysqli_num_rows($query);
 
 if ($count <= 0) { header('location:index.php'); } 
@@ -32,7 +32,7 @@ include('webpage_asset/include/include_header.php');
                     $query = mysqli_query($connect, "SELECT system_cart.*, system_product.*
                     FROM system_cart
                     INNER JOIN system_product ON (system_cart.cart_product_id = system_product.product_id)
-                    WHERE (cart_member_id = '$buyer_id')");
+                    WHERE (cart_buyer_id = '$buyer_id')");
                   	while ($data = mysqli_fetch_array($query)) {
                       $quantity  = $data['cart_product_amount']; 
                   		$price     = $data['product_price'] * $quantity;

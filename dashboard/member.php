@@ -2,7 +2,7 @@
 
 if (file_exists("process/project/$system_style/function_child.php")) { include("process/project/$system_style/function_child.php"); }
 
-$page 							= isset($_GET['page']) ? $_GET['page'] : false;
+$page 				= isset($_GET['page']) ? $_GET['page'] : false;
 $member_id          = $_SESSION['member_id'];
 
 $sql_check_login    = mysqli_query($connect,"SELECT * FROM system_member WHERE member_id = '$member_id' ");

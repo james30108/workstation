@@ -62,7 +62,7 @@
         <div class="col-12 col-sm-5 mx-auto">
           <?php if (!isset($_GET['page'])) { ?>
             <div class="mt-3">
-            <?php isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"]) : false; ?>
+            <?php isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], 0) : false; ?>
             </div>
             <div class="block text-center mt-3">
               <a class="logo" href="index.php">

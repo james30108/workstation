@@ -10,14 +10,26 @@ $buyer_id   = isset($_SESSION['buyer_id']) ? $_SESSION['buyer_id'] : false;
 $lang       = 0;
 
 if ($buyer_id) {
+
     $sql_check_login    = mysqli_query($connect, "SELECT * FROM system_buyer WHERE buyer_id = '$buyer_id' ");
     $data_check_login   = mysqli_fetch_array($sql_check_login);  
     $buyer_name         = $data_check_login['buyer_name'];
+    $buyer_tel          = $data_check_login['buyer_tel'];
+    $buyer_email        = $data_check_login['buyer_email'];
+    $buyer_address      = $data_check_login['buyer_address'];
+    $buyer_district     = $data_check_login['buyer_district'];
+    $buyer_amphure      = $data_check_login['buyer_amphure'];
+    $buyer_province     = $data_check_login['buyer_province'];
+    $buyer_zipcode      = $data_check_login['buyer_zipcode'];
+    $buyer_direct       = $data_check_login['buyer_direct'];
     $lang               = $system_lang == 1 ? $data_check_login['buyer_lang'] : 0;
+
 }
 if (isset($_GET['buyer_direct']) && $_GET['buyer_direct'] != '') {  
+    
     $_SESSION['buyer_direct'] = $_GET['buyer_direct'];
     header("location:index.php");
+
 }
 
 include("dashboard/process/include_lang.php");

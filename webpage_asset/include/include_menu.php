@@ -29,7 +29,7 @@
                         <div class="vr mx-3 d-none d-sm-block"></div>
                         <?php if (isset($data_check_login)) { 
 
-                            $query = mysqli_query($connect, "SELECT * FROM system_cart WHERE (cart_member_id = '$buyer_id')");
+                            $query = mysqli_query($connect, "SELECT * FROM system_cart WHERE (cart_buyer_id = '$buyer_id')");
                             $cart  = mysqli_num_rows($query);
                             $cart_canvas= ($cart != 0) ? "#cart_canvas" : false;
                             ?>
@@ -73,7 +73,7 @@
         $query = mysqli_query($connect, "SELECT system_cart.*, system_product.*
         FROM system_cart
         INNER JOIN system_product ON (system_cart.cart_product_id = system_product.product_id)
-        WHERE (cart_member_id = '$buyer_id')");
+        WHERE (cart_buyer_id = '$buyer_id')");
         $count_cart = mysqli_num_rows($query);
         $total      = 0;
         if ($count_cart > 0) { ?>

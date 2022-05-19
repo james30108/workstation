@@ -7,22 +7,19 @@ if      ($_GET['action'] == 'insert_cart') {
     $product_id  = $_GET['product_id'];
     $buyer_id    = $_GET['buyer_id'];
 
-    if (!isset($_GET['product_quantity'])) {
-        $quantity= 1;
-    }
-    else {
-        $quantity= $_GET['product_quantity'];
-    }
-    $query       = mysqli_query($connect, "SELECT * FROM system_cart WHERE (cart_product_id = '$product_id') AND (cart_member_id = '$buyer_id') ");
+    if (!isset($_GET['product_quantity'])) { $quantity= 1; }
+    else { $quantity= $_GET['product_quantity']; }
+    
+    $query       = mysqli_query($connect, "SELECT * FROM system_cart WHERE (cart_product_id = '$product_id') AND (cart_buyer_id = '$buyer_id') ");
     $data        = mysqli_fetch_array($query);
     
     // ถ้าไม่มีสินค้าในตะกร้า
     if (!$data) {
-        mysqli_query($connect, "INSERT INTO system_cart (cart_member_id, cart_product_id, cart_product_amount) VALUES ('$buyer_id', '$product_id', '$quantity')");
+        mysqli_query($connect, "INSERT INTO system_cart (cart_buyer_id, cart_product_id, cart_product_amount) VALUES ('$buyer_id', '$product_id', '$quantity')");
     }
     // ถ้ามีสินค้าในตะกร้า
     else {
-        mysqli_query($connect, "UPDATE system_cart SET cart_product_amount =  cart_product_amount + '$quantity' WHERE cart_id = '".$data['cart_id']."'") or die(mysql_error($connect));
+        mysqli_query($connect, "UPDATE system_cart SET cart_product_amount =  cart_product_amount + '$quantity' WHERE cart_id = '".$data['cart_id']."'") or die(mysqli_error($connect));
     }
     header('location:../../?page=cart');
     

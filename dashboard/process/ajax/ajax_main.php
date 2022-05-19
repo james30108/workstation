@@ -1,6 +1,7 @@
 <?php include('../function.php'); 
 
 if (isset($_GET['lang'])) { $lang = $_GET['lang']; }
+else { $lang = 0; }
 include("../include_lang.php");
 
 // provinces

@@ -153,7 +153,7 @@ $(document).ready(function(){
 
     // Show Upline
     $("#check_member").change(function(){
-        
+
         var direct_code = $(this).val();
 
         $.get( "process/ajax/ajax_main.php", { direct_code: direct_code }, function( data ) {

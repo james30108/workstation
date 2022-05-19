@@ -2,7 +2,7 @@
 
 if (file_exists("process/project/$system_style/function_child.php")) { include("process/project/$system_style/function_child.php"); }
 
-$page 							= isset($_GET['page']) ? $_GET['page'] : false;
+$page 				= isset($_GET['page']) ? $_GET['page'] : false;
 $member_id          = $_SESSION['member_id'];
 
 $sql_check_login    = mysqli_query($connect,"SELECT * FROM system_member WHERE member_id = '$member_id' ");
@@ -95,15 +95,6 @@ if ($data_check_login) { ?>
 				</li>
 				<!-- ----------------------------- -->
 				<li class="menu-label"><?php echo $l_member_manage ?></li>
-				<!--
-				<li>
-					<a href="member.php?page=insert_member">
-						<div class="parent-icon"><i class='fadeIn animated bx bx-user-plus' ></i>
-						</div>
-						<div class="menu-title"><?php echo $l_member_insert ?></div>
-					</a>
-				</li>
-				-->
 				<?php if ($system_liner == 1) { ?>
 				<li>
 					<a href="member.php?page=liner&action=liner_tree&main_id=yes">
@@ -122,15 +113,6 @@ if ($data_check_login) { ?>
 				<?php } ?>
 				<!-- ----------------------------- -->
 				<li class="menu-label">E-Commerce</li>
-				<!--
-				<li>
-					<a href="member.php?page=shopping">
-						<div class="parent-icon"><i class='bx bx-store-alt' ></i>
-						</div>
-						<div class="menu-title"><?php echo $l_buy ?></div>
-					</a>
-				</li>
-				-->
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class='bx bx-check-square'></i>

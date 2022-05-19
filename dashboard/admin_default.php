@@ -3,7 +3,7 @@
     // chart 1
     $query = mysqli_query($connect, "SELECT *, SUM(order_price) AS sum_point 
         FROM system_order 
-        WHERE (order_status = 1) 
+        WHERE (order_status >= 4)
         GROUP BY MONTH(order_create)
         ORDER BY order_create ASC
         LIMIT 12 ");
@@ -18,8 +18,8 @@
     $query = mysqli_query($connect, "SELECT *, 
         COUNT(order_id) AS order_total,
         SUM(CASE WHEN order_status = 0 THEN 1 ELSE 0 END) AS order_waited,
-        SUM(CASE WHEN order_status = 1 THEN 1 ELSE 0 END) AS order_success,
-        SUM(CASE WHEN order_status = 2 THEN 1 ELSE 0 END) AS order_cancel
+        SUM(CASE WHEN order_status = 1 OR order_status = 2 THEN 1 ELSE 0 END) AS order_cancel,
+        SUM(CASE WHEN order_status >= 4 THEN 1 ELSE 0 END) AS order_success
         FROM system_order 
         WHERE (order_create LIKE '%$month_now%')") or die(mysqli_error($connect));
     $data = mysqli_fetch_array($query);
@@ -371,8 +371,8 @@
         chart.render();
     });
 </script>
-<div class="row row-cols-1 row-cols-lg-4">
-    <div class="col">
+<div class="row">
+    <div class="col-12 col-sm">
         <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -380,7 +380,7 @@
                         <p class="mb-0 text-white"><?php echo $l_dash_order ?></p>
                         <h5 class="mb-0 text-white">
                             <?php
-                            $query = mysqli_query($connect, "SELECT * FROM system_order WHERE (order_status = 1) AND (order_create LIKE '%$month_now%') ");
+                            $query = mysqli_query($connect, "SELECT * FROM system_order WHERE (order_status >= 4) AND (order_create LIKE '%$month_now%') ");
                             $data  = mysqli_num_rows($query);
                             echo number_format($data) . $l_list;
                             ?>
@@ -392,7 +392,7 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-sm">
         <div class="card radius-10 overflow-hidden bg-gradient-burning">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -400,7 +400,7 @@
                         <p class="mb-0 text-white"><?php echo $l_dash_sold ?></p>
                         <h5 class="mb-0 text-white">
                             <?php
-                            $query = mysqli_query($connect, "SELECT *, SUM(order_price) AS sum_point FROM system_order WHERE (order_status = 1) AND (order_create LIKE '%$month_now%') ");
+                            $query = mysqli_query($connect, "SELECT *, SUM(order_price) AS sum_point FROM system_order WHERE (order_status >= 4) AND (order_create LIKE '%$month_now%') ");
                             $data  = mysqli_fetch_array($query);
                             echo number_format($data['sum_point'], 2) . $l_bath;
                             ?>
@@ -412,7 +412,7 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-sm">
         <div class="card radius-10 overflow-hidden bg-gradient-Ohhappiness">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -420,24 +420,25 @@
                         <p class="mb-0 text-white"><?php echo $l_dash_com ?></p>
                         <h5 class="mb-0 text-white">
                             <?php
-                            if ($system_style == 0) {
-                                $query = mysqli_query($connect, "SELECT *, SUM(liner_point) AS sum_point FROM system_liner WHERE (liner_status != 0)");
-                            }
-                            else {
-                                $query = mysqli_query($connect, "SELECT *, SUM(member_point_month) AS sum_point FROM system_member");
-                            }
+                            $query  = mysqli_query($connect, "SELECT SUM(sum.sum_point_member) AS sum_point, COUNT(*) AS count
+                                FROM
+                                    (SELECT *, SUM(point_bonus) AS sum_point_member FROM system_point 
+                                    WHERE $point_type AND (point_status = 0) AND (point_member != 0)
+                                    GROUP BY point_member
+                                    HAVING (sum_point_member >= '$report_min')) AS sum
+                                    ") or die ($connect);
                             $data  = mysqli_fetch_array($query);
                             echo number_format($data['sum_point'], 2) . $l_bath;
                             ?>
                         </h5>
                     </div>
-                    <div class="ms-auto text-white"><i class='bx bx-chat font-30'></i>
+                    <div class="ms-auto text-white"><i class='bx bx-award font-30'></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-sm">
         <div class="card radius-10 overflow-hidden bg-gradient-moonlit">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -457,6 +458,8 @@
             </div>
         </div>
     </div>
+
+    <?php if (file_exists("process/project/$system_style/admin_index1.php")) { include("process/project/$system_style/admin_index1.php"); } ?>
 </div><!--end row-->
 
 <?php
@@ -566,7 +569,7 @@
                     FROM system_order_detail
                     INNER JOIN system_order ON (system_order.order_id = system_order_detail.order_detail_order)
                     INNER JOIN system_product ON (system_order_detail.order_detail_product = system_product.product_id)
-                    WHERE (order_status = 1) AND (order_create LIKE '%$month_now%')
+                    WHERE (order_status >= 4) AND (order_create LIKE '%$month_now%')
                     GROUP BY order_detail_product
                     ORDER BY price DESC
                     LIMIT 10") or die(mysqli_error($connect));
@@ -575,14 +578,14 @@
                     <div class="d-flex align-items-center">
                         <div class="product-img">
                             <?php if ($data['product_image_cover'] != '') { ?>
-                                <img src="<?php echo $data['product_image_cover'] ?>" alt="ปกสินค้า" class="img-thumbnail">
+                                <img src="<?php echo $data['product_image_cover'] ?>" alt="Cover" class="img-thumbnail">
                             <?php } else { ?>
-                                <img src="assets/images/products/example.png" alt="ปกสินค้า" class="img-thumbnail">
+                                <img src="assets/images/etc/example_product.png" alt="Cover" class="img-thumbnail">
                             <?php } ?>
                         </div>
                         <div class="ps-3">
                             <h6 class="mb-0 font-weight-bold"><?php echo mb_strimwidth($data['product_name'], 0, 20, "...") ?></h6>
-                            <p class="mb-0 text-secondary"><?php echo number_format($data['product_price']) ?> บาท/ขายได้ <?php echo $data['count_order'] ?> ชิ้น</p>
+                            <p class="mb-0 text-secondary"><?php echo number_format($data['product_price']) . $l_bath ?> /ขายได้ <?php echo $data['count_order'] . $l_piece?></p>
                         </div>
                         <p class="ms-auto mb-0 text-purple"><?php echo number_format($data['price']) . $l_bath ?></p>
                     </div>

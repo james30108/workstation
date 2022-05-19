@@ -13,11 +13,11 @@ $today     = date("Y-m-d");
 $today_name= date("D");
 $last_month= date('Y-m', strtotime('-1 month'));
 $yesterday = date("Y-m-d", strtotime("-1 day"));
-$company   = "Alpha world group";
+$company   = "umeplus";
 $logo_image= "logo.png"; 
 $logo_icon = "icon.png";
 $com_addr  = "";
-$point_name= " Biz";
+$point_name= " PV";
 
 #### Rules ####
 
@@ -44,7 +44,7 @@ $point_name= " Biz";
     $system_stock       = rule ($connect, 21);
     $system_tracking    = rule ($connect, 22);
     $system_liner2      = rule ($connect, 23);
-    $system_delivery    = rule ($connect, 24);
+    $system_address     = rule ($connect, 24);
     $system_pay         = rule ($connect, 25);
     $system_comment     = rule ($connect, 26);
     $system_com_withdraw= rule ($connect, 27);
@@ -263,10 +263,10 @@ function address ($connect, $member_id, $type, $system_lang) {
             $address_province = $data['PROVINCE_NAME'];
             $address_zipcode  = $data['address_zipcode'];
 
-            echo $address_detail . " ตำบล/แขวง " . $address_district . "<br>อำเภอ/เขต " . $address_amphure . " จังหวัด " . $address_province . "<br>รหัสไปรษณีย์ " . $address_zipcode;
+            $address = $address_detail . " ตำบล/แขวง " . $address_district . "<br>อำเภอ/เขต " . $address_amphure . " จังหวัด " . $address_province . "<br>รหัสไปรษณีย์ " . $address_zipcode;
         } 
         else {
-            echo "<font color=gray>none</font>";
+            $address = "<font color=gray>none</font>";
         }
     }
     else {
@@ -279,12 +279,13 @@ function address ($connect, $member_id, $type, $system_lang) {
             $address_province = $data['address_province'];
             $address_zipcode  = $data['address_zipcode'];
 
-            echo $address_detail . " District " . $address_district . "<br>Amphure " . $address_amphure . " Province " . $address_province . "<br>Zipcode " . $address_zipcode;
+            $address = $address_detail . " District " . $address_district . "<br>Amphure " . $address_amphure . " Province " . $address_province . "<br>Zipcode " . $address_zipcode;
         } 
         else {
-            echo "<font color=gray>none</font";
+            $address = "<font color=gray>none</font>";
         }
     }
+    return $address;
 }
 
 // Date
@@ -418,7 +419,7 @@ function sale_cut ($connect, $report_round) {
 }
 
 // Commission Cut
-function commission_cut ($connect, $report_round, $point_type, $yesterday) {
+function commission_cut ($connect, $report_round, $point_type, $yesterday, $report_min) {
     
     $query          = mysqli_query($connect, "SELECT SUM(sum.sum_point_member) AS sum_point, COUNT(*) AS count
     FROM
@@ -494,7 +495,10 @@ function report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)
         $pay_show = $pay_format;
     }
 
-    return array($pay_show, $pay_format, $pay);
+    // for PHP Underver. 7.0.
+    return $pay_show;
+
+    //return array($pay_show, $pay_format, $pay);
 }
 
 /*

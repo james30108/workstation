@@ -1,27 +1,12 @@
-<?php 
-
-$buyer_name    = $data_check_login['buyer_name'];
-$buyer_tel     = $data_check_login['buyer_tel'];
-$buyer_email   = $data_check_login['buyer_email'];
-$buyer_address = $data_check_login['buyer_address'];
-$buyer_district= $data_check_login['buyer_district'];
-$buyer_amphure = $data_check_login['buyer_amphure'];
-$buyer_province= $data_check_login['buyer_province'];
-$buyer_zipcode = $data_check_login['buyer_zipcode'];
-
-?>
 <title><?php echo $l_pay ?></title>
 <script>  
    $(document).ready(function(){
       $("#order_type_buy").change(function(){
          var order_type_buy = $(this).val();
-         
          $.get( "dashboard/process/ajax/ajax_visitor_buy.php", { action: order_type_buy }, function( data ) {
-            //alert(order_type_buy);
             $("#type_buy").html( data );
          });
       });
-
    });
 </script>
 <section class="page-header">
@@ -125,7 +110,7 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
                      $query = mysqli_query($connect, "SELECT system_cart.*, system_product.*
                         FROM system_cart
                         INNER JOIN system_product ON (system_cart.cart_product_id = system_product.product_id)
-                        WHERE (cart_member_id = '$buyer_id')");
+                        WHERE (cart_buyer_id = '$buyer_id')");
                      while ($data = mysqli_fetch_array($query)) {
                         
                         // Default Data 
@@ -191,7 +176,7 @@ $buyer_zipcode = $data_check_login['buyer_zipcode'];
       </div>
    </div>
    <input type="hidden" name="order_buyer_id"   value="<?php echo $buyer_id ?>">
-   <input type="hidden" name="order_member"     value="<?php echo $data_check_login['buyer_direct'] ?>">
+   <input type="hidden" name="order_member"     value="<?php echo $buyer_direct ?>">
    <input type="hidden" name="order_price"      value="<?php echo $order_price ?>">
    <input type="hidden" name="order_freight"    value="<?php echo $order_freight ?>">
    <input type="hidden" name="order_point"      value="<?php echo $order_point ?>">

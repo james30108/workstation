@@ -261,7 +261,7 @@
                                 <?php if ($system_address != 0) { ?>
                                 <tr>
                                     <th><?php echo $l_address ?></th>
-                                    <td><?php address ($connect, $data['member_id'], 0, $lang) ?></td>
+                                    <td><?php echo address ($connect, $data['member_id'], 0, $lang) ?></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

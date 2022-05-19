@@ -2,7 +2,9 @@
 
 isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : false;
 
-if (isset($_GET['type']) && $_GET['type'] == 0) {
+$type = isset($_GET['type']) ? $_GET['type'] : false;
+
+if ($type === "0") {
     $where = " AND (contact_type = 0) ";
     $url   = "member.php?page=contact&type=0";
 }
@@ -12,6 +14,10 @@ else {
 }
 $sql     = "SELECT * FROM system_contact WHERE (contact_member = '$member_id') " . $where;
 $order_by= " ORDER BY contact_status ASC, contact_create DESC ";
+
+// Menu's active
+if ($type === false) { $menu1 = "active"; }
+else { $menu2 = "active"; }
 ?>
 <title><?php echo $l_contact ?></title>
 <div class="email-wrapper">
@@ -22,10 +28,10 @@ $order_by= " ORDER BY contact_status ASC, contact_create DESC ";
         <div class="email-sidebar-content">
             <div class="email-navigation">
                 <div class="list-group list-group-flush"> 
-                    <a href="member.php?page=contact" class="list-group-item d-flex align-items-center <?php if (!isset($_GET['type'])){ echo "active";} ?>">
+                    <a href="member.php?page=contact" class="list-group-item d-flex align-items-center <?php echo $menu1 ?>">
                         <i class='bx bxs-inbox me-3 font-20'></i><span><?php echo $l_contact_index ?></span>
                     </a>
-                    <a href="member.php?page=contact&type=0" class="list-group-item d-flex align-items-center <?php if (isset($_GET['type'])){ echo "active";} ?>">
+                    <a href="member.php?page=contact&type=0" class="list-group-item d-flex align-items-center <?php echo $menu2 ?>">
                         <i class='bx bxs-send me-3 font-20'></i><span><?php echo $l_sended ?></span>
                     </a>
                 </div>
@@ -33,13 +39,13 @@ $order_by= " ORDER BY contact_status ASC, contact_create DESC ";
         </div>
     </div>
     <div class="email-header d-xl-flex align-items-center">
-        <?php if (!isset($_GET['type'])) { ?>
+        <?php if ($type == false) { ?>
         <form action="process/setting_contact.php" method="post" class="d-flex align-items-center">
             <div class="email-toggle-btn"><i class='bx bx-menu'></i></div>
-            <input type="hidden" name="array" value="" id="comment_array">
-            <input type="hidden" name="page" value="<?php echo basename($_SERVER['PHP_SELF']) ?>">
+            <input type="hidden" name="contact_array"   value="" id="comment_array">
+            <input type="hidden" name="page"    value="<?php echo $page_type ?>">
             <button name="action" value="read" class="btn btn-white ms-2"><i class='bx bx-refresh me-0'></i></button>
-            <button name="action" value="delete" onclick="javascript:return confirm('ต้องการลบข้อมูลความเห็นนี้ เมื่อยืนยันเเล้วจะไม่สามารถดึงข้อมูลกลับได้ ยืนยัน?');" class="btn btn-white ms-2"><i class='bx bx-trash me-0'></i></button>
+            <button name="action" value="delete" onclick="javascript:return confirm('Confirm');" class="btn btn-white ms-2"><i class='bx bx-trash me-0'></i></button>
         </form>
         <?php } ?>
         <div class="ms-auto d-flex align-items-center mt-3">
@@ -59,7 +65,7 @@ $order_by= " ORDER BY contact_status ASC, contact_create DESC ";
                             $detail = $data['contact_title'];
                             $create = $data['contact_create'];
                             $status = $data['contact_status'];
-                            if ($_GET['type'] == '0') {
+                            if ($type === '0') {
                                 $name = "You";
                             }
                             else {
@@ -84,10 +90,9 @@ $order_by= " ORDER BY contact_status ASC, contact_create DESC ";
                                         <p class="mb-0 email-time"><?php echo datethai($create, 2, $lang) ?></p>
                                     </div>
                                 </div>
-                            </a>         
-                    <?php } } else { ?>
-                        <p class="m-5">ไม่พบข้อมูลในระบบ</p>
-                    <?php } ?>
+                            </a> 
+                    
+                    <?php } } else { echo "<p class='m-5'>$l_notfound</p>"; } ?>        
                     
                 </div>
             </div>

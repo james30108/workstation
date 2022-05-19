@@ -215,7 +215,7 @@ include("process/include_lang.php");
 
                 // report's withdraw
                 if (isset($data['report_type']) && $data['report_type'] == 2) { $money = $sum . $l_bath; }
-                else { $money = report_final ($sum, $report_fee1, $report_fee2, $l_bath, $report_max)[0]; }
+                else { $money = report_final ($sum, $report_fee1, $report_fee2, $l_bath, $report_max); }
                 
             }
 

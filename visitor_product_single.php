@@ -28,7 +28,7 @@ $product_image_cover = ($data['product_image_cover'] != '') ? $data['product_ima
 // login or not
 if (isset($data_check_login)) {
 
-	$query_cart = mysqli_query($connect, "SELECT * FROM system_cart WHERE (cart_member_id = '$buyer_id') AND (cart_product_id = '$product_id')");
+	$query_cart = mysqli_query($connect, "SELECT * FROM system_cart WHERE (cart_buyer_id = '$buyer_id') AND (cart_product_id = '$product_id')");
 	$data_cart  = mysqli_fetch_array($query_cart);
 	$number 	= isset($data_cart) ? $data_cart['cart_product_amount'] : 1;
 

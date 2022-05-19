@@ -265,7 +265,6 @@ elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_buyer') {
     #### insert order ####
     $order_buyer_id     = $_POST['order_buyer_id'];
     $order_member       = $_POST['order_member'];
-    $order_buyer_id     = $_POST['order_buyer_id'];
     $order_buyer        = $_POST['order_buyer'];
     $order_buyer_tel    = $_POST['order_buyer_tel'];
     $order_buyer_email  = $_POST['order_buyer_email'];
@@ -313,7 +312,7 @@ elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_buyer') {
     $query = mysqli_query($connect, "SELECT system_cart.*, system_product.* 
         FROM system_cart 
         INNER JOIN system_product ON (system_cart.cart_product_id = system_product.product_id)
-        WHERE cart_member_id = '$order_member' ");
+        WHERE cart_buyer_id = '$order_buyer_id' ");
     while ($data = mysqli_fetch_array($query)) {
 
         $product_id     = $data['cart_product_id'];
@@ -347,7 +346,7 @@ elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_buyer') {
     }
 
     // Delete cart
-    mysqli_query($connect, "DELETE FROM system_cart WHERE cart_member_id = '$order_buyer_id' ") or die(mysqli_error($connect));
+    mysqli_query($connect, "DELETE FROM system_cart WHERE cart_buyer_id = '$order_buyer_id' ") or die(mysqli_error($connect));
 
 
     // Payment

@@ -131,24 +131,23 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
     $buyer_create   = datethai($data['buyer_create'], 0, $lang);
     $buyer_email    = $data['buyer_email'];
     $buyer_tel      = $data['buyer_tel'];
-    $order_address  = $data['order_address'];
-    $order_district = $data['order_district'];
-    $order_amphur   = $data['order_amphur'];
-    $order_province = $data['order_province'];
-    $order_zipcode  = $data['order_zipcode'];
+    $buyer_address  = $data['buyer_address'];
+    $buyer_district = $data['buyer_district'];
+    $buyer_amphure  = $data['buyer_amphure'];
+    $buyer_province = $data['buyer_province'];
+    $buyer_zipcode  = $data['buyer_zipcode'];
     ?>
 
-
-    <title>ข้อมูลสมาชิก</title>
+    <title><?php echo $l_remem_mem ?></title>
     <div class="col-12 col-sm-9 mx-auto">
     <div class="card-title d-flex align-items-center">
         <div><i class="bx bx-globe me-1 font-22 text-primary"></i></div>
-        <h5 class="mb-0 text-primary">สมาชิก</h5>
+        <h5 class="mb-0 text-primary"><?php echo $l_remem_mem ?></h5>
     </div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page"><a href="<?php echo $page_type ?>?page=buyer">สมาชิกหน้าเว็บเพจ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">ข้อมูลสมาชิก</li>
+            <li class="breadcrumb-item" aria-current="page"><a href="<?php echo $page_type ?>?page=buyer"><?php echo $l_buyer ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo $l_remem_mem ?></li>
         </ol>
     </nav>
     </div>
@@ -159,28 +158,28 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                     <table class="table table-borderless table-sm">
                         <tbody>
                             <tr>
-                                <th>รหัสผู้แนะนำ</th>
+                                <th><?php echo $l_linercode ?></th>
                                 <td><?php echo $member_code ?></td>
                             </tr>
                             <tr>
-                                <th>ชื่อ - นามสกุล</th>
+                                <th><?php echo $l_member_name ?></th>
                                 <td><?php echo $buyer_name ?></td>
                             </tr>
                             <tr>
-                                <th>วันที่สมัคร</th>
+                                <th><?php echo $l_datesingnin ?></th>
                                 <td><?php echo $buyer_create ?></td>
                             </tr>
                             <tr>
-                                <th>อีเมล์</th>
+                                <th><?php echo $l_email ?></th>
                                 <td><?php echo $buyer_email ?></td>
                             </tr>
                             <tr>
-                                <th>เบอร์โทรฯ</th>
+                                <th><?php echo $l_tel ?></th>
                                 <td><?php echo $buyer_tel ?></td>
                             </tr>
                             <tr>
-                                <th>ที่อยู่สำหรับจัดส่ง</th>
-                                <td><?php echo "$order_address ตำบล/แขวง $order_district อำเภอ/เขต $order_amphur จังหวัด $order_province รหัสไปรษณีย์ $order_zipcode" ?>
+                                <th><?php echo $l_invoice_addr ?></th>
+                                <td><?php echo "$buyer_address $l_district $buyer_district $l_amphures $buyer_amphure $l_provinces $buyer_province $l_zipcode $buyer_zipcode" ?>
                                 </td>
                             </tr>
                         </tbody>
@@ -196,11 +195,11 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th>รหัสคำสั่งซื้อ</th>
-                            <th>วันที่สั่ง</th>
-                            <th>ราคารวม</th>
-                            <th>ชำระเงิน</th>
-                            <th>สถานะ</th>
+                            <th><?php echo $l_order_code ?></th>
+                            <th><?php echo $l_date ?></th>
+                            <th><?php echo $l_invoice_totprice ?></th>
+                            <th><?php echo $l_pay ?></th>
+                            <th><?php echo $l_status ?></th>
                         </tr>
                     </thead>
                     <tbody>

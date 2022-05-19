@@ -12,6 +12,7 @@ $count_order= $data['count_order'];
 $today     	= datethai(date("Y-m-d"), 0, $lang);
 
 if (!isset($_GET['action'])) { ?>
+
 	<title><?php echo $l_report_sold ?></title>
 	<div class="card border-top border-0 border-4 border-primary">
         <div class="card-body">
@@ -33,10 +34,7 @@ if (!isset($_GET['action'])) { ?>
 				<tbody>
 					<tr>
 						<td><?php echo report_now($connect, 1); ?></td>
-						<td>
-							<?php 
-							echo $count_order > 0 ? "<a href='admin.php?page=admin_report_sold&action=report_sold_detail' title='รายละเอียด''>$today</a>" : $today ; ?>
-						</td>
+						<td><?php echo $count_order > 0 ? "<a href='admin.php?page=admin_report_sold&action=now' title='Detail''>$today</a>" : $today ; ?></td>
 						<td><?php echo number_format($sum_price, 2) . $l_bath; ?></td>
 						<td><?php echo number_format($count_order) . $l_list; ?></td>
 					</tr>
@@ -76,7 +74,7 @@ if (!isset($_GET['action'])) { ?>
 					 		$report_count   = number_format($data['report_count']) . $l_list;
 					 		$report_id 		= $data['report_id'];
 					 		$report_create 	= datethai($data['report_create'], 0, $lang);
-					 		$report_url 	= $report_count > 0 ? "<a href='admin.php?page=admin_report_sold&action=sold_report&report_id=$report_id' title='Detail' target='_blank'>$report_create</a>" : $report_create;
+					 		$report_url 	= $report_count > 0 ? "<a href='admin.php?page=admin_report_sold&action=report&report_id=$report_id' title='Detail' target='_blank'>$report_create</a>" : $report_create;
 
 					 		?>
 						 	<tr>
@@ -98,7 +96,9 @@ if (!isset($_GET['action'])) { ?>
         pagination ($connect, $sql, $perpage, $page_id, $url); ?>
 	</div>
 	</div>
-<?php } elseif (isset($_GET['action']) && $_GET['action'] == 'report_sold_detail') { ?>
+
+<?php } elseif (isset($_GET['action']) && $_GET['action'] == 'now') { ?>
+
 	<title><?php echo $l_com_nowdeta ?></title>
 	<div class="card-title d-flex align-items-center mb-3">
 		<div><i class="bx bx-detail me-1 font-22 text-primary"></i></div>
@@ -116,7 +116,7 @@ if (!isset($_GET['action'])) { ?>
 				<tbody>
 					<tr>
 						<th width="180"><?php echo $l_com_round ?></th>
-						<td><?php echo number_format($report_now) ?></td>
+						<td><?php echo report_now($connect, 1) ?></td>
 					</tr>
 					<tr>
 						<th><?php echo $l_resold_money ?></th>
@@ -170,7 +170,7 @@ if (!isset($_GET['action'])) { ?>
             pagination ($connect, $sql, $perpage, $page_id, $url); ?>
 		</div>
 	</div>
-<?php } elseif (isset($_GET['action']) && $_GET['action'] == 'sold_report') {
+<?php } elseif (isset($_GET['action']) && $_GET['action'] == 'report') {
 
 	$report_id 	= $_GET['report_id'];
 	$query 		= mysqli_query($connect, "SELECT * FROM system_report WHERE report_id = '$report_id' ");
@@ -232,7 +232,7 @@ if (!isset($_GET['action'])) { ?>
 						<th><?php echo $l_product_code ?></th>
 						<th><?php echo $l_quantity ?></th>
 						<th><?php echo $l_name ?></th>
-						<?php echo $system_delivery == 1 ? "<th>$l_address</th>" : false ?>
+						<?php echo $system_address == 2 ? "<th>$l_address</th>" : false ?>
 						<th><?php echo $l_tel ?></th>
 						<th><?php echo $l_pay ?></th>
 						<th><?php echo $l_report ?></th>
@@ -255,6 +255,12 @@ if (!isset($_GET['action'])) { ?>
 				while($data = mysqli_fetch_array ($query)) {
 					$report_detail_point = $data['report_detail_point'];
 					$order_type_buy 	 = $data['order_type_buy'];
+
+					$order_address 	     = $data['order_address'];
+					$order_district 	 = $data['order_district'];
+					$order_amphur 	 	 = $data['order_amphur'];
+					$order_province 	 = $data['order_province'];
+					$order_zipcode 	     = $data['order_zipcode'];
 					$i++;
 					?>
                     <tr>
@@ -267,13 +273,8 @@ if (!isset($_GET['action'])) { ?>
                         <td><?php echo $data['product_code'] ?></td>
                         <td><?php echo number_format($data['order_detail_amount']) . $l_piece ?></td>
                         <td><?php echo $data['order_buyer'] ?></td>
-                        <?php if ($system_delivery == 1) { ?>
-                        <td><?php echo $data['order_address'] .
-                            " ตำบล/แขวง " . $data['order_district'] .
-                            " อำเภอ/เขต " . $data['order_amphur'] .
-                            " จังหวัด " . $data['order_province'] .
-                            " รหัสไปรษณีย์ " . $data['order_zipcode'] ?>
-                        </td>
+                        <?php if ($system_address == 2) { ?>
+                        <td><?php echo "$order_address $l_district $order_district $l_amphures $order_amphur $l_provinces $order_province $l_zipcode $order_zipcode" ?></td>
                     	<?php } ?>
                         <td><?php echo $data['order_buyer_tel'] ?></td>
                         <td>

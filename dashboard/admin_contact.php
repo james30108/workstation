@@ -77,7 +77,7 @@ elseif ($send_by == '2') { $menu4 = "active"; }
             <input type="hidden" name="page" value="<?php echo $page_type ?>">
             <button name="action" value="read" class="btn btn-white ms-2"><i class='bx bx-refresh me-0'></i>
             </button>
-            <button name="action" value="delete" onclick="javascript:return confirm('ยืนยันการทำรายการ');" class="btn btn-white ms-2"><i class='bx bx-trash me-0'></i>
+            <button name="action" value="delete" onclick="javascript:return confirm('Confirm');" class="btn btn-white ms-2"><i class='bx bx-trash me-0'></i>
             </button>
         </form>
         <div class="ms-auto d-flex align-items-center mt-3">

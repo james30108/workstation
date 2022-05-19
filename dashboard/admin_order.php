@@ -210,9 +210,12 @@ isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : fals
                 <select name="order_type_buy" class="form-control">
                     <option value="all"<?php if (!isset($_GET['order_type_buy']) || $_GET['order_type_buy'] == 'all') {echo "selected";} ?>><?php echo $l_all ?></option>
                     <option value="0" <?php echo $sorder_type_buy == '0' ? "selected" : false; ?>><?php echo $l_order_pay0 ?></option>
+                    <?php if ($system_ewallet == 1) { ?>
                     <option value="1" <?php echo $sorder_type_buy == '1' ? "selected" : false; ?>><?php echo $l_order_pay1 ?></option>
+                    <?php } if ($system_admin_buy == 1) { ?>
                     <option value="2" <?php echo $sorder_type_buy == '2' ? "selected" : false; ?>><?php echo $l_order_pay2 ?></option>
                     <option value="3" <?php echo $sorder_type_buy == '3' ? "selected" : false; ?>><?php echo $l_order_pay3 ?></option>
+                    <?php } ?>
                     <option value="4" <?php echo $sorder_type_buy == '4' ? "selected" : false; ?>><?php echo $l_order_pay4 ?></option>
                     <option value="5" <?php echo $sorder_type_buy == '5' ? "selected" : false; ?>><?php echo $l_order_pay5 ?></option>
                 </select>

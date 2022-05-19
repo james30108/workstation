@@ -419,7 +419,7 @@ function sale_cut ($connect, $report_round) {
 }
 
 // Commission Cut
-function commission_cut ($connect, $report_round, $point_type, $yesterday) {
+function commission_cut ($connect, $report_round, $point_type, $yesterday, $report_min) {
     
     $query          = mysqli_query($connect, "SELECT SUM(sum.sum_point_member) AS sum_point, COUNT(*) AS count
     FROM
@@ -494,6 +494,9 @@ function report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)
     else {
         $pay_show = $pay_format;
     }
+
+    // for PHP Underver. 7.0.
+    //return $pay_show;
 
     return array($pay_show, $pay_format, $pay);
 }

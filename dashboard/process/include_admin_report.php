@@ -76,7 +76,7 @@
                 	<input type="hidden" name="page" 	  	value="detail">
                 	<input type="hidden" name="report_type" value="<?php echo $report_type ?>">
                 	<input type="hidden" name="member_id" 	id="direct_id2">
-                	<input type="hidden" name="type" 		value="com">
+                	<input type="hidden" name="type" 		value="report">
                     <div class="col-12 col-sm-6">
                         <label  class="form-label"><?php echo $l_member_code ?> <font color="red">*</font></label>
                         <input type="text" class="form-control" id="check_member2" placeholder="<?php echo $l_member_code ?>" required>
