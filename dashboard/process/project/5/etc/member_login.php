@@ -53,7 +53,8 @@
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-4 mx-auto">
                 <div class="card card-body">
-                    <?php if ($_GET['status'] == 'success') { ?>
+                    <?php 
+                    if ($_GET['status'] == 'success') { ?>
                         <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2 mb-5">
                             <div class="d-flex align-items-center">
                                 <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>

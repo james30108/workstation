@@ -9,12 +9,12 @@ $sql_check_login    = mysqli_query($connect,"SELECT * FROM system_member WHERE m
 $data_check_login   = mysqli_fetch_array($sql_check_login);
 $page_type        	= basename($_SERVER['PHP_SELF']);
 
-$lang 							= $system_lang == 1 ? $data_check_login['member_lang'] : 0;
+$lang 				= $system_lang == 1 ? $data_check_login['member_lang'] : 0;
 include("process/include_lang.php");
 
 if ($data_check_login) { ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="color-header headercolor2 color-sidebar sidebarcolor2">
+<html xmlns="http://www.w3.org/1999/xhtml" class="color-sidebar sidebarcolor3 color-header headercolor2">
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -95,6 +95,7 @@ if ($data_check_login) { ?>
 				</li>
 				<!-- ----------------------------- -->
 				<li class="menu-label"><?php echo $l_member_manage ?></li>
+				<!--
 				<li>
 					<a href="member.php?page=insert_member">
 						<div class="parent-icon"><i class='fadeIn animated bx bx-user-plus' ></i>
@@ -102,6 +103,7 @@ if ($data_check_login) { ?>
 						<div class="menu-title"><?php echo $l_member_insert ?></div>
 					</a>
 				</li>
+				-->
 				<?php if ($system_liner == 1) { ?>
 				<li>
 					<a href="member.php?page=liner&action=liner_tree&main_id=yes">
@@ -124,7 +126,7 @@ if ($data_check_login) { ?>
 					<a href="member.php?page=shopping">
 						<div class="parent-icon"><i class='bx bx-store-alt' ></i>
 						</div>
-						<div class="menu-title"><?php echo $l_buy ?></div>
+						<div class="menu-title"><?php echo $l_package ?></div>
 					</a>
 				</li>
 				<li>
@@ -281,6 +283,12 @@ if ($data_check_login) { ?>
 		<div class="page-wrapper">
 			<div class="page-content">
 			<?php
+			if ($system_style == 1) {
+				$default_page = "member_dropship_default.php";
+			}
+			else {
+				$default_page = "member_default.php";
+			}
 			switch($page){
 				case "insert_member":
 					include('all_insert_member.php');
@@ -341,7 +349,7 @@ if ($data_check_login) { ?>
 					header("location:member_login.php");
 					break;
 				default:
-					include("member_default.php");
+					include($default_page);
 			}//ปิดเคส
 			?>
 			</div>

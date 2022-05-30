@@ -19,6 +19,8 @@ if (!isset($_GET['action'])) { ?>
                         <option value="1" <?php if ($system_style == 1) {echo 'selected';} ?>>Umeplus</option>
                         <option value="2" <?php if ($system_style == 2) {echo 'selected';} ?>>Alpha World Group</option>
                         <option value="3" <?php if ($system_style == 3) {echo 'selected';} ?>>BCP789</option>
+                        <option value="4" <?php if ($system_style == 4) {echo 'selected';} ?>>Goldrex</option>
+                        <option value="5" <?php if ($system_style == 5) {echo 'selected';} ?>>Metaone</option>
                     </select>
                 </div>
             </div>

@@ -30,7 +30,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-
+            background-size: 100% 100%;
             font-family: 'Kanit', sans-serif;
             font-size: 15px;
         }
