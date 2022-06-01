@@ -1,4 +1,4 @@
-<?php include('../../../function.php');
+<?php include('function.php');
 
 // Sale cut
     $report_round   = report_now ($connect, 1);

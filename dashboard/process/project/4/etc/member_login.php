@@ -30,15 +30,13 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-
+            background-size: 100% 100%;
             font-family: 'Kanit', sans-serif;
             font-size: 15px;
         }
-        .card {
-            background: url("assets/images/etc/login.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
+        .image {
+            width:100%;
+            align-items: center;
         }
 	</style>
     <title>Login</title>

@@ -30,15 +30,13 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-
+            background-size: 100% 100%;
             font-family: 'Kanit', sans-serif;
             font-size: 15px;
         }
-        .card {
-            background: url("assets/images/etc/login.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
+        .image {
+            width:100%;
+            align-items: center;
         }
 	</style>
     <title>Login</title>
@@ -82,15 +80,15 @@
                     <div class="text-center">
                         <img src="assets/images/etc/lock.png" width="120" alt="" />
                     </div>
-                    <h4 class="mt-5 font-weight-bold text-white">Forget Password?</h4>
-                    <p class="text-white">Please specify your username and email. And we will send password to your email</p>
+                    <h4 class="mt-5 font-weight-bold">Forget Password?</h4>
+                    <p class="text-muted">Please specify your username and email. And we will send password to your email</p>
                     <form action="process/setting_config.php" method="post">
                         <div class="my-4">
-                            <label class="form-label text-white">username</label>
+                            <label class="form-label">username</label>
                             <input type="text" name="member_user" class="form-control" placeholder="username" require>
                         </div>
                         <div class="my-4">
-                            <label class="form-label text-white">email</label>
+                            <label class="form-label">email</label>
                             <input type="email" name="member_email" class="form-control" placeholder="example@user.com" require>
                         </div>
                         <div class="d-grid gap-2">
@@ -124,26 +122,35 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="p-4 rounded">
-                                <img src="assets/images/etc/<?php echo $logo_image ?>" alt="โลโก้" style="width:100%;align-items: center;">
+                                <img src="assets/images/etc/<?php echo $logo_image ?>" alt="Logo" class="image">
                                 <div class="form-body mt-3">
                                     <form class="row g-3" action="process/setting_config.php" method="post">
                                         <div class="col-12">
-                                            <label class="form-label text-white">username</label>
+                                            <label class="form-label">username</label>
                                             <input type="text" name="member_user" class="form-control" placeholder="username" require>
                                         </div>
                                         <div class="col-12">
-                                            <label for="inputChoosePassword" class="form-label text-white">password</label>
+                                            <label for="inputChoosePassword" class="form-label">password</label>
                                             <div class="input-group" id="show_hide_password">
+                                                
                                                 <input type="password" name="member_pass" class="form-control border-end-0" id="inputChoosePassword" placeholder="password" require> 
-                                                <a href="javascript:;" class="input-group-text"><i class='bx bx-hide'></i></a>
+
+                                                <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+
                                             </div>
                                         </div>
-                                        <div class="col-12"><a href="member_login.php?action=forget_password">Forget password ?</a>
-                                        <div class="col-12 mt-3">
+                                        <div class="col-12 text-end">
+                                            <a href="member_login.php?action=forget_password">Forget password ?</a>
+                                        </div>
+                                        <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" name="action" value="member_login" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Login</button>
+
+                                                <button type="submit" name="action" value="member_login" class="btn btn-success"><i class="bx bxs-lock-open"></i>Login</button>
+
                                                 <?php if ($system_webpage == 1) { ?>
-                                                <a href="../" class="btn btn-white mt-1 border border-2"><i class='bx bx-arrow-back me-1'></i>Home</a>
+                                                
+                                                    <a href="../" class="btn btn-white mt-1 border border-2"><i class='bx bx-arrow-back me-1'></i>Home</a>
+
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -157,7 +164,6 @@
             <!--end row-->
         </div>
         </div>
-
     <?php } ?>
 
 </div>

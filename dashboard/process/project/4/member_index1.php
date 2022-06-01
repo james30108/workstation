@@ -4,7 +4,7 @@ $data  = mysqli_fetch_array($query);
 $com_round = $data['liner_status'] == 1 ? $data['liner_etc'] : "None" ;
 ?>
 <div class="col-12 col-sm">
-    <div class="card radius-10 overflow-hidden bg-gradient-moonlit">
+    <div class="card radius-10 overflow-hidden bg-gradient-kyoto">
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>

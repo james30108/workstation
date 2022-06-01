@@ -1,4 +1,4 @@
-<?php include('../../../function.php');
+<?php include('function.php');
 
 // Commission Cut
 $report_now = report_now ($connect, 0);
