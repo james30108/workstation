@@ -247,7 +247,7 @@
 <div class="row">
     <?php if ($com_ppm > 0) { ?>
         <div class="col-12 col-sm">
-            <div class="card radius-10 overflow-hidden bg-gradient-kyoto">
+            <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
@@ -271,7 +271,7 @@
         </div>
     <?php } ?>
     <div class="col-12 col-sm">
-        <div class="card radius-10 overflow-hidden bg-gradient-kyoto">
+        <div class="card radius-10 overflow-hidden bg-gradient-Ohhappiness">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
@@ -287,7 +287,7 @@
     </div>
     <?php if ($system_class == 1) { ?>
     <div class="col-12 col-sm">
-        <div class="card radius-10 overflow-hidden bg-gradient-kyoto">
+        <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
@@ -302,7 +302,7 @@
     </div>
     <?php } if ($system_ewallet > 0) { ?>
     <div class="col-12 col-sm">
-        <div class="card radius-10 overflow-hidden bg-gradient-kyoto">
+        <div class="card radius-10 overflow-hidden bg-gradient-burning">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
@@ -323,7 +323,7 @@
 
 </div><!--end row-->
 
-<div class="card radius-10 overflow-hidden bg-gradient-kyoto">
+<div class="card radius-10 bg-dark bg-gradient">
     <div class="card-body">
         <h6 class="text-white"><?php echo $l_link ?></h6>
         <div class="d-flex align-items-center">
