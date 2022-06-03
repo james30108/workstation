@@ -32,7 +32,7 @@ else {
 
     function loadpayment(){
         
-        $.get("process/project/2/process/ajax_payment.php", { order_id: <?php echo $order_id ?> }, function( data ) {
+        $.get("process/project/<?php echo $system_style ?>/process/ajax_payment.php", { order_id: <?php echo $order_id ?> }, function( data ) {
 
             if (data != 0) {
                 window.location.replace("<?php echo $page_type ?>?page=order&type=report");
@@ -60,8 +60,8 @@ $api_price      = (int) $data['order_price'];
 
 // API
 //Use Authorization and partner_code from your account
-$authorization  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyX2NvZGUiOiJBUFciLCJ1dWlkIjoiZjdiMDQ1NjUtZDcwZS00NjkxLTg0OWMtNjVhNGM5YThmMjMzIn0.lwPrGBqTSWYmQLesoIStkua5iftBA4jjiAXMgTW994w";
-$partner_code   = "APW";
+$authorization  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyX2NvZGUiOiJNVE8iLCJ1dWlkIjoiYmMwOWZhMjEtOTczYi00ZTI0LTkxZGYtZTZlM2YxOTZiMzJmIn0.HrnST-Ak2fjUOE3SYFWMF1Fl7mTfxUaemebrITE06aI";
+$partner_code   = "MTO";
 
 // API URL
 $url            = "https://api.1-2-pay.com/v1/create-qr-code";      

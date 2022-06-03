@@ -3,9 +3,9 @@
 if ($_GET['action'] == 'withdraw') {
     
     $member_id      = $_GET['member_id'];
-    $liner_point    = (int) $_GET['liner_point'];
-    $commission     = (int) report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[2];
-    //$commission     = (int) 1;
+    $liner_point    = (double) $_GET['liner_point'];
+    $commission     = (double) report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[2];
+    //$commission     = (double) 1.03;
 
     $query      = mysqli_query($connect, "SELECT system_member.*, system_bank.* 
         FROM system_member 

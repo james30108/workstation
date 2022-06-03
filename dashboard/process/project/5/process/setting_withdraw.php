@@ -3,9 +3,9 @@
 if ($_GET['action'] == 'withdraw') {
     
     $member_id      = $_GET['member_id'];
-    $liner_point    = (int) $_GET['liner_point'];
-    $commission     = (int) report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[2];
-    //$commission     = (int) 1;
+    $liner_point    = (double) $_GET['liner_point'];
+    $commission     = (double) report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[2];
+    //$commission     = (double) 1.03;
 
     $query      = mysqli_query($connect, "SELECT system_member.*, system_bank.* 
         FROM system_member 
@@ -22,8 +22,8 @@ if ($_GET['action'] == 'withdraw') {
 
     // API
     //Use Authorization and partner_code from your account
-    $authorization  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyX2NvZGUiOiJBUFciLCJ1dWlkIjoiZjdiMDQ1NjUtZDcwZS00NjkxLTg0OWMtNjVhNGM5YThmMjMzIn0.lwPrGBqTSWYmQLesoIStkua5iftBA4jjiAXMgTW994w";
-    $partner_code   = "APW";
+    $authorization  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyX2NvZGUiOiJNVE8iLCJ1dWlkIjoiYmMwOWZhMjEtOTczYi00ZTI0LTkxZGYtZTZlM2YxOTZiMzJmIn0.HrnST-Ak2fjUOE3SYFWMF1Fl7mTfxUaemebrITE06aI";
+    $partner_code   = "MTO";
 
     // API URL
     $url            = "https://payout.1-2-pay.com/payout";   

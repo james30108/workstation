@@ -460,7 +460,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                         
                         <a href="<?php echo $cancel_url ?>" class="btn btn-danger m-1"><?php echo $l_cancel ?></a>
 
-                        <!--<button name="action" value="confirm_member" class="btn btn-primary m-1" onclick="javascript:return confirm('Confirm ?')" id="submit_button"><?php echo $l_submit ?></button>-->
+                        <button name="action" value="confirm_member" class="btn btn-primary m-1" onclick="javascript:return confirm('Confirm ?')" id="submit_button"><?php echo $l_submit ?></button>
                     </div>
                 </form>
             </div>
