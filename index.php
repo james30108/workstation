@@ -1,5 +1,5 @@
 <?php include('dashboard/process/function.php');
-
+// ทดสอบ
 if ($system_webpage == 0) {
     header("location:dashboard/member.php");
     die();
