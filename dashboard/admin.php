@@ -1,6 +1,6 @@
 <?php include('process/function.php');
 if (file_exists("process/project/$system_style/function_child.php")) { include("process/project/$system_style/function_child.php"); }
-dfgfdg
+
 $page 			  = isset($_GET['page']) ? $_GET['page'] : false;
 $admin_id  		  = $_SESSION['admin_id'];
 $sql_check_login  = mysqli_query($connect, "SELECT * FROM system_admin WHERE admin_id = '$admin_id' ");
