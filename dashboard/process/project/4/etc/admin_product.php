@@ -90,7 +90,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                         <table class="table table-borderless table-sm" >
                             <tbody>
                                 <tr>
-                                    <th><?php echo $l_pricemem; ?></th>
+                                    <th><?php echo $l_price; ?></th>
                                     <td><?php echo $product_price_member . $l_bath ?></td>
                                 </tr>
                                 <tr>

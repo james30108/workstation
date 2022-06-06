@@ -51,6 +51,7 @@ if ($lang == 0) {
 	$l_submit 	= "ยืนยัน";
 	$l_package 	= "แพ็กเกจ";
 	$l_pickpackage = "เลือกแพ็กเกจ";
+	$l_package_type= "ประเภทแพ็กเกจ";
 	$l_promotion= "โปรโมชั่น";
 	$l_validate = "กรุณาตรวจสอบให้ถูกต้อง";
 	$l_datesingnin = "วันที่สมัคร";
@@ -342,6 +343,7 @@ else {
 	$l_submit 	= "Submit";
 	$l_package 	= "Package";
 	$l_pickpackage = "Pick Package";
+	$l_package_type= "Package Type";
 	$l_promotion= "Promotion";
 	$l_validate = "Please Validate";
 	$l_datesingnin = "Date of Signin";
