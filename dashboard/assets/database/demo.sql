@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2022 at 10:12 AM
+-- Generation Time: Jun 10, 2022 at 07:40 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -1187,11 +1187,11 @@ CREATE TABLE `system_class` (
 
 INSERT INTO `system_class` (`class_id`, `class_name`, `class_up_level`, `class_image`, `class_match_level`, `class_com`) VALUES
 (1, 'Member', 0, 'class_20220407101640.png', 0, 0),
-(2, 'S', 3300, 'class_20220407101615.png', 1, 3.75),
-(3, 'M', 16500, 'class_20220407101657.png', 2, 3.75),
-(4, 'E', 33000, 'class_20220407101710.png', 3, 3.75),
-(5, 'VIP', 99000, 'class_20220106143404.png', 4, 3.75),
-(6, 'DD', 330000, 'class_20220407101757.png', 4, 4);
+(2, '100 $', 3300, 'class_20220407101615.png', 1, 3.75),
+(3, '500 $', 16500, 'class_20220407101657.png', 2, 3.75),
+(4, '1000 $', 33000, 'class_20220407101710.png', 3, 3.75),
+(5, '3000 $', 99000, 'class_20220106143404.png', 4, 3.75),
+(6, '10000 $', 330000, 'class_20220407101757.png', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -1280,9 +1280,9 @@ CREATE TABLE `system_config` (
 INSERT INTO `system_config` (`config_id`, `config_type`, `config_name`, `config_value`) VALUES
 (1, 'report_type', 'ตัดยอด', 0),
 (2, 'report_fee1', 'ค่าธรรมเนียม', 0),
-(3, 'report_min', 'เงินปันผลขั้นต่ำ', 0),
-(4, 'report_max', 'เงินปันผลสูงสุด', 0),
-(5, 'report_fee2', 'ค่าธรรมเนียม (%)', 0),
+(3, 'report_min', 'เงินปันผลขั้นต่ำ', 350),
+(4, 'report_max', 'เงินปันผลสูงสุด', 100000),
+(5, 'report_fee2', 'ค่าธรรมเนียม (%)', 1.8),
 (6, 'downline_max', 'ลูกข่ายสูงสุด', 0),
 (15, 'system_buyer', 'ระบบสมาชิกหน้าเว็บเพจ', 1),
 (7, 'com_ppm', 'ค่ารักษายอด', 0),
@@ -1290,11 +1290,11 @@ INSERT INTO `system_config` (`config_id`, `config_type`, `config_name`, `config_
 (9, 'com_style', 'รูปแบบการรักษายอด', 0),
 (10, 'system_style', 'ประเภทของระบบ', 1),
 (11, 'system_switch', 'เปิด-ปิดระบบ', 0),
-(12, 'system_lang', 'ระบบเปลี่ยนภาษา', 1),
-(13, 'system_liner', 'ระบบสมาชิก / ธุรกิจเครือข่ายลำดับชั้น', 0),
+(12, 'system_lang', 'ระบบเปลี่ยนภาษา', 0),
+(13, 'system_liner', 'ระบบสมาชิก / ธุรกิจเครือข่ายลำดับชั้น', 1),
 (14, 'system_webpage', 'หน้าเว็บเพจ', 1),
 (16, 'system_moblie', 'Responsive', 1),
-(17, 'system_class', 'ระบบตำแหน่ง', 0),
+(17, 'system_class', 'ระบบตำแหน่ง', 1),
 (18, 'system_admin_buy', 'ระบบการซื้อด่วนของแอดมิน', 0),
 (19, 'system_ewallet', 'ระบบกระเป๋าเงิน', 0),
 (20, 'system_member_expire', 'ระบบหมดอายุของสมาชิก', 0),
@@ -1302,8 +1302,8 @@ INSERT INTO `system_config` (`config_id`, `config_type`, `config_name`, `config_
 (22, 'system_tracking', 'ระบบติดตามการขนส่งสินค้า', 1),
 (23, 'system_liner2', 'ระบบคอมมิชชั่นพิเศษ', 0),
 (24, 'system_address', 'ระบบบันทึกที่อยู่', 2),
-(28, 'report_style', 'รูปแบบการคำนวนคอมมิชชั่น', 0),
-(27, 'system_com_withdraw', 'ระบบแจ้งถอนค่าคอมฯ', 0),
+(28, 'report_style', 'รูปแบบการคำนวนคอมมิชชั่น', 1),
+(27, 'system_com_withdraw', 'ระบบแจ้งถอนค่าคอมฯ', 2),
 (26, 'system_comment', 'ระบบความคิดเห็น', 1),
 (25, 'system_pay', 'ระบบแจ้งชำระเงิน', 0),
 (29, 'system_product_type2', 'ประเภทสินค้าที่ 2', 0);
@@ -1334,6 +1334,7 @@ CREATE TABLE `system_contact` (
 INSERT INTO `system_contact` (`contact_id`, `contact_member`, `contact_buyer`, `contact_title`, `contact_name`, `contact_email`, `contact_detail`, `contact_create`, `contact_type`, `contact_status`) VALUES
 (1, 1, 1, 'ทำการจัดส่งสินค้าเรียบร้อย', 'System Tracking', 'namsai@gmail.com', '3', '2022-05-17 09:30:50', 3, 1),
 (2, 1, 1, 'ทำการจัดส่งสินค้าเรียบร้อย', 'System Tracking', 'namsai@gmail.com', '2', '2022-05-17 09:38:48', 3, 1),
+(16, 1, 1, 'ทำการจัดส่งสินค้าเรียบร้อย', 'System Tracking', 'namsai@gmail.com', '11', '2022-06-06 07:07:43', 3, 1),
 (5, 1, 2, 'ทำการจัดส่งสินค้าเรียบร้อย', 'System Tracking', 'music@gmail.com', '4', '2022-05-19 03:23:25', 3, 1),
 (6, 1, 1, 'ทำการจัดส่งสินค้าเรียบร้อย', 'System Tracking', 'namsai@gmail.com', '5', '2022-05-19 03:35:23', 3, 0),
 (7, 1, 1, 'ทำการจัดส่งสินค้าเรียบร้อย', 'System Tracking', 'namsai@gmail.com', '6', '2022-05-19 03:35:29', 3, 0),
@@ -10407,7 +10408,7 @@ CREATE TABLE `system_member` (
 --
 
 INSERT INTO `system_member` (`member_id`, `member_code`, `member_email`, `member_pass`, `member_title_name`, `member_name`, `member_user`, `member_tel`, `member_create`, `member_bank_own`, `member_bank_name`, `member_bank_id`, `member_class`, `member_code_id`, `member_point`, `member_point_month`, `member_month`, `member_ewallet`, `member_token_line`, `member_status`, `member_image_cover`, `member_image_card`, `member_image_bank`, `member_lang`) VALUES
-(1, '0000001', '', '1234', NULL, 'member', 'member', '', '2022-05-17 08:23:08', '', 0, '', 1, NULL, 275512, 0, 2, 0, NULL, 0, NULL, NULL, NULL, 1);
+(1, '0000001', '', '1234', NULL, 'member', 'member', '', '2022-05-17 08:23:08', '', 0, '', 1, NULL, 339512, 64000, 2, 0, NULL, 0, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -10466,7 +10467,8 @@ INSERT INTO `system_order` (`order_id`, `order_code`, `order_member`, `order_buy
 (7, 'ORDER-0000007', 1, 1, 'น้ำใส', '0336589562', 'namsai@gmail.com', 1, 9900, 6400, 4, '2022-05-19 03:29:10', '115/7 หมู่ 1', 'ในเมือง', 'เมือง', 'เชียงใหม่', '50220', 0, NULL, 4, 'Flash Express', 'TH002256232', 1),
 (8, 'ORDER-0000008', 1, 1, 'น้ำใส', '0336589562', 'namsai@gmail.com', 8, 432000, 120000, 4, '2022-05-19 03:30:27', '115/7 หมู่ 1', 'ในเมือง', 'เมือง', 'เชียงใหม่', '50220', 0, NULL, 5, 'Flash Express', 'TH002256232', 1),
 (9, 'ORDER-0000009', 1, 2, 'มิวสิก', '0889562356', 'music@gmail.com', 2, 6600, 4540, 4, '2022-05-19 03:47:20', '14/8 หมู่2', 'ในเมือง', 'เมือง', 'เชียงใหม่', '50220', 0, NULL, 5, 'Flash Express', 'TH002256232', 1),
-(10, 'ORDER-0000010', 1, 2, 'มิวสิก', '0889562356', 'music@gmail.com', 5, 45788, 12356, 4, '2022-05-19 04:22:00', '14/8 หมู่2', 'ในเมือง', 'เมือง', 'เชียงใหม่', '50220', 0, NULL, 0, 'Flash Express', 'TH0025', 1);
+(10, 'ORDER-0000010', 1, 2, 'มิวสิก', '0889562356', 'music@gmail.com', 5, 45788, 12356, 4, '2022-05-19 04:22:00', '14/8 หมู่2', 'ในเมือง', 'เมือง', 'เชียงใหม่', '50220', 0, NULL, 0, 'Flash Express', 'TH0025', 1),
+(11, 'ORDER-0000011', 1, 1, 'น้ำใส', '0336589562', 'namsai@gmail.com', 2, 220000, 64000, 4, '2022-06-06 07:05:38', '115/7 หมู่ 1', 'ในเมือง', 'เมือง', 'เชียงใหม่', '50220', 0, NULL, 5, 'Flash Express', 'TH002256232', 0);
 
 -- --------------------------------------------------------
 
@@ -10503,7 +10505,8 @@ INSERT INTO `system_order_detail` (`order_detail_id`, `order_detail_order`, `ord
 (11, '9', 960, 1, 3300, 2420, 0, 0),
 (12, '9', 961, 1, 3300, 2120, 0, 0),
 (13, '10', 6, 1, 45000, 12000, 0, 0),
-(14, '10', 9, 4, 197, 89, 0, 0);
+(14, '10', 9, 4, 197, 89, 0, 0),
+(15, '11', 5, 2, 110000, 32000, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -12199,7 +12202,8 @@ INSERT INTO `system_point` (`point_id`, `point_member`, `point_order`, `point_ty
 (6, 1, 7, 1, 6400, '2022-05-19 03:36:03', 1, 'เงินปันผลจากการแนะนำสินค้า'),
 (7, 1, 8, 1, 120000, '2022-05-19 03:36:05', 1, 'เงินปันผลจากการแนะนำสินค้า'),
 (8, 1, 9, 1, 4540, '2022-05-19 04:28:55', 1, 'เงินปันผลจากการแนะนำสินค้า'),
-(9, 1, 10, 1, 12356, '2022-05-19 04:29:19', 1, 'เงินปันผลจากการแนะนำสินค้า');
+(9, 1, 10, 1, 12356, '2022-05-19 04:29:19', 1, 'เงินปันผลจากการแนะนำสินค้า'),
+(10, 1, 11, 1, 64000, '2022-06-06 07:09:09', 0, 'เงินปันผลจากการแนะนำสินค้า');
 
 -- --------------------------------------------------------
 
@@ -14053,7 +14057,7 @@ CREATE TABLE `system_theme` (
 --
 
 INSERT INTO `system_theme` (`theme_mode`, `theme_header`, `theme_sidebar`) VALUES
-('', 'color-header headercolor2', 'color-sidebar sidebarcolor3');
+('', 'color-header headercolor2', 'color-sidebar sidebarcolor2');
 
 -- --------------------------------------------------------
 
@@ -21908,7 +21912,7 @@ ALTER TABLE `system_buyer`
 -- AUTO_INCREMENT for table `system_cart`
 --
 ALTER TABLE `system_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=22;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `system_class`
@@ -21938,7 +21942,7 @@ ALTER TABLE `system_config`
 -- AUTO_INCREMENT for table `system_contact`
 --
 ALTER TABLE `system_contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=16;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `system_deposit`
@@ -21998,13 +22002,13 @@ ALTER TABLE `system_notification`
 -- AUTO_INCREMENT for table `system_order`
 --
 ALTER TABLE `system_order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `system_order_detail`
 --
 ALTER TABLE `system_order_detail`
-  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `system_package`
@@ -22022,7 +22026,7 @@ ALTER TABLE `system_pay_refer`
 -- AUTO_INCREMENT for table `system_point`
 --
 ALTER TABLE `system_point`
-  MODIFY `point_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `point_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `system_product`
