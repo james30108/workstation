@@ -1,5 +1,18 @@
 <?php include('../../../function.php');
 
+/*
+เงื่อนไขรหัส VIP 
+- มีตำแหน่งเป็น 10,000$ โดยที่ไม่ต้องซื้อแพ็กเกจ
+- รับ Matching ROI ได้ 4 ชั้น
+- รับโบนัสค่าแนะนำได้ตามปกติ
+- ไม่มีโบนัส ROI
+- ซื้อแพ็กเกจไม่ได้
+- เมื่อครบอายุ 40 สัปดาห์ก็จะรีเซ็ตกลายเป็นรหัสธรรมดา และต้องซื้อแพ็กเกจ จึงจะได้รับโบนัส ROI และ Matching ROI ใหม่
+
+วิธีปรับค่า 
+- set liner_status = 1, liner_type = 1, member_class = 6
+*/
+
 // Sale cut
     $report_round   = report_now ($connect, 1);
     sale_cut ($connect, $report_round);
