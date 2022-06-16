@@ -166,6 +166,35 @@ if (isset($_GET['id_card2'])) {
 	
 } 
 
+// check idbank (for insert)
+if (isset($_GET['id_bank'])) { 
+
+	$id_bank= $_GET['id_bank'];
+	
+	$query = mysqli_query($connect, "SELECT * FROM system_member WHERE member_bank_id = '$id_bank' ");
+	$data  = mysqli_fetch_array($query);
+
+	if (!isset($data)) {
+		echo $id_bank;
+	}
+	
+} 
+
+// check idbank (for edit)
+if (isset($_GET['id_bank2'])) { 
+
+	$id_bank= $_GET['id_bank2'];
+	$id 	= $_GET['id'];
+
+	$query = mysqli_query($connect, "SELECT * FROM system_member WHERE (member_bank_id = '$id_bank') AND (member_id != '$id') ");
+	$data  = mysqli_fetch_array($query);
+
+	if (!isset($data)) {
+		echo $id_bank;
+	}
+	
+} 
+
 // Check Member
 if (isset($_GET['direct_code'])) {
 

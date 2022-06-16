@@ -151,6 +151,40 @@ $(document).ready(function(){
         });
     });
 
+    // Check IDBank (insert)
+    $("#id_bank").change(function(){
+        var id_bank = $(this).val();
+        
+        $.get( "process/ajax/ajax_main.php", { id_bank: id_bank, lang: lang }, function( data ) {
+
+            if (data == '') {
+                alert('ID Bank is duplicate');
+                $("#id_bank").val("");
+            }
+            else {
+                $("#id_bank").val( data );
+            }
+        });
+    });
+
+    // Check IDBank (Edit)
+    var id_old2 = $("#id_bank2").val();
+    $("#id_bank2").change(function(){
+        var id_bank2 = $(this).val();
+        var id       = $("#member_id").val();
+        
+        $.get( "process/ajax/ajax_main.php", { id_bank2: id_bank2, id: id, lang: lang }, function( data ) {
+
+            if (data == '') {
+                alert('ID Bank is duplicate');
+                $("#id_bank2").val( id_old2 );
+            }
+            else {
+                $("#id_bank2").val( data );
+            }
+        });
+    });
+
     // Show Upline
     $("#check_member").change(function(){
 

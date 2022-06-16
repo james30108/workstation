@@ -62,15 +62,34 @@ $member_email       = $data['member_email'];
                 <h6><?php echo $l_profile ?></h6>
                 <div class="col-12">
                     <label  class="form-label"><?php echo $l_member_name ?> <font color="red">*</font></label>
-                    <input type="text" class="form-control" name="member_name" value="<?php echo $member_name ?>" placeholder="<?php echo $l_member_name ?>" required>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="member_name" 
+                        value="<?php echo $member_name ?>" 
+                        placeholder="<?php echo $l_member_name ?>" 
+                        required>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_idcard ?> <font color="red">*</font></label>
-                    <input type="text" class="form-control" name="member_code_id" value="<?php echo $member_code_id ?>" placeholder="<?php echo $l_idcard ?>" maxlength="13" id="id_card2" required>
+                    <input type="text" 
+                        class="form-control" 
+                        name="member_code_id" 
+                        value="<?php echo $member_code_id ?>" 
+                        placeholder="<?php echo $l_idcard ?>" 
+                        maxlength="13" 
+                        id="id_card2" 
+                        required>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_tel ?></label>
-                    <input type="text" class="form-control" name="member_tel" value="<?php echo $member_tel ?>" maxlength="10" placeholder="<?php echo $l_tel ?>">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="member_tel" 
+                        value="<?php echo $member_tel ?>" 
+                        maxlength="10" 
+                        placeholder="<?php echo $l_tel ?>">
                 </div>
                 <!--
                 <div class="col-12 col-sm-6">
@@ -80,7 +99,12 @@ $member_email       = $data['member_email'];
                 -->
                 <div class="col-12">
                     <label class="form-label"><?php echo $l_email ?></label>
-                    <input type="email" class="form-control" name="member_email" value="<?php echo $member_email ?>" placeholder="Example@example.com">
+                    <input 
+                        type="email" 
+                        class="form-control" 
+                        name="member_email" 
+                        value="<?php echo $member_email ?>" 
+                        placeholder="Example@example.com">
                 </div>
                 <div class="col-12 col-sm-6">
                     <label for="formFile" class="form-label"><?php echo $l_idcardimage ?></label>
@@ -253,23 +277,53 @@ $member_email       = $data['member_email'];
                         <h6><?php echo $l_addridcard ?></h6>
                         <div class="col-12 col-sm-6 mt-3">
                             <label class="form-label"><?php echo $l_address ?></label>
-                            <input type="text" class="form-control" name="address_detail" maxlength=100 value="<?php echo $address_detail ?>" placeholder="<?php echo $l_address ?>">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                name="address_detail" 
+                                maxlength=100 
+                                value="<?php echo $address_detail ?>" 
+                                placeholder="<?php echo $l_address ?>">
                         </div>
                         <div class="col-12 col-sm-6 mt-3">
                             <label class="form-label"><?php echo $l_provinces ?></label>
-                            <input type="text" class="form-control" name="address_province" maxlength=30 value="<?php echo $address_province ?>" placeholder="<?php echo $l_provinces ?>">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                name="address_province" 
+                                maxlength=30 
+                                value="<?php echo $address_province ?>" 
+                                placeholder="<?php echo $l_provinces ?>">
                         </div>
                         <div class="col-12 col-sm-4 mt-3" id="amphures">
                             <label class="form-label"><?php echo $l_amphures ?></label>
-                            <input type="text" class="form-control" name="address_amphure" maxlength=30 value="<?php echo $address_amphure ?>" placeholder="<?php echo $l_amphures ?>">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                name="address_amphure" 
+                                maxlength=30 
+                                value="<?php echo $address_amphure ?>" 
+                                placeholder="<?php echo $l_amphures ?>">
                         </div>
                         <div class="col-12 col-sm-4 mt-3" id="districts">
                             <label class="form-label"><?php echo $l_district ?></label>
-                            <input type="text" class="form-control" name="address_district" maxlength=30 value="<?php echo $address_district ?>" placeholder="<?php echo $l_district ?>">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                name="address_district" 
+                                maxlength=30 
+                                value="<?php echo $address_district ?>" 
+                                placeholder="<?php echo $l_district ?>">
                         </div>
                         <div class="col-12 col-sm-4 mt-3" id="postcode">
                             <label class="form-label"><?php echo $l_zipcode ?></label>
-                            <input type="text" class="form-control" name="address_zipcode" maxlength=5 value="<?php echo $address_zipcode ?>" maxlength=5 placeholder="<?php echo $l_zipcode ?>">
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                name="address_zipcode" 
+                                maxlength=5 
+                                value="<?php echo $address_zipcode ?>" 
+                                placeholder="<?php echo $l_zipcode ?>">
                         </div>
                     </div>
                 <?php } ?>
@@ -289,11 +343,23 @@ $member_email       = $data['member_email'];
                 <h6><?php echo $l_bank ?></h6>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_bankown ?></label>
-                    <input type="text" class="form-control" name="member_bank_own" value="<?php echo $member_bank_own ?>" placeholder="<?php echo $l_bankown ?>">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="member_bank_own" 
+                        value="<?php echo $member_bank_own ?>" 
+                        placeholder="<?php echo $l_bankown ?>">
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_bankid ?> <font color=red>* <?php echo $l_validate ?></font></label>
-                    <input type="text" class="form-control" name="member_bank_id" value="<?php echo $member_bank_id ?>" placeholder="<?php echo $l_bankid ?>" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="member_bank_id" 
+                        value="<?php echo $member_bank_id ?>" 
+                        placeholder="<?php echo $l_bankid ?>" 
+                        id="id_bank2" 
+                        onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_bankname ?></label>
@@ -332,15 +398,34 @@ $member_email       = $data['member_email'];
                 <h6><?php echo $l_login ?></h6>
                 <div class="col-12 col-sm-4">
                     <label class="form-label"><?php echo $l_username ?></label>
-                    <input type="text" class="form-control" name="member_user" value="<?php echo $member_user ?>" placeholder="<?php echo $l_username ?>" minlength="6" maxlength="15">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="member_user" 
+                        value="<?php echo $member_user ?>" 
+                        placeholder="<?php echo $l_username ?>" 
+                        minlength="6" 
+                        maxlength="15">
                 </div>
                 <div class="col-12 col-sm-4">
                     <label class="form-label">password</label>
-                    <input type="password" class="form-control" name="member_pass_new" placeholder="Password" minlength="8" maxlength="15">
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        name="member_pass_new" 
+                        placeholder="Password" 
+                        minlength="8" 
+                        maxlength="15">
                 </div>
                 <div class="col-12 col-sm-4">
                     <label class="form-label">re-password</label>
-                    <input type="password" class="form-control" name="member_pass_recheck" placeholder="Re-Password" minlength="8" maxlength="15">
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        name="member_pass_recheck" 
+                        placeholder="Re-Password" 
+                        minlength="8" 
+                        maxlength="15">
                 </div>
                 <div class="col-12 d-flex">
                     <button name="action" value="edit_login" class="btn btn-primary ms-auto"><?php echo $l_save ?></button>

@@ -2,6 +2,11 @@
 
 if (!file_exists("../../../../assets/images/slips/")) { mkdir("../../../../assets/images/slips"); }
 
+/*
+member_point = เก็บคะแนนรักษายอดทั้งหมด * โปรเจกนี้ไม่ได้ใช้
+member_point_month = โปรเจกนี้ไว้เก็บค่าคอมที่ใช้แสดงประจำเดือน
+*/
+
 if ($_GET['action'] == 'confirm_admin') {
     
     $order_id       = $_GET['order_id'];
@@ -74,8 +79,11 @@ if ($_GET['action'] == 'confirm_admin') {
         '$order_id'
     )");
 
-    mysqli_query ($connect, "UPDATE system_liner  SET liner_point = liner_point + '$bonus', liner_type = 0 WHERE liner_member = '$point_member' ");
+    mysqli_query ($connect, "UPDATE system_liner  SET liner_point = liner_point + '$bonus' WHERE liner_member = '$point_member' ");
     mysqli_query ($connect, "UPDATE system_member SET member_point_month = member_point_month + '$bonus' WHERE member_id = '$point_member' ");
+
+    // หาก VIP ซื้อสินค้าก็จะเปลี่ยนจาก VIP เป็นรหัสธรรมดาทันที
+    mysqli_query ($connect, "UPDATE system_liner SET liner_type = 0 WHERE liner_member = '$member_id' ");
 
     header('location:../../../../admin.php?page=order&status=success&message=0');
 

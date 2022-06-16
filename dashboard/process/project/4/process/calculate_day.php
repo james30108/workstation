@@ -186,6 +186,7 @@
             if (!$data) { continue; }
 
             $upline_id     = $data['liner_id'];
+            $member_id     = $data['member_id'];
             $upline_status = $data['liner_status'];
             $upline_week   = $data['liner_etc'];
             $class_match_level= $data['class_match_level'];
@@ -200,6 +201,7 @@
             echo "upline id -- $value point $liner_point<br>";
             
             mysqli_query($connect, "UPDATE system_liner SET liner_point = liner_point + '$liner_point' WHERE liner_id = '$upline_id' ");
+            mysqli_query($connect, "UPDATE system_member SET member_point_month = member_point_month + '$liner_point' WHERE member_id = '$member_id' ");
 
             mysqli_query($connect, "INSERT INTO system_point (
                 point_member, 

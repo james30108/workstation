@@ -262,7 +262,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'success') {
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_bankid ?> <font color=red>* <?php echo $l_validate ?></font></label>
-                    <input type="text" class="form-control" name="member_bank_id" placeholder="<?php echo $l_bankid ?>" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
+                    <input type="text" class="form-control" name="member_bank_id" placeholder="<?php echo $l_bankid ?>" id="id_bank" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
                 </div>
                 <div class="col-12">
                     <label class="form-label"><?php echo $l_bankname ?></label>
