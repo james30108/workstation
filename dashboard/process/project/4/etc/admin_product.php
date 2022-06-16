@@ -45,7 +45,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
     </div>
     <div class="row">
         <?php
-        $where               = "";
+        $where      = "";
 
         if ($action == 'search') {
             
@@ -84,7 +84,9 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                     <img src="<?php echo $product_image_cover ?>" alt="Product Cover" class="img">
                     <div class="p-3">
                         <h5 class="text">
-                        <?php echo "<a href='admin.php?page=admin_product&action=product_detail&product_id=$product_id'>$product_name</a>" ?>
+                        <?php //echo "<a href='admin.php?page=admin_product&action=product_detail&product_id=$product_id'>$product_name</a>" 
+                            echo $product_name
+                        ?>
                         </h5>
                         <p class="mb-2"><?php echo $product_type_name . " " . $product_code ?></p>
                         <table class="table table-borderless table-sm" >
