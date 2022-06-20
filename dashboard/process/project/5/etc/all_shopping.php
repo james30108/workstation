@@ -87,6 +87,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                 $cart_url       = "process/setting_buy.php?action=insert_cart&product_id=$product_id&page=$page_type&member_id=$member_id";
                 $product_image_cover = $data['product_image_cover'] != '' ? "assets/images/products/" . $data['product_image_cover'] : "assets/images/etc/example_product.png" ;
                 $product_url    = "<a href='$page_type?page=shopping&action=show_product&product_id=$product_id'>$product_name</a>";
+                $product_image1 = $data['product_image_1'];
 
                 ?>
                 <div class="col-12 col-sm-3 product-grid">
@@ -108,7 +109,23 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                                 </tbody>
                             </table>
                             <div class="d-flex">
-                                <a href="<?php echo $cart_url ?>" class="btn btn-success btn-sm me-1 ms-auto"><?php echo $l_pickpackage ?></a>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#description_<?php echo $product_id ?>" class="btn btn-primary btn-sm me-1 ms-auto"><?php echo $l_detail; ?></button>
+                                <a href="<?php echo $cart_url ?>" class="btn btn-success btn-sm me-1"><?php echo $l_pickpackage ?></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promotion Modal -->
+                <div class="modal fade" id="description_<?php echo $product_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><?php echo $l_detail; ?></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="assets/images/products/<?php echo $product_image1 ?>" class="img-fluid border-0">
                             </div>
                         </div>
                     </div>
