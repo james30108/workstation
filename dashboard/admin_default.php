@@ -461,44 +461,6 @@
 
     <?php if (file_exists("process/project/$system_style/admin_index1.php")) { include("process/project/$system_style/admin_index1.php"); } ?>
 </div><!--end row-->
-
-<?php
-    $query = mysqli_query($connect, "SELECT system_member.*, system_liner.*, system_class.* 
-            FROM system_member 
-            INNER JOIN system_liner ON (system_member.member_id     = system_liner.liner_member) 
-            INNER JOIN system_class ON (system_member.member_class  = system_class.class_id)
-            WHERE (liner_status >= 1) AND (liner_etc <= 39) AND (liner_type = 0)");
-    while ($data = mysqli_fetch_array($query)) {
-
-        $liner_point = ($data['class_up_level'] * $data['class_com']) / 100;
-        $liner_day   = date('D', strtotime($data['liner_create']));
-        $liner_create= date('Y-m-d', strtotime($data['liner_create']));
-        $liner_id    = $data['liner_id'];
-        $member_id   = $data['member_id'];
-        $liner_etc   = $data['liner_etc'] + 1;
-        $point_detail= "Get commission $liner_point bath in round $liner_etc";
-
-        if ($liner_create != $today && $today_name == $liner_day && $liner_point > 0) {
-            
-            echo "Pass $liner_etc";
-
-        }   
-        /*
-
-        if ($liner_create != $today && $today_name == $liner_day && $liner_point > 0 && $liner_etc <= 40) {
-
-            echo "today " . $today_name . " = " . $liner_day . " ID = " . $liner_id . "<br>";
-
-        }
-        elseif ($liner_etc == 41) {
-
-            echo "round = 41";
-
-        }
-        */
-    }
-?>
-
 <div class="card radius-10">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-lg-flex align-items-center">

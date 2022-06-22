@@ -89,6 +89,27 @@ if ($_GET['action'] == 'withdraw') {
     echo "<br>";
     print_r($data_post);
 
+    mysqli_query($connect, "INSERT INTO system_log_withdraw (
+            logwd_status,
+            logwd_message,
+            logwd_member,
+            logwd_money,
+            logwd_payout_ref,
+            logwd_transaction_id,
+            logwd_transactionDate_time,
+            logwd_qrstring
+            ) 
+        VALUES (
+            '$logwd_status',
+            '$logwd_message',
+            '$member_id',
+            '$commission',
+            '$logwd_payout_ref',
+            '$logwd_transaction_id',
+            '$logwd_transactionDate_time',
+            '$logwd_qrstring'
+        )");
+    
  
     if ($logwd_status == 1000) {
 

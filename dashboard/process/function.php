@@ -479,6 +479,7 @@ function report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)
 
     $vat_point      = ( $point * $report_fee2 ) / 100; 
     $pay            = $point - $vat_point - $report_fee1;
+    $pay_double     = number_format($pay, 2);
     $point_format   = number_format($point, 2);
     $pay_format     = number_format($pay, 2) . $l_bath;
 
@@ -498,7 +499,7 @@ function report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)
     // for PHP Underver. 7.0.
     //return $pay_show;
 
-    return array($pay_show, $pay_format, $pay);
+    return array($pay_show, $pay_format, $pay_double);
 }
 
 /*
