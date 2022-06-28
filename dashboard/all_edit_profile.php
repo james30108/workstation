@@ -28,12 +28,14 @@ $member_email       = $data['member_email'];
         <div><i class="bx bx-git-repo-forked me-1 font-22 text-primary"></i></div>
         <h5 class="mb-0 text-primary"><?php echo $l_edimemer ?></h5>
     </div>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page"><a href="admin.php?page=liner"><?php echo $l_member ?></a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?php echo $l_edimemer ?></li>
-        </ol>
-    </nav>
+    <?php if ($page_type == "admin.php") { ?>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="admin.php?page=liner"><?php echo $l_member ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo $l_edimemer ?></li>
+            </ol>
+        </nav>
+    <?php } ?>
 <?php } isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : false; ?>
 <div class="card border-top border-0 border-4 border-primary">
     <div class="card-body p-1 pt-3 pb-3 p-sm-5">
@@ -68,6 +70,7 @@ $member_email       = $data['member_email'];
                         name="member_name" 
                         value="<?php echo $member_name ?>" 
                         placeholder="<?php echo $l_member_name ?>" 
+                        id="check_name2"
                         required>
                 </div>
                 <div class="col-12 col-sm-6">
@@ -79,7 +82,7 @@ $member_email       = $data['member_email'];
                         placeholder="<?php echo $l_idcard ?>" 
                         maxlength="13" 
                         id="id_card2" 
-                        required>
+                        <?php echo $page_type == "admin.php" ? "required" : "readonly" ; ?>>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_tel ?></label>
@@ -103,7 +106,8 @@ $member_email       = $data['member_email'];
                         type="email" 
                         class="form-control" 
                         name="member_email" 
-                        value="<?php echo $member_email ?>" 
+                        value="<?php echo $member_email ?>"
+                        id="check_email2" 
                         placeholder="Example@example.com">
                 </div>
                 <div class="col-12 col-sm-6">

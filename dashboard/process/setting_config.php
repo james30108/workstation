@@ -162,30 +162,33 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'forget_password') {
     $query  = mysqli_query($connect, "SELECT * FROM system_member WHERE (member_email = '$member_email') AND (member_user = '$member_user') limit 1")or die(mysqli_error($connect));
     $empty  = mysqli_num_rows($query);
     if( $empty == 1 ){
+        
         $data = mysqli_fetch_array($query);
+
             $detail = '<html>
             <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>$company</title>
+            <title> ' . $company . ' </title>
             </head>
             <body>
-            <h1>อีเมลแจ้งรหัสผ่านจาก $company</h1>
-            <p>สวัสดีค่ะคุณ '.$data['member_name'].'</p>
+            <h3>อีเมลแจ้งรหัสผ่านจาก ' . $company . ' </h3>
+            <p>สวัสดีค่ะคุณ ' . $data['member_name'] . '</p>
             <p>Username และ Password เพื่อเข้าใช้งานระบบของคุณคือ</p>
-            <b>Username :</b> '.$data['member_user'].'<br>
-            <b>Password :</b> '.$data['member_pass'].'<br>
+            <b>Username :</b> ' . $data['member_user'] . '<br>
+            <b>Password :</b> ' . $data['member_pass'] . '<br>
             <hr>
-            <p>วันที่ส่ง : '.date("Y-m-d H:i").'</p>
+            <p>วันที่ส่ง : ' . date("Y-m-d H:i") . '</p>
             <p>ขอบคุณค่ะ</p>
             </body>
         </html>';
 
-        $subject       =  "อีเมลแจ้งลืมรหัสผ่านจาก $company";
+        $subject       = "อีเมลแจ้งลืมรหัสผ่านจาก " . $company;
         $header       .= "MIME-Version: 1.0\r\n";
         $header       .= "Content-type: text/html; charset=utf-8\r\n";
-        $header       .= "From: $company";
+        $header       .= "From: $company"; // * ชื่อบริษัทที่ส่งต้องห้ามมีช่องว่าง ไม่งั้นจะส่งอีเมลไม่ได้
         @mail($member_email, $subject, $detail, $header);
-        header("Location:../member_login.php?action=forget_password&status=success");
+        //header("Location:../member_login.php?action=forget_password&status=success");
+
     } else { 
         header("Location:../member_login.php?action=forget_password&status=error");
     }

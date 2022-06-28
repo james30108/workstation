@@ -232,5 +232,73 @@ $(document).ready(function(){
             }
         });
     });
+    
+    // Check name (for insert)
+    $("#check_name").change(function(){
+        var check_name = $(this).val();
+
+        $.get( "process/ajax/ajax_main.php", { check_name: check_name, lang: lang }, function( data ) {
+
+            if (data == '') {
+                alert('Name is duplicate');
+                $("#check_name").val("");
+            }
+            else {
+                $("#check_name").val( data );
+            }
+        });
+    });
+
+    // Check name (for edit)
+    var id_old3 = $("#check_name2").val();
+    $("#check_name2").change(function(){
+        var check_name2 = $(this).val();
+        var id          = $("#member_id").val();
+        
+        $.get( "process/ajax/ajax_main.php", { check_name2: check_name2, id: id, lang: lang }, function( data ) {
+
+            if (data == '') {
+                alert('Name is duplicate');
+                $("#check_name2").val( id_old3 );
+            }
+            else {
+                $("#check_name2").val( data );
+            }
+        });
+    });
+
+    // Check email (for insert)
+    $("#check_email").change(function(){
+        var check_email = $(this).val();
+        
+        $.get( "process/ajax/ajax_main.php", { check_email: check_email, lang: lang }, function( data ) {
+
+            if (data == '') {
+                alert('Email is duplicate');
+                $("#check_email").val("");
+            }
+            else {
+                $("#check_email").val( data );
+            }
+        });
+    });
+
+    // Check email (for edit)
+    var id_old4 = $("#check_email2").val();
+    $("#check_email2").change(function(){
+        var check_email2 = $(this).val();
+        var id           = $("#member_id").val();
+        
+        $.get( "process/ajax/ajax_main.php", { check_email2: check_email2, id: id, lang: lang }, function( data ) {
+
+            if (data == '') {
+                alert('Email is duplicate');
+                $("#check_email2").val( id_old4 );
+            }
+            else {
+                $("#check_email2").val( data );
+            }
+        });
+    });
 
 });

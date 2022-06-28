@@ -4,7 +4,7 @@ if ($_GET['action'] == 'withdraw') {
     
     $member_id      = $_GET['member_id'];
     $liner_point    = (double) $_GET['liner_point'];
-    $commission     = (double) report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[2];
+    $commission     = report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[2];
     //$commission     = (double) 1.03;
 
     $query      = mysqli_query($connect, "SELECT system_member.*, system_bank.* 
@@ -89,7 +89,6 @@ if ($_GET['action'] == 'withdraw') {
     echo "<br>";
     print_r($data_post);
 
- 
     if ($logwd_status == 1000) {
 
         mysqli_query($connect, "INSERT INTO system_log_withdraw (

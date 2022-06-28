@@ -127,6 +127,32 @@ if     (isset($_POST['action']) && $_POST['action'] == 'insert') {
 		}
 		// -----------------------------------------------
 	}
+
+	// Send Username & Password to Email
+	$detail = '<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title> ' . $company . ' </title>
+		</head>
+		<body>
+		<h3>อีเมลแจ้งรหัสผ่านจาก ' . $company . ' </h3>
+		<p>สวัสดีค่ะคุณ ' . $member_name . '</p>
+		<p>Username และ Password เพื่อเข้าใช้งานระบบของคุณคือ</p>
+		<b>Username :</b> ' . $member_code . '<br>
+		<b>Password :</b> ' . $member_pass . '<br>
+		<hr>
+		<p>วันที่ส่ง : ' . date("Y-m-d H:i") . '</p>
+		<p>ขอบคุณค่ะ</p>
+		</body>
+		</html>';
+
+	$subject       = "อีเมลแจ้งลืมรหัสผ่านจาก " . $company;
+	$header       .= "MIME-Version: 1.0\r\n";
+	$header       .= "Content-type: text/html; charset=utf-8\r\n";
+	$header       .= "From: $company"; // * ชื่อบริษัทที่ส่งต้องห้ามมีช่องว่าง ไม่งั้นจะส่งอีเมลไม่ได้
+	@mail($member_email, $subject, $detail, $header);
+
+
 	header("location:../$page?page=insert_member&status=success&message=0&downline_id=$member_id");
 
 }

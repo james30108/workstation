@@ -68,7 +68,6 @@ if ($payment_resp_code != '') {
 if($data['resp_code'] == '200'){
     
     echo "Success" . $payment_ref3;
-    //mysqli_query($connect, "UPDATE system_order SET order_status = 4 WHERE order_id = '$payment_ref3' ");
     header("Location:../dashboard/process/project/$system_style/process/setting_buy.php?action=confirm_admin&order_id=$payment_ref3");
 
 }

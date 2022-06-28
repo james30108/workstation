@@ -38,7 +38,6 @@ VALUES (
 if($data['status'] == '1000'){
     
     echo "Success" . $logwd_message;
-    //mysqli_query($connect, "UPDATE system_order SET order_status = 4 WHERE order_id = '$payment_ref3' ");
 
 }
 ?>

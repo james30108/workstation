@@ -402,20 +402,24 @@ function sale_cut ($connect, $report_round) {
     $query          = mysqli_query($connect, "SELECT * FROM system_order WHERE (order_status >= 4) AND (order_cut_report = 0)");
     $count_order    = mysqli_num_rows($query);
 
-    mysqli_query($connect, "INSERT INTO system_report (report_point, report_count, report_round, report_type) VALUES ('$sum_price', '$count_order', '$report_round', 1)")or die(mysqli_error($connect));
-    $report_id      = $connect -> insert_id;
+    if ($count_order > 0) { 
 
-    // Insert report default's detail
-    while ($data = mysqli_fetch_array($query)) {
+        mysqli_query($connect, "INSERT INTO system_report (report_point, report_count, report_round, report_type) VALUES ('$sum_price', '$count_order', '$report_round', 1)")or die(mysqli_error($connect));
+        $report_id      = $connect -> insert_id;
 
-        $order_id   = $data['order_id'];
-        $order_price= $data['order_price'] + $data['order_freight'];
-        mysqli_query($connect, "INSERT INTO system_report_detail (report_detail_main, report_detail_link, report_detail_point) 
-            VALUES ('$report_id', '$order_id', '$order_price')");
-        mysqli_query($connect, "UPDATE system_order SET order_cut_report = 1 WHERE order_id = '$order_id' ");
+        // Insert report default's detail
+        while ($data = mysqli_fetch_array($query)) {
+
+            $order_id   = $data['order_id'];
+            $order_price= $data['order_price'] + $data['order_freight'];
+            mysqli_query($connect, "INSERT INTO system_report_detail (report_detail_main, report_detail_link, report_detail_point) 
+                VALUES ('$report_id', '$order_id', '$order_price')");
+            mysqli_query($connect, "UPDATE system_order SET order_cut_report = 1 WHERE order_id = '$order_id' ");
+        }
+
+        mysqli_query($connect, "UPDATE system_order SET order_cut_report = 1 WHERE (order_status = 1) OR (order_status = 2)");
+        
     }
-
-    mysqli_query($connect, "UPDATE system_order SET order_cut_report = 1 WHERE (order_status = 1) OR (order_status = 2)");
 }
 
 // Commission Cut
@@ -479,7 +483,7 @@ function report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)
 
     $vat_point      = ( $point * $report_fee2 ) / 100; 
     $pay            = $point - $vat_point - $report_fee1;
-    $pay_double     = number_format($pay, 2);
+    $pay_double     = number_format($pay, 2, '.', '');
     $point_format   = number_format($point, 2);
     $pay_format     = number_format($pay, 2) . $l_bath;
 

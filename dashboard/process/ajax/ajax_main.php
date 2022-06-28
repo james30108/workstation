@@ -210,4 +210,62 @@ if (isset($_GET['direct_code'])) {
 	}
 }
 
+// check name (for insert)
+if (isset($_GET['check_name'])) { 
+
+	$check_name = $_GET['check_name'];
+	
+	$query = mysqli_query($connect, "SELECT * FROM system_member WHERE member_name = '$check_name' ");
+	$data  = mysqli_fetch_array($query);
+
+	if (!isset($data)) {
+		echo $check_name;
+	}
+
+} 
+
+// check name (for edit)
+if (isset($_GET['check_name2'])) { 
+
+	$check_name = $_GET['check_name2'];
+	$id 		= $_GET['id'];
+
+	$query = mysqli_query($connect, "SELECT * FROM system_member WHERE (member_name = '$check_name') AND (member_id != '$id') ");
+	$data  = mysqli_fetch_array($query);
+
+	if (!isset($data)) {
+		echo $check_name;
+	}
+	
+} 
+
+// check email (for insert)
+if (isset($_GET['check_email'])) { 
+
+	$check_email = $_GET['check_email'];
+	
+	$query = mysqli_query($connect, "SELECT * FROM system_member WHERE member_email = '$check_email' ");
+	$data  = mysqli_fetch_array($query);
+
+	if (!isset($data)) {
+		echo $check_email;
+	}
+	
+}
+
+// check email (for edit)
+if (isset($_GET['check_email2'])) { 
+
+	$check_email = $_GET['check_email2'];
+	$id 		 = $_GET['id'];
+
+	$query = mysqli_query($connect, "SELECT * FROM system_member WHERE (member_email = '$check_email') AND (member_id != '$id') ");
+	$data  = mysqli_fetch_array($query);
+
+	if (!isset($data)) {
+		echo $check_email;
+	}
+	
+} 
+
 ?>

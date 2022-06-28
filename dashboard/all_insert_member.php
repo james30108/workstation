@@ -113,7 +113,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'success') {
                 </div>
                 <div class="col-12 col-sm-9">
                     <label  class="form-label"><?php echo $l_member_name ?> <font color="red">*</font></label>
-                    <input type="text" class="form-control" name="member_name" placeholder="<?php echo $l_member_name ?>" required>
+                    <input type="text" class="form-control" id="check_name" name="member_name" placeholder="<?php echo $l_member_name ?>" required>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="form-label"><?php echo $l_idcard ?> <font color="red">*</font></label>
@@ -125,7 +125,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'success') {
                 </div>
                 <div class="col-12">
                     <label class="form-label"><?php echo $l_email ?></label>
-                    <input type="email" class="form-control" name="member_email" placeholder="Example@example.com">
+                    <input type="email" class="form-control" id="check_email" name="member_email" placeholder="Example@example.com">
                 </div>
                 <!--
                 <div class="col-12 col-sm-6">
@@ -286,7 +286,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'success') {
             <div class="col-12">
                 <button name="action" value="insert" class="btn btn-success px-5"><?php echo $l_save ?></button>
                 <?php if ($page_type == "signin_member.php") { ?>
-                    <a href="member.php" class="btn btn-link">Dashboard</a>
+                    <!--<a href="member.php" class="btn btn-link">Dashboard</a>-->
                 <?php } ?>
             </div>
         </form>

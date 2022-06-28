@@ -29,7 +29,7 @@ $withdraw_url 		= "process/setting_withdraw.php?action=withdraw&member_id=$membe
                     </div>
                 <?php } elseif ($member_status == 2) { ?>
                     <div class="ms-auto text-white">
-                        <div class="d-flex text-white align-items-center">| Waiting <i class='bx bx-coffee font-30'></i></div>
+                        <div class="d-flex text-white align-items-center"> | Success & Waiting <i class='bx bx-coffee font-30'></i></div>
                     </div>
                 <?php } else { ?>
                     <div class="ms-auto text-white"><i class='bx bx-dollar-circle font-30'></i></div>
@@ -70,7 +70,7 @@ $withdraw_url 		= "process/setting_withdraw.php?action=withdraw&member_id=$membe
 							 	<tr>
 									<td><?php echo $i + $start ?></td>
 									<td><?php echo datethai($data['report_create'], 0, $lang) ?></td>
-									<td><?php echo number_format($data['report_point'], 2) . $l_bath ?></td>
+									<td><?php echo number_format($data['report_detail_point'], 2) . $l_bath ?></td>
 								</tr>
 						<?php } } else { echo "<tr><td colspan='5'>$l_notfound</td></tr>"; } ?>
 					</tbody>

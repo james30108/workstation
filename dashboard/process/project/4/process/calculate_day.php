@@ -32,50 +32,55 @@
     $report_count   = $data['count'];
 
     echo "<br>" . $report_point . " / " . $report_count . "<br>";
-    mysqli_query($connect, "INSERT INTO system_report (
-        report_point, 
-        report_count, 
-        report_round, 
-        report_create,
-        report_type) 
-    VALUES (
-        '$report_point', 
-        '$report_count', 
-        '$report_round', 
-        '$today',
-        2)")
-    or die(mysqli_error($connect));
-    $report_id   = $connect -> insert_id;
 
-    $query = mysqli_query($connect, "SELECT * FROM system_withdraw WHERE (withdraw_cut = 0) AND (withdraw_status = 1)");
-    while ($data = mysqli_fetch_array($query)) {
+    if ($report_count > 0) {
 
-        $member  = $data['withdraw_member'];
-        $point   = $data['withdraw_point'];
-
-        $query2 = mysqli_query($connect, "SELECT * FROM system_member WHERE member_id = '$member' ");
-        $data2  = mysqli_fetch_array($query2);
-        $member_class = $data2['member_class'];
-
-        if ($member_class > 1) {
-
-            mysqli_query($connect, "UPDATE system_liner SET liner_status = 1 WHERE liner_member = '$member' ");
-
-        }
-        else {
-
-            mysqli_query($connect, "UPDATE system_liner SET liner_status = 0 WHERE liner_member = '$member' ");
-
-        }
-
-        mysqli_query($connect, "INSERT INTO system_report_detail (
-            report_detail_main, 
-            report_detail_link, 
-            report_detail_point) 
+        mysqli_query($connect, "INSERT INTO system_report (
+            report_point, 
+            report_count, 
+            report_round, 
+            report_create,
+            report_type) 
         VALUES (
-            '$report_id', 
-            '$member', 
-            '$point')");
+            '$report_point', 
+            '$report_count', 
+            '$report_round', 
+            '$today',
+            2)")
+        or die(mysqli_error($connect));
+        $report_id   = $connect -> insert_id;
+
+        $query = mysqli_query($connect, "SELECT * FROM system_withdraw WHERE (withdraw_cut = 0) AND (withdraw_status = 1)");
+        while ($data = mysqli_fetch_array($query)) {
+
+            $member  = $data['withdraw_member'];
+            $point   = $data['withdraw_point'];
+
+            $query2 = mysqli_query($connect, "SELECT * FROM system_member WHERE member_id = '$member' ");
+            $data2  = mysqli_fetch_array($query2);
+            $member_class = $data2['member_class'];
+
+            if ($member_class > 1) {
+
+                mysqli_query($connect, "UPDATE system_liner SET liner_status = 1 WHERE liner_member = '$member' ");
+
+            }
+            else {
+
+                mysqli_query($connect, "UPDATE system_liner SET liner_status = 0 WHERE liner_member = '$member' ");
+
+            }
+
+            mysqli_query($connect, "INSERT INTO system_report_detail (
+                report_detail_main, 
+                report_detail_link, 
+                report_detail_point) 
+            VALUES (
+                '$report_id', 
+                '$member', 
+                '$point')");
+
+        }
 
     }
 //
