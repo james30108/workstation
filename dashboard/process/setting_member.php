@@ -60,6 +60,18 @@ if     (isset($_POST['action']) && $_POST['action'] == 'insert') {
 	$member_bank_own 	= isset($_POST['member_bank_own']) 	? $_POST['member_bank_own'] 	: false;
 	$member_bank_name 	= isset($_POST['member_bank_name']) ? $_POST['member_bank_name'] 	: false;
 	$member_bank_id 	= isset($_POST['member_bank_id']) 	? $_POST['member_bank_id'] 		: false;
+
+	// ---- check duplicate ----
+	$query 	= mysqli_query($connect, "SELECT * FROM system_member WHERE member_name = '$member_name' OR member_code_id = '$member_code_id' ");
+    $data 	= mysqli_fetch_array($query);
+
+	if ($data) {
+		header("location:../$page?page=insert_member&status=success&message=0&downline_id=$member_id");
+		die ();
+	}
+
+
+	// ---- insert data ----
 	
 	mysqli_query($connect, "INSERT INTO system_member (
 		member_code,			member_email, 			member_pass,
