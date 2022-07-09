@@ -66,7 +66,7 @@ if     (isset($_POST['action']) && $_POST['action'] == 'insert') {
     $data 	= mysqli_fetch_array($query);
 
 	if ($data) {
-		header("location:../$page?page=insert_member&status=success&message=0&downline_id=$member_id");
+		header("location:../$page?page=insert_member&status=warning&message=This member is duplicate");
 		die ();
 	}
 
