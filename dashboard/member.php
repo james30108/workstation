@@ -2,14 +2,14 @@
 
 if (file_exists("process/project/$system_style/function_child.php")) { include("process/project/$system_style/function_child.php"); }
 
-$page 							= isset($_GET['page']) ? $_GET['page'] : false;
+$page 				= isset($_GET['page']) ? $_GET['page'] : false;
 $member_id          = $_SESSION['member_id'];
 
 $sql_check_login    = mysqli_query($connect,"SELECT * FROM system_member WHERE member_id = '$member_id' ");
 $data_check_login   = mysqli_fetch_array($sql_check_login);
 $page_type        	= basename($_SERVER['PHP_SELF']);
 
-$lang 							= $system_lang == 1 ? $data_check_login['member_lang'] : 0;
+$lang 				= $system_lang == 1 ? $data_check_login['member_lang'] : 0;
 include("process/include_lang.php");
 
 if ($data_check_login) { ?>

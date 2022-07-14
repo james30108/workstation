@@ -114,7 +114,7 @@ if ($_GET['action'] == 'confirm_admin') {
             $point            = ( $commission * $bonus_class ) / 100;
             $point_detail     = "รับโบนัสจาก $member_code ซึ่งเป็นลำดับที่ $count";
 
-            echo "<br>$value // commission = $";
+            echo "<br>$value // commission = $point";
 
             // ---- member not block ----
             if ($member_status == 0) {
