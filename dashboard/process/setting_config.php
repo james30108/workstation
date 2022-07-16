@@ -31,6 +31,9 @@ if     (isset($_POST['action']) && $_POST['action'] == 'setting_config') {
     $system_com_withdraw= $_POST['27'];
     $report_style       = $_POST['28'];
     $system_product_type2= $_POST['29'];
+    $system_ecommerce   = $_POST['30'];
+    $system_thread      = $_POST['31'];
+    $system_insertmember= $_POST['32'];
 
     mysqli_query($connect, "UPDATE system_config SET config_value = '$report_type'          WHERE config_id = 1 ");
     mysqli_query($connect, "UPDATE system_config SET config_value = '$report_fee1'          WHERE config_id = 2 ");
@@ -61,6 +64,9 @@ if     (isset($_POST['action']) && $_POST['action'] == 'setting_config') {
     mysqli_query($connect, "UPDATE system_config SET config_value = '$system_com_withdraw'  WHERE config_id = 27 ");
     mysqli_query($connect, "UPDATE system_config SET config_value = '$report_style'         WHERE config_id = 28 ");
     mysqli_query($connect, "UPDATE system_config SET config_value = '$system_product_type2' WHERE config_id = 29 ");
+    mysqli_query($connect, "UPDATE system_config SET config_value = '$system_ecommerce'     WHERE config_id = 30 ");
+    mysqli_query($connect, "UPDATE system_config SET config_value = '$system_thread'        WHERE config_id = 31 ");
+    mysqli_query($connect, "UPDATE system_config SET config_value = '$system_insertmember'  WHERE config_id = 32 ");
 
     header("location:../admin.php?page=admin_config&status=success&message=0");
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2022 at 07:40 AM
+-- Generation Time: Jul 16, 2022 at 04:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -1284,29 +1284,32 @@ INSERT INTO `system_config` (`config_id`, `config_type`, `config_name`, `config_
 (4, 'report_max', 'เงินปันผลสูงสุด', 100000),
 (5, 'report_fee2', 'ค่าธรรมเนียม (%)', 1.8),
 (6, 'downline_max', 'ลูกข่ายสูงสุด', 0),
-(15, 'system_buyer', 'ระบบสมาชิกหน้าเว็บเพจ', 1),
+(15, 'system_buyer', 'ระบบสมาชิกหน้าเว็บเพจ', 0),
 (7, 'com_ppm', 'ค่ารักษายอด', 0),
-(8, 'com_number', 'จำนวนชั้นเงินปันผล', 0),
-(9, 'com_style', 'รูปแบบการรักษายอด', 0),
-(10, 'system_style', 'ประเภทของระบบ', 1),
+(8, 'com_number', 'จำนวนชั้นเงินปันผล', 5),
+(9, 'com_style', 'รูปแบบการรักษายอด', 1),
+(10, 'system_style', 'ประเภทของระบบ', 6),
 (11, 'system_switch', 'เปิด-ปิดระบบ', 0),
 (12, 'system_lang', 'ระบบเปลี่ยนภาษา', 0),
 (13, 'system_liner', 'ระบบสมาชิก / ธุรกิจเครือข่ายลำดับชั้น', 1),
-(14, 'system_webpage', 'หน้าเว็บเพจ', 1),
+(14, 'system_webpage', 'หน้าเว็บเพจ', 0),
 (16, 'system_moblie', 'Responsive', 1),
-(17, 'system_class', 'ระบบตำแหน่ง', 1),
+(17, 'system_class', 'ระบบตำแหน่ง', 0),
 (18, 'system_admin_buy', 'ระบบการซื้อด่วนของแอดมิน', 0),
 (19, 'system_ewallet', 'ระบบกระเป๋าเงิน', 0),
 (20, 'system_member_expire', 'ระบบหมดอายุของสมาชิก', 0),
 (21, 'system_stock', 'ระบบสต๊อกสอนค้า', 0),
-(22, 'system_tracking', 'ระบบติดตามการขนส่งสินค้า', 1),
+(22, 'system_tracking', 'ระบบติดตามการขนส่งสินค้า', 0),
 (23, 'system_liner2', 'ระบบคอมมิชชั่นพิเศษ', 0),
-(24, 'system_address', 'ระบบบันทึกที่อยู่', 2),
+(24, 'system_address', 'ระบบบันทึกที่อยู่', 0),
 (28, 'report_style', 'รูปแบบการคำนวนคอมมิชชั่น', 1),
-(27, 'system_com_withdraw', 'ระบบแจ้งถอนค่าคอมฯ', 2),
-(26, 'system_comment', 'ระบบความคิดเห็น', 1),
+(27, 'system_com_withdraw', 'ระบบแจ้งถอนค่าคอมฯ', 1),
+(26, 'system_comment', 'ระบบความคิดเห็น', 0),
 (25, 'system_pay', 'ระบบแจ้งชำระเงิน', 0),
-(29, 'system_product_type2', 'ประเภทสินค้าที่ 2', 0);
+(29, 'system_product_type2', 'ประเภทสินค้าที่ 2', 0),
+(30, 'system_ecommerce', 'ระบบซื้อสินค้า', 0),
+(31, 'system_thread', 'ระบบบทความ', 0),
+(32, 'system_insertmember', 'ระบบเพิ่มสมาชิก', 0);
 
 -- --------------------------------------------------------
 
@@ -21936,7 +21939,7 @@ ALTER TABLE `system_commission`
 -- AUTO_INCREMENT for table `system_config`
 --
 ALTER TABLE `system_config`
-  MODIFY `config_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `config_id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `system_contact`

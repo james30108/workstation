@@ -271,7 +271,7 @@
         </div>
     <?php } ?>
     <div class="col-12 col-sm">
-        <div class="card radius-10 overflow-hidden bg-gradient-Ohhappiness">
+        <div class="card radius-10 overflow-hidden bg-gradient-blues">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
@@ -280,14 +280,14 @@
                             <?php echo number_format($member_commission, 2) . $l_bath;?>
                         </h5>
                     </div>
-                    <div class="ms-auto text-white"><i class='bx bx-dollar-circle font-30'></i></div>
+                    <div class="ms-auto text-white"><i class='bx bx-bitcoin font-30'></i></div>
                 </div>
             </div>
         </div>
     </div>
     <?php if ($system_class == 1) { ?>
     <div class="col-12 col-sm">
-        <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
+        <div class="card radius-10 overflow-hidden bg-gradient-burning">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
@@ -358,7 +358,7 @@
             <div class="card-header border-bottom-0 bg-transparent">
                 <div class="d-lg-flex align-items-center">
                     <div>
-                        <h6 class="font-weight-bold mb-2 mb-lg-0">Mining of cryptocurrency</h6>
+                        <h6 class="font-weight-bold mb-2 mb-lg-0">SK Trading</h6>
                     </div>
                 </div>
             </div>

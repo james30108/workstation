@@ -299,19 +299,7 @@
                             <?php echo report_final ($member_commission, $report_fee1, $report_fee2, $l_bath, $report_max)[1] ?>
                         </h5>
                     </div>
-                    <?php if ($system_com_withdraw != 0 && $member_status != 2 && $member_commission >= $report_min) { ?>
-                        <div class="ms-auto">
-                            <a href="<?php echo $withdraw_url ?>" class="d-flex align-items-center border border-white btn text-white" onclick="javascript:return confirm('Confirm ?');">
-                                Withdraw <i class='bx bx-gift font-30'></i>
-                            </a>
-                        </div>
-                    <?php } elseif ($system_com_withdraw != 0 && $member_status == 2) { ?>
-                        <div class="ms-auto text-white">
-                            <div class="d-flex text-white align-items-center">| Waiting <i class='bx bx-coffee font-30'></i></div>
-                        </div>
-                    <?php } else { ?>
-                        <div class="ms-auto text-white"><i class='bx bx-dollar-circle font-30'></i></div>
-                    <?php } ?>
+                    <div class="ms-auto text-white"><i class='bx bx-dollar-circle font-30'></i></div>
                 </div>
             </div>
         </div>
@@ -369,6 +357,7 @@
     <?php if (file_exists("process/project/$system_style/member_index1.php")) { include("process/project/$system_style/member_index1.php"); } ?>
 </div><!--end row-->
 
+<?php if ($system_insertmember == 1) { ?>
 <div class="card radius-10 bg-dark bg-gradient">
     <div class="card-body">
         <h6 class="text-white"><?php echo $l_link ?></h6>
@@ -381,6 +370,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 
 <div class="card radius-10">
     <div class="card-header border-bottom-0 bg-transparent">

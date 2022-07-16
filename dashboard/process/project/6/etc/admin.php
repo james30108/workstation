@@ -3,7 +3,7 @@ if (file_exists("process/project/$system_style/function_child.php")) { include("
 
 $page 			  = isset($_GET['page']) ? $_GET['page'] : false;
 $admin_id  		  = $_SESSION['admin_id'];
-$sql_check_login  = mysqli_query($connect, "SELECT * FROM system_admin WHERE admin_id = '$admin_id' ");
+$sql_check_login  = mysqli_query($connect, "SELECT * FROM system_admin WHERE admin_user = '$admin_id' ");
 $data_check_login = mysqli_fetch_array($sql_check_login);
 $admin_id     	  = $data_check_login['admin_id'];
 $admin_status     = $data_check_login['admin_status'];
@@ -81,9 +81,9 @@ if ($data_check_login) { ?>
 				<ul class="metismenu" id="menu">
 					<?php if ($system_webpage == 1) { ?>
 						<li>
-							<a href="../">
+							<a href="../lotto-admin/">
 								<div class="parent-icon"><i class='bx bx-bookmark'></i></div>
-								<div class="menu-title"><?php echo $l_webpage ?></div>
+								<div class="menu-title">ระบบหลัก</div>
 							</a>
 						</li>
 					<?php } ?>
@@ -249,6 +249,7 @@ if ($data_check_login) { ?>
 								</a>
 							</li>
 						<?php } if ($system_ecommerce == 1) { ?>
+
 						<li>
 							<a href="admin.php?page=admin_report_sold">
 								<div class="parent-icon"><i class="fadeIn animated bx bx-spreadsheet"></i></div>
@@ -363,6 +364,7 @@ if ($data_check_login) { ?>
 									</p>
 								</div>
 							</a>
+							<!--
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li>
 									<button type="button" data-bs-toggle="modal" data-bs-target="#change_password" class="dropdown-item"><i class="bx bx-user"></i> <?php echo $l_change_pass; ?></button>
@@ -373,6 +375,7 @@ if ($data_check_login) { ?>
 								<li><a class="dropdown-item" href="admin.php?page=admin_logout"><i class='bx bx-log-out-circle'></i><span><?php echo $l_logout; ?></span></a>
 								</li>
 							</ul>
+							-->
 						</div>
 					</nav>
 				</div>

@@ -372,6 +372,7 @@
     });
 </script>
 <div class="row">
+    <?php if ($system_ecommerce == 1) { ?>
     <div class="col-12 col-sm">
         <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
             <div class="card-body">
@@ -412,6 +413,7 @@
             </div>
         </div>
     </div>
+    <?php } ?> 
     <div class="col-12 col-sm">
         <div class="card radius-10 overflow-hidden bg-gradient-Ohhappiness">
             <div class="card-body">
@@ -461,6 +463,7 @@
 
     <?php if (file_exists("process/project/$system_style/admin_index1.php")) { include("process/project/$system_style/admin_index1.php"); } ?>
 </div><!--end row-->
+<?php if ($system_ecommerce == 1) { ?>
 <div class="card radius-10">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-lg-flex align-items-center">
@@ -478,7 +481,7 @@
         <div id="chart1"></div>
     </div>
 </div>
-
+<?php } ?>
 <div class="card radius-10">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-lg-flex align-items-center">
@@ -497,6 +500,7 @@
     </div>
 </div>
 
+<?php if ($system_ecommerce == 1) { ?>
 <div class="row">
     <div class="col-12 col-lg-7 d-flex">
         <div class="card radius-10 w-100">
@@ -574,6 +578,7 @@
         <div id="chart4"></div>
     </div>
 </div>
+<?php } ?>
 
 <!--start switcher-->
 <div class="switcher-wrapper">

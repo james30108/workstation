@@ -1,13 +1,3 @@
-<title><?php echo $l_member_insert ?></title>
-<div class="col-12 col-sm-8 mx-auto">
-<div class="page-breadcrumb d-flex align-items-center mb-3">
-    <div class="pe-3 text-success">
-        <div class="card-title d-flex align-items-center">
-            <div><i class="bx bx-user-plus me-1 font-22"></i></div>
-            <h5 class="mb-0 text-success"><?php echo $l_member_insert ?></h5>
-        </div>
-    </div>
-</div>
 <?php 
 if ($page_type == "admin.php") {
 
@@ -38,7 +28,37 @@ $data        = mysqli_fetch_array($query);
 $member_name = $data['member_name'];
 $member_code = $data['member_code'];
 
-isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : false;
+?>
+
+<title><?php echo $l_member_insert ?></title>
+<div class="col-12 col-sm-8 mx-auto">
+<div class="card-title d-flex align-items-center mb-3">
+    <div><i class="bx bx-user-plus me-1 font-22 text-success"></i></div>
+    <h5 class="mb-0 text-success"><?php echo $l_member_insert ?></h5>
+
+    <div class="ms-auto">
+        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret text-success d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <h6 class="mb-0 me-1 text-success ">Language</h6>
+            <i class="bx bx-globe font-22"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" style="width:180px;height: 100px;">
+            <div class="header-message-list">
+                <a class="dropdown-item" href="?lang=0">
+                    <div class="d-flex align-items-center">
+                        Thai (ภาษาไทย) <?php echo $lang == 0 ? "<i class='bx bx-check ms-3 font-22 text-primary'></i>" : false ?>
+                    </div>
+                </a>
+                <a class="dropdown-item" href="?lang=1">
+                    <div class="d-flex align-items-center">
+                        English <?php echo $lang == 1 ? "<i class='bx bx-check ms-3 font-22 text-primary'></i>" : false ?>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : false;
 
 if (isset($_GET['status']) && $_GET['status'] == 'success') {
     $query_downline_id = mysqli_query($connect, "SELECT * FROM system_member WHERE member_id = '".$_GET['downline_id']."' ");

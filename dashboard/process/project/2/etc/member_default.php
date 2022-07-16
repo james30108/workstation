@@ -280,7 +280,7 @@
                             <?php echo number_format($member_commission, 2) . $l_bath;?>
                         </h5>
                     </div>
-                    <div class="ms-auto text-white"><i class='bx bx-dollar-circle font-30'></i></div>
+                    <div class="ms-auto text-white"><i class='bx bx-bitcoin font-30'></i></div>
                 </div>
             </div>
         </div>
@@ -358,7 +358,7 @@
             <div class="card-header border-bottom-0 bg-transparent">
                 <div class="d-lg-flex align-items-center">
                     <div>
-                        <h6 class="font-weight-bold mb-2 mb-lg-0">Mining of cryptocurrency</h6>
+                        <h6 class="font-weight-bold mb-2 mb-lg-0">SK Trading</h6>
                     </div>
                 </div>
             </div>

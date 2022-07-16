@@ -41,7 +41,7 @@ $com_round = $data['liner_status'] == 1 ? $data['liner_etc'] : "None" ;
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>
-                    <p class="mb-0 text-white"><?php echo $lang == 0 ? "รอบการรับปันผล" : "Round Commission ROI"; ?></p>
+                    <p class="mb-0 text-white"><?php echo $lang == 0 ? "รอบการรับปันผล" : "Round Commission"; ?></p>
                     <h5 class="mb-0 text-white"><?php echo $com_round; ?></h5>
                 </div>
                 <div class="ms-auto text-white"><i class='bx bx-rocket font-30'></i>

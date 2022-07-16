@@ -2,14 +2,19 @@
 
 if (file_exists("process/project/$system_style/function_child.php")) { include("process/project/$system_style/function_child.php"); }
 
-$page 				= isset($_GET['page']) ? $_GET['page'] : false;
-$member_id          = $_SESSION['member_id'];
+$page 							= isset($_GET['page']) ? $_GET['page'] : false;
 
-$sql_check_login    = mysqli_query($connect,"SELECT * FROM system_member WHERE member_id = '$member_id' ");
+$user_id  					= isset($_SESSION['member_id']) ? $_SESSION['member_id'] : false;
+$sql_check_login    = mysqli_query($connect,"
+	SELECT users.*, system_member.*
+	FROM users 
+	INNER JOIN system_member ON (users.username = system_member.member_code)
+	WHERE id = '$user_id' ");
 $data_check_login   = mysqli_fetch_array($sql_check_login);
 $page_type        	= basename($_SERVER['PHP_SELF']);
+$member_id          = $data_check_login['member_id'];
 
-$lang 				= $system_lang == 1 ? $data_check_login['member_lang'] : 0;
+$lang 							= $system_lang == 1 ? $data_check_login['member_lang'] : 0;
 include("process/include_lang.php");
 
 if ($data_check_login) { ?>
@@ -80,9 +85,9 @@ if ($data_check_login) { ?>
 			<ul class="metismenu" id="menu">
 				<?php if ($system_webpage == 1) { ?>
 					<li>
-						<a href="../">
+						<a href="../member/">
 							<div class="parent-icon"><i class='bx bx-bookmark'></i></div>
-							<div class="menu-title"><?php echo $l_webpage ?></div>
+							<div class="menu-title">ระบบหลัก</div>
 						</a>
 					</li>
 				<?php } ?>
@@ -266,6 +271,7 @@ if ($data_check_login) { ?>
 								<p class="designattion mb-0">Member</p>
 							</div>
 						</a>
+						<!--
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><a class="dropdown-item" href="member.php?page=edit_profile"><i class="bx bx-edit"></i><span><?php echo $l_edimemer; ?></span></a>
 							</li>
@@ -275,6 +281,7 @@ if ($data_check_login) { ?>
 							<li><a class="dropdown-item" href="member.php?page=member_logout"><i class='bx bx-log-out-circle'></i><span><?php echo $l_logout; ?></span></a>
 							</li>
 						</ul>
+						-->
 					</div>
 				</nav>
 			</div>
@@ -396,6 +403,6 @@ if ($data_check_login) { ?>
 } 
 else {
     unset($_SESSION['member_id']);
-    header('location:member_login.php');
+    header('location:../');
 } 
 ?>

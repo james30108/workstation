@@ -21,6 +21,7 @@ if (!isset($_GET['action'])) { ?>
                         <option value="3" <?php if ($system_style == 3) {echo 'selected';} ?>>BCP789</option>
                         <option value="4" <?php if ($system_style == 4) {echo 'selected';} ?>>Goldrex</option>
                         <option value="5" <?php if ($system_style == 5) {echo 'selected';} ?>>Metaone</option>
+                        <option value="6" <?php if ($system_style == 6) {echo 'selected';} ?>>Bertong</option>
                     </select>
                 </div>
             </div>
@@ -223,6 +224,27 @@ if (!isset($_GET['action'])) { ?>
                     <select class="form-select" name="29">
                         <option value="1" <?php if ($system_product_type2 == 1) {echo 'selected';} ?>>เปิด</option>
                         <option value="0" <?php if ($system_product_type2 == 0) {echo 'selected';} ?>>ปิด</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 mt-3">
+                    <label  class="form-label">ระบบ E-Commerce</label>
+                    <select class="form-select" name="30">
+                        <option value="1" <?php if ($system_ecommerce == 1) {echo 'selected';} ?>>เปิด</option>
+                        <option value="0" <?php if ($system_ecommerce == 0) {echo 'selected';} ?>>ปิด</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 mt-3">
+                    <label  class="form-label">ระบบบทความ</label>
+                    <select class="form-select" name="31">
+                        <option value="1" <?php if ($system_thread == 1) {echo 'selected';} ?>>เปิด</option>
+                        <option value="0" <?php if ($system_thread == 0) {echo 'selected';} ?>>ปิด</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 mt-3">
+                    <label  class="form-label">ระบบเพิ่มสมาชิก</label>
+                    <select class="form-select" name="32">
+                        <option value="1" <?php if ($system_insertmember == 1) {echo 'selected';} ?>>เปิด</option>
+                        <option value="0" <?php if ($system_insertmember == 0) {echo 'selected';} ?>>ปิด</option>
                     </select>
                 </div>
                 </div>
