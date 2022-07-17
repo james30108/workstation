@@ -23,7 +23,7 @@ $point = $data['sum'];
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <div>
-                    <p class="mb-0 text-white"><?php echo $l_com ?></p>
+                    <p class="mb-0 text-white"><?php echo $l_dash_com ?></p>
                     <h5 class="mb-0 text-white">
                         <?php echo report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)[1] ?>
                     </h5>
