@@ -49,6 +49,7 @@
                         <?php echo $system_liner == 1 ? "<th>$l_numliner</th>" : false;?>
                         <th><?php echo $l_datesingnin; ?></th>
                         <?php echo $system_member_expire == 1 ? "<th>$l_expire</th>" : false;?>
+                        <th>Offer Code</th>
                         <th><?php echo $l_manage; ?></th>
                     </tr>
                 </thead>
@@ -68,6 +69,7 @@
                     $member_pass    = $data['member_pass'];
                     $member_tel     = $data['member_tel'];
                     $member_code_id = $data['member_code_id'];
+                    $liner_type     = $data['liner_type'];
 
                     $class_name     = $system_class == 1 ? $data['class_name'] : false;
                     $liner_count    = $system_liner == 1 ? $data['liner_count'] : false;
@@ -89,7 +91,8 @@
                         <?php 
                         if($system_member_expire==1&&$liner_expire<$date_now){echo "<td><font color=red>$liner_expire</font></td>";}
                         elseif($system_member_expire==1&&$liner_expire>=$date_now){echo "<td>$liner_expire</td>";} 
-                        ?>   
+                        ?>  
+                        <td><?php echo $liner_type == 1 ? "<font color=blue>Yes</font>" : "No";?></td> 
                         <td>
                             <?php if ($member_status == 0) {
                                 echo "<a href='$page_type?page=liner&action=liner_tree&member_id=$member_id' class='me-1' title='ผังสายงานสมาชิก'><i class='bx bx-vector me-1 font-22 text-primary'></i></a>"; 
@@ -134,15 +137,20 @@
                                                                     $query_class = mysqli_query($connect, "SELECT * FROM system_class");
                                                                     while ($data_class = mysqli_fetch_array($query_class)) { ?>
                                                                         <option value="<?php echo $data_class['class_id'];?>" 
-                                                                            <?php 
-                                                                            if ($data_class['class_id'] == $data['member_class']) 
-                                                                                { echo "selected"; } ?>>
+                                                                            <?php if ($data_class['class_id'] == $data['member_class']) { echo "selected"; } ?>>
                                                                             <?php echo $data_class['class_name'];?>    
                                                                         </option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
                                                         <?php } ?>
+                                                        <div class="col-12">
+                                                            <label class="form-label">Offer Code</label>
+                                                            <select class="form-select" name="liner_type">
+                                                                <option value="0" <?php echo $liner_type == 0 ? "selected" : false; ?>>Np</option>
+                                                                <option value="1" <?php echo $liner_type == 1 ? "selected" : false; ?>>Yes</option>
+                                                            </select>
+                                                        </div>
                                                         <div class="col-12">
                                                             <button name="action" value="edit_member" class="btn btn-primary btn-sm">Save</button>
                                                         </div>

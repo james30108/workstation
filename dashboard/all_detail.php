@@ -535,7 +535,7 @@
                             $report_id      = $data['report_id'];
                             $point          = $data['report_detail_point'];
                             $report_create  = datethai($data['report_create'], 0, $lang);
-                            $detail_url     = "<a href='admin.php?page=detail&action=com&report_id=$report_id' target='_blank'>$report_create</a>";
+                            $detail_url     = "<a href='admin.php?page=detail&action=finance&type=report&report_id=$report_id' target='_blank'>$report_create</a>";
 
                         }
                         ?>
@@ -549,7 +549,7 @@
                         ?>
                         <td><?php chkEmpty ($bank) ?></td>
                         <td><?php chkEmpty ($data['member_bank_id']) ?></td>
-                        <td><?php echo report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max); ?></td>
+                        <td><?php echo report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)[0]; ?></td>
                     </tr>
                 <?php } } else { echo "<tr><td colspan='7'>$l_notfound</td></tr>"; } ?>
                 </tbody>

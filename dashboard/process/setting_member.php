@@ -120,22 +120,17 @@ if     (isset($_POST['action']) && $_POST['action'] == 'insert') {
 			$liner_direct = $data['liner_direct'];
 			$liner_member = $data['liner_member'];
 
-			if ($liner_direct != 0) {
+			mysqli_query($connect, "UPDATE system_liner SET liner_count = liner_count + 1, liner_count_day = liner_count_day + 1, liner_count_month = liner_count_month + 1 WHERE liner_member = '$liner_member' ");
 
-				mysqli_query($connect, "UPDATE system_liner SET liner_count = liner_count + 1, liner_count_day = liner_count_day + 1, liner_count_month = liner_count_month + 1 WHERE liner_member = '$liner_member' ");
+			$query 	= mysqli_query($connect, "SELECT * FROM system_member WHERE member_id = '$liner_direct' ");
+			$data 	= mysqli_fetch_array($query);
+			$token 	= $data['member_token'];
+			$message= "มีสมาชิกในสายงานเพิ่ม โดยรหัสสมาชิกที่สมัครเข้ามาคือ " . $member_code;
 
-				$query 	= mysqli_query($connect, "SELECT * FROM system_member WHERE member_id = '$liner_direct' ");
-				$data 	= mysqli_fetch_array($query);
-				$token 	= $data['member_token'];
-				$message= "มีสมาชิกในสายงานเพิ่ม โดยรหัสสมาชิกที่สมัครเข้ามาคือ " . $member_code;
-
-				line ($token, $message);
-				array_push($array, $liner_direct);
-			}
-			else {
-				mysqli_query($connect, "UPDATE system_liner SET liner_count = liner_count + 1, liner_count_day = liner_count_day + 1, liner_count_month = liner_count_month + 1 WHERE liner_member = 1 ");
-				break;
-			}
+			line ($token, $message);
+			array_push($array, $liner_direct);
+			
+			if ($liner_direct == 0) { break; }
 		}
 		// -----------------------------------------------
 	}
