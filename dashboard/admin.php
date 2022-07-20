@@ -257,7 +257,7 @@ if ($data_check_login) { ?>
 						</li>
 					<?php } } ?>
 					<!-- ----------------------------- -->
-					<?php if ($admin_status == 0) { ?>
+					<?php if ($admin_status <= 1) { ?>
 						<li class="menu-label"><?php echo $l_config; ?></li>
 						<li>
 							<a href="admin.php?page=admin_config">

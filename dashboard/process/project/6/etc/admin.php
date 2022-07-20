@@ -3,7 +3,7 @@ if (file_exists("process/project/$system_style/function_child.php")) { include("
 
 $page 			  = isset($_GET['page']) ? $_GET['page'] : false;
 $admin_id  		  = $_SESSION['admin_id'];
-$sql_check_login  = mysqli_query($connect, "SELECT * FROM system_admin WHERE admin_user = '$admin_id' ");
+$sql_check_login  = mysqli_query($connect, "SELECT * FROM system_admin WHERE admin_id = '$admin_id' ");
 $data_check_login = mysqli_fetch_array($sql_check_login);
 $admin_id     	  = $data_check_login['admin_id'];
 $admin_status     = $data_check_login['admin_status'];
@@ -258,7 +258,7 @@ if ($data_check_login) { ?>
 						</li>
 					<?php } } ?>
 					<!-- ----------------------------- -->
-					<?php if ($admin_status == 0) { ?>
+					<?php if ($admin_status <= 1) { ?>
 						<li class="menu-label"><?php echo $l_config; ?></li>
 						<li>
 							<a href="admin.php?page=admin_config">
@@ -364,7 +364,7 @@ if ($data_check_login) { ?>
 									</p>
 								</div>
 							</a>
-							<!--
+							<?php if ($admin_status == 0) { ?>
 							<ul class="dropdown-menu dropdown-menu-end">
 								<li>
 									<button type="button" data-bs-toggle="modal" data-bs-target="#change_password" class="dropdown-item"><i class="bx bx-user"></i> <?php echo $l_change_pass; ?></button>
@@ -375,7 +375,7 @@ if ($data_check_login) { ?>
 								<li><a class="dropdown-item" href="admin.php?page=admin_logout"><i class='bx bx-log-out-circle'></i><span><?php echo $l_logout; ?></span></a>
 								</li>
 							</ul>
-							-->
+							<?php } ?>
 						</div>
 					</nav>
 				</div>
