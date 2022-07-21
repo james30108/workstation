@@ -194,6 +194,17 @@ elseif (isset($_POST['action']) && $_POST['action'] == 'edit_member') {
 	header('Location:../admin.php?page=liner&status=success&message=0');
 
 }
+elseif (isset($_POST['action']) && $_POST['action'] == 'offer_member') {
+
+	$member_id 		= isset($_POST['member_id']) 	? $_POST['member_id'] 		: false;
+	$liner_type 	= isset($_POST['liner_type']) 	? $_POST['liner_type'] 		: false;
+	$liner_status 	= isset($_POST['liner_status']) ? $_POST['liner_status'] 	: false;
+	
+	mysqli_query($connect, "UPDATE system_liner SET liner_type = '$liner_type', liner_status = '$liner_type' WHERE liner_member = '$member_id' ");
+
+	header('Location:../admin.php?page=liner&status=success&message=0');
+
+}
 elseif (isset($_POST['action']) && $_POST['action'] == 'edit_profile') {
     
     $page          		= $_POST['page'];

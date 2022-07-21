@@ -7,7 +7,7 @@
         header("location:member.php?page=liner&action=liner_tree&member_id=$member_id");
     }
 
-    $where = isset($_GET['search']) ? " WHERE (member_code LIKE '%$smember_code%') AND (member_name LIKE '%$smember_keyword%' OR member_tel LIKE '%$smember_keyword%' OR member_code_id LIKE '%$smember_keyword%')" : false;
+    $where = isset($_GET['action']) && $_GET['action'] == 'search' ? " WHERE (member_code IN ($smember_code)) AND (member_name LIKE '%$smember_keyword%' OR member_tel LIKE '%$smember_keyword%' OR member_code_id LIKE '%$smember_keyword%')" : false;
 
     if ($system_liner == 1) {
         $sql    = "SELECT system_member.*, system_liner.*, system_class.* 
@@ -70,6 +70,7 @@
                     $member_tel     = $data['member_tel'];
                     $member_code_id = $data['member_code_id'];
                     $liner_type     = $data['liner_type'];
+                    $liner_status   = $data['liner_status'];
 
                     $class_name     = $system_class == 1 ? $data['class_name'] : false;
                     $liner_count    = $system_liner == 1 ? $data['liner_count'] : false;
@@ -117,6 +118,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-start">
+                                                    <div class="col-12 border border-success rounded p-4 mb-3">
                                                     <form class="row g-3" action="process/setting_member.php" method="post">
                                                         <input type="hidden" name="member_id" value="<?php echo $member_id ?>">
                                                         <input type="hidden" name="direct_id" id="direct_id">
@@ -127,7 +129,7 @@
                                                         </div>
                                                         <div class="col-12 col-sm-6">
                                                             <label class="form-label"><?php echo $l_member_name ?> <font color="red">*</font></label>
-                                                            <input type="text" class="form-control" id="direct_name" placeholder="กรุณากรอกรหัสผู้แนะนำให้ถูกต้อง" readonly>
+                                                            <input type="text" class="form-control" id="direct_name" placeholder="กรอกรหัสผู้แนะนำให้ถูกต้อง" readonly>
                                                         </div>
                                                         <?php } if ($system_class == 1) { ?>
                                                             <div class="col-12">
@@ -145,16 +147,32 @@
                                                         </div>
                                                         <?php } ?>
                                                         <div class="col-12">
-                                                            <label class="form-label">Offer Code</label>
-                                                            <select class="form-select" name="liner_type">
-                                                                <option value="0" <?php echo $liner_type == 0 ? "selected" : false; ?>>Np</option>
-                                                                <option value="1" <?php echo $liner_type == 1 ? "selected" : false; ?>>Yes</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-12">
                                                             <button name="action" value="edit_member" class="btn btn-primary btn-sm">Save</button>
                                                         </div>
                                                     </form>
+                                                    </div>
+                                                    <div class="col-12 border border-success rounded p-4 mb-3">
+                                                    <form class="row g-3" action="process/setting_member.php" method="post">
+                                                        <input type="hidden" name="member_id" value="<?php echo $member_id ?>">
+                                                        <div class="col-12 col-sm-6">
+                                                            <label class="form-label">Offer Code</label>
+                                                            <select class="form-select" name="liner_type">
+                                                                <option value="0" <?php echo $liner_type == 0 ? "selected" : false; ?>>No</option>
+                                                                <option value="1" <?php echo $liner_type == 1 ? "selected" : false; ?>>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12 col-sm-6">
+                                                            <label class="form-label">Status</label>
+                                                            <select class="form-select" name="liner_status" disabled>
+                                                                <option value="0" <?php echo $liner_status == 0 ? "selected" : false; ?>>No</option>
+                                                                <option value="1" <?php echo $liner_status == 1 ? "selected" : false; ?>>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button name="action" value="offer_member" class="btn btn-primary btn-sm">Save</button>
+                                                        </div>
+                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +180,7 @@
                             <?php } } else { echo "<font color=red>$l_mem_banned</font>"; } ?>
                         </td>
                     </tr>
-                <?php } } else { echo "<tr><td colspan='8'>$l_notfound</td></tr>"; } ?>
+                <?php } } else { echo "<tr><td colspan='10'>$l_notfound</td></tr>"; } ?>
                 </tbody>
             </table>
             </div>
@@ -185,7 +203,7 @@
                 <input type="hidden" name="page" value="liner">
                 <div class="col-12">
                     <label class="form-label"><?php echo $l_mem_searchcode; ?></label>
-                    <input type="text" class="form-control" name="member_code" value="<?php echo $smember_code ?>" placeholder="<?php echo $l_mem_searchcode; ?>">
+                    <textarea class="form-control" name="member_code" rows="5" placeholder="Example 0000001,0000002"><?php echo $smember_code ?></textarea>
                 </div>
                 <div class="col-12">
                     <label class="form-label"><?php echo $l_mem_searchdetail; ?></label>
