@@ -56,7 +56,7 @@ function insert_member ($username, $name, $mobile, $bankname, $banknumber, $ref)
 	$liner_direct 	= mysql_fetch_array($query);
 	$liner_direct   = $liner_direct['liner_id'];
 
-	mysql_query("INSERT INTO system_liner (liner_member, liner_direct) VALUES ('$member_id', '$liner_direct')");
+	mysql_query("INSERT INTO system_liner (liner_member, liner_direct, liner_status) VALUES ('$member_id', '$liner_direct', 1)");
 
 	// Plus liner
 	$array = array($liner_direct);

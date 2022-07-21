@@ -1,5 +1,14 @@
 <?php include('function.php');
 
+/*
+
+ตัดยอดรายเดือน
+
+1. ตัดค่าคอมรายเดือน
+1. รีเซ็ตตัวนับสมาชิกรายเดือน
+
+*/
+
 // Commission Cut
 $report_now = report_now ($connect, 0);
 

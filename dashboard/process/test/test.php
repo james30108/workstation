@@ -1,5 +1,7 @@
-<?php include('function.php');
+<?php include('/commission/process/function.php');
 
+mysqli_query($connect, "UPDATE system_liner SET liner_point = 1500 ");
+/*
 // Commission Macthing ROI
 $query = mysqli_query($connect, "SELECT * FROM system_liner ");
 $row   = mysqli_num_rows($query);
@@ -90,4 +92,5 @@ for ($i = 1; $i <= $row ; $i++) {
         if ($com_number < $count) { break; }
     }
 }
+*/
 ?>

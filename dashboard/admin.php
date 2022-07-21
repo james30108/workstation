@@ -234,7 +234,7 @@ if ($data_check_login) { ?>
 								<?php 
 								$sql = "SELECT * FROM system_report WHERE (report_type = 2) ORDER BY report_round DESC";
 								echo $l_withdraw;
-								//echo badge ($connect, $sql, 1);
+								echo badge ($connect, $sql, 1);
 								?>
 								</div>
 							</a>
