@@ -232,9 +232,9 @@ if ($data_check_login) { ?>
 								<div class="parent-icon"><i class="fadeIn animated bx bx-gift"></i></div>
 								<div class="menu-title">
 								<?php 
-								$sql = "SELECT * FROM system_withdraw WHERE (withdraw_status = 0) ORDER BY report_round DESC";
+								$sql = "SELECT * FROM system_withdraw WHERE (withdraw_status = 0)";
 								echo $l_withdraw;
-								echo badge ($connect, $sql, 1);
+								echo badge ($connect, $sql, 0);
 								?>
 								</div>
 							</a>
