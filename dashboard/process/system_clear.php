@@ -16,13 +16,13 @@ function delete_folder ($direct) {
 }
 
 mysqli_query($connect, "TRUNCATE TABLE system_address");
-/*
+
 mysqli_query($connect, "TRUNCATE TABLE system_liner");
 mysqli_query($connect, "TRUNCATE TABLE system_member");
 
 mysqli_query($connect, "INSERT INTO system_member (member_name, member_code, member_pass, member_user) VALUES ('member', '0000001', '1234', 'member')");
 mysqli_query($connect, "INSERT INTO system_liner (liner_member) VALUES ('1')");
-*/
+
 
 mysqli_query($connect, "TRUNCATE TABLE system_product");
 mysqli_query($connect, "TRUNCATE TABLE system_product_type");

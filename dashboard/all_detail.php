@@ -594,7 +594,7 @@
             FROM
                 (SELECT *, SUM(withdraw_point) AS group_sum 
                 FROM system_withdraw 
-                WHERE (withdraw_cut = 0) AND (withdraw_status != 2)
+                WHERE (withdraw_cut = 0) AND (withdraw_status = 1)
                 GROUP BY withdraw_member) AS withdraw ") or die ($connect);
         $data  = mysqli_fetch_array($query);
         
@@ -609,7 +609,7 @@
         $sql = "SELECT system_member.*, system_withdraw.*
             FROM system_withdraw
             INNER JOIN system_member ON (system_member.member_id = system_withdraw.withdraw_member)
-            WHERE withdraw_cut = 0";
+            WHERE (withdraw_cut = 0) AND (withdraw_status = 1)";
         
     }
     elseif ($type == 'report') {
@@ -720,7 +720,7 @@
                     
                     if ($type == 'withdraw') {
 
-                        $money = $data['withdraw_point'] . $l_bath;
+                        $money = number_format($data['withdraw_point'], 2) . $l_bath;
                         if      ($data['withdraw_status'] == 0) { $status = "<font color=gray>$l_order_status0</font>"; }
                         elseif  ($data['withdraw_status'] == 1) { $status = "<font color=green>$l_order_status4</font>"; }
                         elseif  ($data['withdraw_status'] == 2) { $status = "<font color=red>$l_order_status1</font>"; }

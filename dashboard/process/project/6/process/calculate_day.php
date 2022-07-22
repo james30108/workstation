@@ -46,7 +46,6 @@
             $member  = $data['withdraw_member'];
             $point   = $data['withdraw_point'];
 
-            mysqli_query($connect, "UPDATE system_liner SET liner_status = 1 WHERE liner_member = '$member' ");
             mysqli_query($connect, "INSERT INTO system_report_detail (
                 report_detail_main, 
                 report_detail_link, 
@@ -62,7 +61,7 @@
 //
 
 // Reset Status
-mysqli_query($connect, "UPDATE system_withdraw  SET withdraw_cut    = 1");
+mysqli_query($connect, "UPDATE system_withdraw  SET withdraw_cut    = 1 WHERE withdraw_status IN (1,2)");
 mysqli_query($connect, "UPDATE system_liner     SET liner_count_day = 0");
 
 ?>

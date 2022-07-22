@@ -1,14 +1,15 @@
 <?php 
 
-$query  = mysqli_query($connect, "SELECT SUM(withdraw.group_sum) AS sum, COUNT(*) AS count 
+$query  = mysqli_query($connect, "SELECT SUM(withdraw.group_sum) AS sum, COUNT(*) AS count, withdraw.count_list AS count_list
 	FROM
-	    (SELECT *, SUM(withdraw_point) AS group_sum 
+	    (SELECT *, SUM(withdraw_point) AS group_sum, COUNT(*) AS count_list 
 	    FROM system_withdraw 
-	    WHERE (withdraw_cut = 0) AND (withdraw_status != 2)
+	    WHERE (withdraw_cut = 0) AND (withdraw_status = 1)
 	    GROUP BY withdraw_member) AS withdraw ") or die ($connect);
 $data  = mysqli_fetch_array($query);
 
 $count  	= $data['count'];
+$count_list = $data['count_list'];
 $sum 		= $count > 0 ? $data['sum'] : 0;
 $today     	= datethai(date("Y-m-d"), 0, $lang);
 $now_url 	= $count == 0 ? $today : "<a href='admin.php?page=detail&action=finance&type=withdraw' title='Detail' target='_blank'>$today</a>";
@@ -34,6 +35,7 @@ $now_url 	= $count == 0 ? $today : "<a href='admin.php?page=detail&action=financ
 						<th><?php echo $l_date ?></th>
 						<th><?php echo $l_money ?></th>
 						<th><?php echo $l_member ?></th>
+						<th><?php echo $l_list ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,6 +44,7 @@ $now_url 	= $count == 0 ? $today : "<a href='admin.php?page=detail&action=financ
 						<td><?php echo $now_url ?></td>
 						<td><?php echo number_format($sum, 2) . $l_bath ?></td>
 						<td><?php echo number_format($count) ?></td>
+						<td><?php echo number_format($count_list) ?></td>
 					</tr>
 				</tbody>
 			</table>

@@ -223,23 +223,30 @@ if ($data_check_login) { ?>
 								<div class="menu-title"><?php echo $l_com_list; ?></div>
 							</a>
 						</li>
-					<?php } if ($system_com_withdraw != 0 && $admin_status != 2 && $admin_status != 3) { 
+						<?php } if ($system_com_withdraw != 0 && $admin_status != 2 && $admin_status != 3) { 
 
-						$withdraw_url = $system_com_withdraw == 2 ? "admin.php?page=special&action=withdraw" : "admin.php?page=admin_report_withdraw";
-						?>
-						<li>
-							<a href="<?php echo $withdraw_url ?>">
-								<div class="parent-icon"><i class="fadeIn animated bx bx-gift"></i></div>
-								<div class="menu-title">
-								<?php 
-								$sql = "SELECT * FROM system_report WHERE (report_type = 2) ORDER BY report_round DESC";
-								echo $l_withdraw;
-								//echo badge ($connect, $sql, 1);
-								?>
-								</div>
-							</a>
-						</li>
-					<?php } if ($admin_status != 2) { ?>
+							$withdraw_url = $system_com_withdraw == 2 ? "admin.php?page=special&action=withdraw" : "admin.php?page=admin_withdraw";
+							?>
+							<li>
+								<a href="<?php echo $withdraw_url ?>">
+									<div class="parent-icon"><i class="fadeIn animated bx bx-gift"></i></div>
+									<div class="menu-title">
+									<?php 
+									$sql = "SELECT * FROM system_report WHERE (report_type = 2) ORDER BY report_round DESC";
+									echo $l_withdraw;
+									echo badge ($connect, $sql, 1);
+									?>
+									</div>
+								</a>
+							</li>
+							<?php if ($system_com_withdraw == 1) { ?> 
+							<li>
+								<a href="admin.php?page=admin_report_withdraw">
+									<div class="parent-icon"><i class="fadeIn animated bx bx-spreadsheet"></i></div>
+									<div class="menu-title">รายงานการแจ้งถอน</div>
+								</a>
+							</li>
+						<?php } } if ($admin_status != 2) { ?>
 						<li class="menu-label"><?php echo $l_report_manage; ?></li>
 						<?php if ($admin_status != 2 && $admin_status != 3) { ?>
 							<li>
@@ -466,6 +473,11 @@ if ($data_check_login) { ?>
 							break;
 						case "admin_thread_type":
 							include('admin_thread_type.php');
+							break;
+
+						// ---- withdraw ----	
+						case "admin_withdraw":
+							include('admin_withdraw.php');
 							break;
 
 						// ---- report ----

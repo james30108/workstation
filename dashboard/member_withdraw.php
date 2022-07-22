@@ -21,7 +21,7 @@ $withdraw_url 		= "process/setting_withdraw.php?action=withdraw&member_id=$membe
                         <?php echo report_final ($liner_point, $report_fee1, $report_fee2, $l_bath, $report_max)[0] ;?>
                     </h5>
                 </div>
-                <?php if ($member_status != 2 && $liner_point >= $report_min) { ?>
+                <?php if ($member_status != 2 && $liner_point >= $report_min && $liner_point > 0) { ?>
                     <div class="ms-auto">
                         <a href="<?php echo $withdraw_url ?>" class="d-flex align-items-center border border-white btn text-white" onclick="javascript:return confirm('Confirm ?');">
                             Withdraw <i class='bx bx-gift font-30'></i>
