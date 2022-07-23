@@ -3,7 +3,7 @@
 if ($_GET['action'] == 'commission') {
 
     $report_round = report_now ($connect, 0);
-    commission_cut ($connect, $report_round, $point_type, $yesterday, $report_min);
+    commission_cut ($connect, $report_round, $point_type, $date_now, $report_min);
     header('location:../admin.php?page=admin_report_commission&status=success&message=0');
 
 } 

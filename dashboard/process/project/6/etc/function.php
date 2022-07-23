@@ -13,7 +13,7 @@ $today     = date("Y-m-d");
 $today_name= date("D");
 $last_month= date('Y-m', strtotime('-1 month'));
 $yesterday = date("Y-m-d", strtotime("-1 day"));
-$company   = "Demo";
+$company   = "Bertong";
 $logo_image= "logo.png"; 
 $logo_icon = "icon.png";
 $com_addr  = "";
@@ -426,7 +426,7 @@ function sale_cut ($connect, $report_round) {
 }
 
 // Commission Cut
-function commission_cut ($connect, $report_round, $point_type, $yesterday, $report_min) {
+function commission_cut ($connect, $report_round, $point_type, $report_create, $report_min) {
     
     $query          = mysqli_query($connect, "SELECT SUM(sum.sum_point_member) AS sum_point, COUNT(*) AS count
     FROM
@@ -451,7 +451,7 @@ function commission_cut ($connect, $report_round, $point_type, $yesterday, $repo
         '$report_point', 
         '$report_count', 
         '$report_round', 
-        '$yesterday')")
+        '$report_create')")
     or die(mysqli_error($connect));
     $report_detail_main   = $connect -> insert_id;
 
@@ -488,7 +488,7 @@ function report_final ($point, $report_fee1, $report_fee2, $l_bath, $report_max)
     $pay            = $point - $vat_point - $report_fee1;
     $pay_double     = number_format($pay, 2, '.', '');
     $point_format   = number_format($point, 2);
-    $pay_format     = number_format($pay, 2) . $l_bath;
+    $pay_format     = $pay > 0 ? number_format($pay, 2) . $l_bath : 0;
 
     if ($report_max != 0 && $pay > $report_max) {
         $pay_format = number_format($report_max, 2) . $l_bath . " <font color=red>(limit)</font>";

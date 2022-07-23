@@ -19,7 +19,7 @@ include("process/include_lang.php");
 
 if ($data_check_login) { ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="color-header headercolor2 color-sidebar sidebarcolor2">
+<html xmlns="http://www.w3.org/1999/xhtml" class="color-header headercolor2 color-sidebar sidebarcolor3">
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">

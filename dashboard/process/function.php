@@ -426,7 +426,7 @@ function sale_cut ($connect, $report_round) {
 }
 
 // Commission Cut
-function commission_cut ($connect, $report_round, $point_type, $yesterday, $report_min) {
+function commission_cut ($connect, $report_round, $point_type, $report_create, $report_min) {
     
     $query          = mysqli_query($connect, "SELECT SUM(sum.sum_point_member) AS sum_point, COUNT(*) AS count
     FROM
@@ -451,7 +451,7 @@ function commission_cut ($connect, $report_round, $point_type, $yesterday, $repo
         '$report_point', 
         '$report_count', 
         '$report_round', 
-        '$yesterday')")
+        '$report_create')")
     or die(mysqli_error($connect));
     $report_detail_main   = $connect -> insert_id;
 
