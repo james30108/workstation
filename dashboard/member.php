@@ -37,6 +37,7 @@ if ($data_check_login) { ?>
 	<link href="assets/css/bootstrap-extended.css" rel="stylesheet">
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
+
 	<!-- Theme Style CSS -->
 	<link rel="stylesheet" href="assets/css/dark-theme.css" />
 	<link rel="stylesheet" href="assets/css/semi-dark.css" />

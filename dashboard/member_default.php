@@ -8,6 +8,8 @@
     $member_ewallet     = $data['member_ewallet'];
     $member_month       = $data['member_month'];
 
+    $invite_url         = "demo.com/dashboard/signin_member.php?member_id=$member_id";
+
     // Liner Data
     $query = mysqli_query($connect, "SELECT system_member.*, system_liner.*
         FROM system_member
@@ -364,9 +366,22 @@
         <div class="d-flex align-items-center">
             <button class="btn btn-primary btn-sm" onclick="copyToClipboard('#copy_text')">Copy</button>
             <hr class="vr text-white mx-3">
-            <h5 class="font-weight-bold text-white mb-0 text-truncate" id="copy_text">
-                <?php echo "demo.com/dashboard/signin_member.php?member_id=$member_id"; ?>
-            </h5>
+            <h5 class="font-weight-bold text-white mb-0 text-truncate" id="copy_text"><?php echo $invite_url ?></h5>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#qrcode" class="bg-transparent border-0 text-white text-decoration-underline ms-auto "><i class='bx bx-barcode font-30'></i></button>
+            <!-- QRCode -->
+            <div class="modal fade" id="qrcode" tabindex="-1" aria-labelledby="qrcode" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="qrcode">Invite Code</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $invite_url ?>&choe=UTF-8" title="Invite Link" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

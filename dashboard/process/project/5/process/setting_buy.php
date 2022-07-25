@@ -3,7 +3,7 @@
 if (!file_exists("../../../../assets/images/slips/")) { mkdir("../../../../assets/images/slips"); }
 
 /*
-member_point = เก็บคะแนนรักษายอดทั้งหมด * โปรเจกนี้ไม่ได้ใช้
+member_point = เก็บคะแนนรักษายอดทั้งหมด ใช้ปรับตำแหน่ง
 member_point_month = โปรเจกนี้ไว้เก็บค่าคอมที่ใช้แสดงประจำเดือน
 */
 
@@ -53,10 +53,12 @@ if ($_GET['action'] == 'confirm_admin') {
     $class  = mysqli_fetch_array($query);
     $class  = $class['class_id'];
 
+    mysqli_query($connect, "UPDATE system_member SET member_class = '$class' WHERE member_id = '$member_id' ");
+    /*
     if ($member_class < $class) {
         mysqli_query($connect, "UPDATE system_member SET member_class = '$class' WHERE member_id = '$member_id' ");
     }
-    
+    */
     // commisison to liner
     $query            = mysqli_query($connect, "SELECT * FROM system_liner WHERE (liner_id = '$liner_direct')");
     $data             = mysqli_fetch_array($query);
