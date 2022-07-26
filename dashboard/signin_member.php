@@ -1,7 +1,7 @@
 <?php include('process/function.php');
 
 $page_type= basename($_SERVER['PHP_SELF']);
-$lang 		= isset($_GET["lang"]) ? $_GET["lang"] : 0;
+$lang       = isset($_GET["lang"]) ? $_GET["lang"] : 0;
 include("process/include_lang.php");
 
 ?>
