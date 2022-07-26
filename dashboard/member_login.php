@@ -139,7 +139,12 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-12 text-end">
+                                        <div class="col-6">
+                                            <?php if ($system_liner == 0) { ?>
+                                            <a href="signin_member.php">Sign in</a>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="col-6 text-end">
                                             <a href="member_login.php?action=forget_password">Forget password ?</a>
                                         </div>
                                         <div class="col-12">

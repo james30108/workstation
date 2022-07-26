@@ -163,7 +163,7 @@ elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_member') {
     $query = mysqli_query($connect, "SELECT * FROM system_order ORDER BY order_id DESC");
     $data  = mysqli_fetch_array($query);
 
-    $order_id = $data['order_id'] + 1;
+    $order_id = isset($data['order_id']) ? : $data['order_id'] + 1;
     if      ( $order_id <= 9 ) { $zero = "ORDER-000000"; } 
     elseif  ( $order_id <= 99 ) { $zero = "ORDER-00000"; } 
     elseif  ( $order_id <= 999 ) { $zero = "ORDER-0000"; } 
@@ -224,7 +224,7 @@ elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_member') {
     mysqli_query($connect, "DELETE FROM system_cart WHERE cart_member_id = '$order_member' ") or die(mysqli_error($connect));
 
     // Payment 
-    if ($order_type_buy == 0) {
+    if ($order_type_buy == 0 || $order_type_buy == 5) {
         
         $pay_title  = "Payment from $order_code";
         $pay_buyer  = $_POST['pay_buyer'];

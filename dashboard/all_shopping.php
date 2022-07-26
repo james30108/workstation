@@ -411,7 +411,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                     <input type="hidden" name="order_member"    value="<?php echo $member_id; ?>">
                     <input type="hidden" name="member_ewallet"  value="<?php echo $member_ewallet; ?>" id="ewallet">
                     <?php
-                    if ($system_delivery == 1) {
+                    if ($system_address == 2) {
                         $query = mysqli_query($connect, "SELECT system_address.*, system_member.*, system_amphures.*, system_districts.*, system_provinces.* 
                             FROM system_address 
                             INNER JOIN system_member ON (system_address.address_member = system_member.member_id)
@@ -420,14 +420,14 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                             INNER JOIN system_provinces ON (system_address.address_province = system_provinces.PROVINCE_ID)
                             WHERE (address_member = '$member_id') AND (address_type = 1) ");
                         $data  = mysqli_fetch_array($query);
-                        $address_detail   = $data['address_detail'];
-                        $address_district = $data['DISTRICT_NAME'];
-                        $address_amphure  = $data['AMPHUR_NAME'];
-                        $address_province = $data['PROVINCE_NAME'];
-                        $address_zipcode  = $data['address_zipcode'];
-                        $member_name      = $data['member_name'];
-                        $member_tel       = $data['member_tel'];
-                        $member_bank_own  = $data['member_bank_own'];
+                        $address_detail   = isset($data['address_detail']) ? $data['address_detail'] : false;
+                        $address_district = isset($data['DISTRICT_NAME']) ? $data['DISTRICT_NAME'] : false;
+                        $address_amphure  = isset($data['AMPHUR_NAME']) ? $data['AMPHUR_NAME'] : false;
+                        $address_province = isset($data['PROVINCE_NAME']) ? $data['PROVINCE_NAME'] : false;
+                        $address_zipcode  = isset($data['address_zipcode']) ? $data['address_zipcode'] : false;
+                        $member_name      = isset($data['member_name']) ? $data['member_name'] : false;
+                        $member_tel       = isset($data['member_tel']) ? $data['member_tel'] : false;
+                        $member_bank_own  = isset($data['member_bank_own']) ? $data['member_bank_own'] : false;
                         $detail_row       = "12";
                     }
                     else {
@@ -451,10 +451,8 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                             <?php if ($page_type == "member.php") { ?>
                             <option value="0"><?php echo $l_order_pay0 ?></option>
                             <?php echo $system_ewallet == 1 ? "<option value='1' $ewallet_dis>$ewallet_name</option>" : false; ?>
-                            <!--
-                            <option value="4"><?php echo $l_order_pay4 ?>/option>
+                            <option value="4"><?php echo $l_order_pay4 ?></option>
                             <option value="5"><?php echo $l_order_pay5 ?></option>
-                            -->
                             <?php } else { ?>
 
                             <option value="2"><?php echo $l_order_pay0 ?></option>
@@ -501,7 +499,7 @@ if (!isset($_GET['action']) || $_GET['action'] == 'search') {
                                 <label class="form-label"><?php echo $l_tel ?></label>
                                 <input type="text" class="form-control" name="order_buyer_tel" value="<?php echo $member_tel ?>" required>
                             </div>
-                            <?php if ($system_delivery == 1) { ?>
+                            <?php if ($system_address == 2) { ?>
                                 <div class="col-12 mt-3">
                                     <label class="form-label"><?php echo $l_address ?></label>
                                     <input type="text" class="form-control" name="order_address" value="<?php echo $address_detail ?>" required>
