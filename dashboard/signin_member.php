@@ -1,12 +1,8 @@
 <?php include('process/function.php');
 
-<<<<<<< HEAD
-$page_type= basename($_SERVER['PHP_SELF']);
-$lang       = isset($_GET["lang"]) ? $_GET["lang"] : 0;
-=======
 $page_type  = basename($_SERVER['PHP_SELF']);
 $lang 		= isset($_GET["lang"]) ? $_GET["lang"] : 0;
->>>>>>> 8ca2fae388e0e8441783a4e260f7bed51ac2e5b1
+
 include("process/include_lang.php");
 
 ?>
