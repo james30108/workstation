@@ -208,8 +208,8 @@ isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : fals
             <div class="col-12">
                 <label class="form-label"><?php echo $l_pay ?></label>
                 <select name="order_type_buy" class="form-control">
-                    <option value="all"<?php if (!isset($_GET['order_type_buy']) || $_GET['order_type_buy'] == 'all') {echo "selected";} ?>><?php echo $l_all ?></option>
-                    <option value="0" <?php echo $sorder_type_buy == '0' ? "selected" : false; ?>><?php echo $l_order_pay0 ?></option>
+                    <option value="all"<?php echo $sorder_type_buy == 'all' || $sorder_type_buy === false ? "selected" : false; ?>><?php echo $l_all ?></option>
+                    <option value="0" <?php echo $sorder_type_buy === '0' ? "selected" : false; ?>><?php echo $l_order_pay0 ?></option>
                     <?php if ($system_ewallet == 1) { ?>
                     <option value="1" <?php echo $sorder_type_buy == '1' ? "selected" : false; ?>><?php echo $l_order_pay1 ?></option>
                     <?php } if ($system_admin_buy == 1) { ?>
@@ -223,8 +223,8 @@ isset($_GET["status"]) ? alert ($_GET["status"], $_GET["message"], $lang) : fals
             <div class="col-12">
                 <label class="form-label"><?php echo $l_status ?></label>
                 <select name="order_status" class="form-control">
-                    <option value="all" <?php echo $sorder_status == 'all' || $sorder_status == false ? "selected" : false; ?>><?php echo $l_all ?></option>
-                    <option value="0" <?php echo $sorder_status == '0' ? "selected" : false; ?>><?php echo $l_order_status0 ?></option>
+                    <option value="all" <?php echo $sorder_status == 'all' || $sorder_status === false ? "selected" : false; ?>><?php echo $l_all ?></option>
+                    <option value="0" <?php echo $sorder_status === '0' ? "selected" : false; ?>><?php echo $l_order_status0 ?></option>
                     <option value="1" <?php echo $sorder_status == '1' ? "selected" : false; ?>><?php echo $l_order_status1 ?></option>
                     <option value="3" <?php echo $sorder_status == '3' ? "selected" : false; ?>><?php echo $l_order_status3 ?></option>
                     <option value="4" <?php echo $sorder_status == '4' ? "selected" : false; ?>><?php echo $l_order_status4 ?></option>

@@ -163,7 +163,8 @@ elseif  (isset($_POST['action']) && $_POST['action'] == 'confirm_member') {
     $query = mysqli_query($connect, "SELECT * FROM system_order ORDER BY order_id DESC");
     $data  = mysqli_fetch_array($query);
 
-    $order_id = isset($data['order_id']) ? : $data['order_id'] + 1;
+    $order_id = isset($data['order_id']) ? $data['order_id'] + 1 : 1;
+
     if      ( $order_id <= 9 ) { $zero = "ORDER-000000"; } 
     elseif  ( $order_id <= 99 ) { $zero = "ORDER-00000"; } 
     elseif  ( $order_id <= 999 ) { $zero = "ORDER-0000"; } 
